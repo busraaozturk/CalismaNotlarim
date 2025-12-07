@@ -5,4 +5,5 @@
 - 01_Temel Konular
   - Tarayıcı Kavramları
   - İnternet Nedir ve Nasıl Çalışır?
+- 02_Git&Github
 
