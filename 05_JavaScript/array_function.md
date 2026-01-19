@@ -71,10 +71,10 @@ Orijinal diziyi **değiştirmez.**
     const array = [1, 4, 9, 16];
     const mapped = array.map((x) => x * 2);
 
-## Sonuç :
+### Sonuç :
     [2, 8, 18, 32]
 
-## Parametreler
+### Parametreler
     map(callbackFn)
     map(callbackFn, thisArg)
 
@@ -99,3 +99,50 @@ Callback içinde `this` olarak kullanılacak değer.
 - Orijinal diziyi değiştirmez
 - Yeni dizi döndürdüğü için, sonucu kullanmadan çağırmak anti-pattern’dir
 (Bu durumda `forEach` veya `for...of` tercih edilmelidir)
+
+## `sort()` Method
+`sort()` metodu, bir dizinin elemanlarını **yerinde (in-place)** sıralar ve aynı dizinin referansını döndürür.
+
+**Orijinal diziyi değiştirir.**
+
+### Varsayılan Davranış
+Varsayılan olarak:
+- Elemanlar string’e çevrilir
+- UTF-16 kod birimlerine göre karşılaştırılır
+- Artan sırada sıralanır
+
+### Örnek : 
+    const numbers = [10, 2, 1];
+    numbers.sort();
+
+### Sonuç : 
+    [1, 10, 2]
+
+(Bu nedenle sayısal sıralamada dikkat edilmelidir.)
+
+### Karşılaştırma Fonksiyonu ile Kullanım
+### Örnek : 
+    numbers.sort((a, b) => a - b);
+
+### Sonuç : 
+    [1, 2, 10]
+
+### Önemli Notlar
+
+- `sort()` **orijinal diziyi değiştirir**
+- Sayılar için mutlaka karşılaştırma fonksiyonu kullanılmalıdır
+- Referans tiplerle çalışırken dikkatli olunmalıdır
+
+## Methodların Kısa Karşılaştırılması
+
+| Method     | Yeni Dizi Döndürür | Orijinal Diziyi Değiştirir | Amaç               |
+| ---------- | ------------------ | -------------------------- | ------------------ |
+| `filter()` | ✅                  | ❌                          | Eleman seçmek      |
+| `map()`    | ✅                  | ❌                          | Eleman dönüştürmek |
+| `sort()`   | ❌                  | ✅                          | Eleman sıralamak   |
+
+## Genel Tavsiye
+
+- Eleme işlemi → `filter()`
+- Dönüştürme işlemi → `map()`
+- Sıralama işlemi → `sort()`
