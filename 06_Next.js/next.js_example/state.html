@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listeler Üzerinde Yineleme</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel js kodunu jsx'e dönüştürür -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script type="text/jsx">
+         function Header({title}) {
+            console.log(title);
+            return <h1>{title}</h1>;
+        }
+
+        function HomePage() {
+        const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+        const [likes, setLikes] = React.useState(0);
+
+        function handleClick() {
+            setLikes(likes + 1);
+            console.log("increment like count");
+        }
+
+            return (
+                <div>
+                    <Header title="Develop Preview Ship" />
+                    <ul>
+                        {names.map((name) => (
+                            <li key={name}>{name}</li>
+                        ))}
+                    </ul>
+
+                    <button onClick={handleClick}>Like ({likes})</button>
+                </div>
+            );
+        }
+        
+        const root = ReactDOM.createRoot(app);
+        root.render(<HomePage />);
+    </script>
+</body>
+</html>
+
+<!-- Tıklandığında bir işlev yapması için onClick kullanılır. -->
+<!-- Giriş alanları için onChange, formlar için onSubmit kullanılır. -->
+<!-- useState() = Dizi döndürür, dizideki değerlere bileşeniniz içinde ayrıştırma (array destructuring) yöntemiyle erişilebilir ve kullanılabilir. -->
+    <!-- const [] = React.useState(); -->
+    <!-- Açıklayıcı bir isim verilmesi önerilir. Örn: const [likes] = React.useState(); -->
+    <!-- Dizideki ikinci öğe değeri güncellemek için kullanılan bir fonksiyondur.
+        - Güncelleme fonksiyonuna istenen ad verilebilir ancak genellikle önüne "set" ve ardından güncellediğiniz durum değişkeninin adını eklemek yaygındır.
+        - Örnek : const [likes, setLikes] = React.useState(0) -->
