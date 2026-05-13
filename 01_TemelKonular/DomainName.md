@@ -20,7 +20,7 @@ Bu sebeple, internet üzerinde erişim kolaylaştırmak amacıyla alan adları (
 
 ## ALAN ADLARININ YAPISI
 Alan adları, noktalarla ayrılmış birden fazla parçadan oluşur ve sağdan sola okunur. Bu yapı, alan adının hiyerarşik olarak sınıflandırılmasını sağlar.
-![alt text](image.png)
+![alt text](../01_TemelKonular/images/dns-1.png)
 
 Bir alan adını oluşturan her parça (etiket), alan adının tamamı hakkında özel ve anlamlı bilgiler sunar.
 
@@ -145,7 +145,7 @@ Bu noktada DNS (Domain Name System) devreye girer.
 
 DNS, alan adlarını IP adreslerine çeviren dağıtık ve hiyerarşik bir sistemdir. İnternetin “telefon rehberi” olarak da düşünülebilir.
 
-![alt text](image-1.png)
+![alt text](/01_TemelKonular/images/dns-2.png)
 *`Alan adının DNS üzerinden IP adresine çözülme süreci`*
 
 ## DNS (DOMAIN NAME SYSTEM) NEDİR?
