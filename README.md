@@ -15,14 +15,16 @@
 
 ## 01. Temel Konular
 
-Web geliştirmede ihtiyaç duyulan temel kavramları ve Internet altyapısını anlamak.
+Web geliştirmede ihtiyaç duyulan temel kavramları, internet altyapısını ve yazılım süreçlerini anlamak.
 
-- **Tarayıcı Kavramları** - Tarayıcıların nasıl çalıştığı ve temel özellikleri
-- **HTTP Nedir?** - HTTP protokolünün temelleri ve çalışma mantığı
-- **Domain Name Nedir?** - Domain isimlendirmesi ve DNS sistemi
-- **Hosting Nedir?** - Web hosting servisleri ve türleri
-- **Test Güdümlü Geliştirme (TDD)** - TDD metodolojisi ve uygulanması
-- **Yazılım Yaşam Döngüsü (SDLC)** - Yazılım geliştirme sürecinin aşamaları
+- **Tarayıcı Kavramları** - Tarayıcıların çalışma mantığı, bileşenleri, veri depolama yöntemleri ve geliştirici araçları
+- **HTTP Nedir?** - İstemci-sunucu iletişimi, istek-yanıt yapısı ve HTTP başlıkları
+- **Domain Name Nedir?** - Alan adı yapısı, DNS, TLD, SLD ve subdomain kavramları
+- **Hosting Nedir?** - Web barındırmanın çalışma biçimi, hosting türleri ve seçim kriterleri
+- **Meta Tag'lar ve SEO Nedir?** - SEO, canonical, robots, viewport ve diğer meta etiketleri
+- **Open Graph (OG) Nedir?** - Sosyal medya paylaşım kartlarını yöneten Open Graph etiketleri
+- **Test Güdümlü Geliştirme (TDD)** - Red-Green-Refactor döngüsü ve TDD’nin frontend’de kullanımı
+- **Yazılım Yaşam Döngüsü (SDLC)** - Planlama, analiz, tasarım, geliştirme, test, yayınlama ve bakım aşamaları
 
 ---
 
@@ -84,4 +86,4 @@ Bu notlar öğrenme ve referans amaçlı kullanılan markdown dosyalarından olu
 
 ---
 
-**Son Güncelleme:** Mayıs 2026
+**Son Güncelleme:** Eylül 2026
