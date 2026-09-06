@@ -1,34 +1,15 @@
-# Workspace Nedir? Sıfırdan Detaylı Rehber
+# Workspace Nedir?
 
-> **Amaç:** Bu rehber, "workspace" kavramını daha önce hiç kullanmamış
-> biri için sıfırdan açıklar.\
-> Workspace'in klasör, proje, repository, working directory ve AI
-> context kavramlarından farkını; birden fazla projeyi aynı çalışma
-> alanında nasıl tutabileceğini ve hangi durumlarda kullanmanın mantıklı
-> olduğunu anlatır.
-
-------------------------------------------------------------------------
-
-## 1. Workspace'i Tek Cümlede Anlayalım
-
-**Workspace = üzerinde çalıştığın bir veya birden fazla kaynak, klasör
-ve projeyi aynı çalışma bağlamında bir araya getiren çalışma alanıdır.**
+**Workspace** üzerinde çalıştığın bir veya birden fazla kaynak, klasör ve projeyi aynı çalışma bağlamında bir araya getiren çalışma alanıdır.
 
 "Workspace" Türkçede doğrudan **çalışma alanı** anlamına gelir.
 
 En önemli nokta:
+- Workspace, projelerini veya klasörlerini fiziksel olarak birleştirmek zorunda değildir. Asıl görevi, çalışırken ihtiyaç duyduğun kaynakları **aynı çalışma ortamında erişilebilir hale getirmektir.**
 
-> Workspace, projelerini veya klasörlerini fiziksel olarak birleştirmek
-> zorunda değildir.\
-> Asıl görevi, çalışırken ihtiyaç duyduğun kaynakları **aynı çalışma
-> ortamında erişilebilir hale getirmektir.**
-
-------------------------------------------------------------------------
-
-# 2. Önce Temel Kavramları Ayıralım
+## Önce Temel Kavramları Ayıralım
 
 Workspace'i anlamak için şu kavramları birbirinden ayırmak gerekir:
-
 -   File
 -   Folder
 -   Project
@@ -39,33 +20,25 @@ Workspace'i anlamak için şu kavramları birbirinden ayırmak gerekir:
 
 Bunlar birbirleriyle ilişkili olabilir ama **aynı şey değildir.**
 
-------------------------------------------------------------------------
-
-## 2.1 File --- Dosya
-
+### 1.File / Dosya
 En küçük seviyede gerçek dosyalar vardır.
 
-Örneğin:
-
-``` text
-Header.tsx
-package.json
-README.md
-theme-guide.md
-globals.css
+``` 
+    text
+    Header.tsx
+    package.json
+    README.md
+    theme-guide.md
+    globals.css
 ```
 
 Bir dosyanın içerisinde kod, yapılandırma, dokümantasyon veya başka
 veriler bulunabilir.
 
-------------------------------------------------------------------------
-
-## 2.2 Folder --- Klasör
+### 2.Folder / Klasör
 
 Dosyaları ve başka klasörleri düzenlemek için kullanılan fiziksel dosya
 sistemi yapısıdır.
-
-Örneğin:
 
 ``` text
 src/
@@ -79,59 +52,23 @@ src/
 └── app/
 ```
 
-Windows'ta bunun fiziksel bir yolu olabilir:
+Windows'ta bunun fiziksel bir yolu olabilir: `C:\Users\Kullanici\Projects\ecommerce`. Buradaki `ecommerce`, bilgisayarındaki gerçek bir klasördür.
 
-``` text
-C:\Users\Kullanici\Projects\ecommerce
-```
+### 3.Project / Proje
 
-Buradaki `ecommerce`, bilgisayarındaki gerçek bir klasördür.
+**Project**, belirli bir amaç için geliştirdiğin yazılım bütünüdür. Örneğin `TravelMind AI`, `Portfolio`, `E-Commerce Store` birer proje olabilir.
 
-------------------------------------------------------------------------
-
-## 2.3 Project --- Proje
-
-**Project**, belirli bir amaç için geliştirdiğin yazılım bütünüdür.
-
-Örneğin:
-
-``` text
-TravelMind AI
-Portfolio
-E-Commerce Store
-E-Commerce Admin
-```
-
-birer proje olabilir.
-
-Bir proje çoğu zaman bir klasörün içinde tutulur:
-
-``` text
-ecommerce-store/
-├── src/
-├── public/
-├── docs/
-├── package.json
-└── README.md
-```
-
-Ancak kavramsal olarak:
-
-``` text
+Bir proje çoğu zaman bir klasörün içinde tutulur, ama kavramsal olarak ikisi aynı şey değildir:
+ 
+```text
 Folder  → Dosyaların fiziksel organizasyonu
 Project → Geliştirdiğin yazılım/ürün
 ```
 
-şeklinde düşünmek daha doğrudur.
-
-------------------------------------------------------------------------
-
-## 2.4 Repository --- Repo
+### 4.Repository / Repo
 
 Repository, Git gibi bir versiyon kontrol sistemi tarafından takip
 edilen kod tabanıdır.
-
-Örneğin:
 
 ``` text
 ecommerce-store/
@@ -142,61 +79,21 @@ ecommerce-store/
 └── README.md
 ```
 
-Buradaki `.git` dizini, bu klasörün Git repository olarak yönetildiğini
-gösterir.
+Buradaki `.git` dizini, bu klasörün Git repository olarak yönetildiğini gösterir. Repository sayesinde `Değişiklik → Commit → Branch → Merge → Push / Pull` gibi işlemler yapılabilir.
 
-Repository sayesinde:
-
-``` text
-Değişiklik
-    ↓
-Commit
-    ↓
-Branch
-    ↓
-Merge
-    ↓
-Push / Pull
-```
-
-gibi işlemler yapılabilir.
-
-### Önemli
-
-**Project ile repository de birebir aynı kavram değildir.**
-
-Bir proje tek repository olabilir.
-
-Ama büyük bir sistem:
-
-``` text
+**Project ile repository de birebir aynı kavram değildir.** Bir proje tek repository olabilir, ama büyük bir sistem birden fazla repository'den de oluşabilir:
+ 
+```text
 E-Commerce Sistemi
 ├── Store Repository
 ├── Admin Repository
 └── Backend Repository
 ```
 
-şeklinde birden fazla repository'den de oluşabilir.
+## Workspace Nedir?
 
-------------------------------------------------------------------------
-
-# 3. Workspace Nedir?
-
-Şimdi asıl kavrama gelelim.
-
-Diyelim ki bir e-ticaret sistemi üzerinde çalışıyorsun ve üç ayrı kod
-tabanın var:
-
-``` text
-ecommerce-store
-ecommerce-admin
-ecommerce-api
-```
-
-Bunların her biri ayrı repository olabilir.
-
-Ancak yaptığın iş açısından üçünün de aynı sistemle ilişkisi vardır.
-
+Şimdi asıl kavrama gelelim. Diyelim ki bir e-ticaret sistemi üzerinde çalışıyorsun ve üç ayrı kod tabanın var: `ecommerce-store`, `ecommerce-admin`, `ecommerce-api`. Bunların her biri ayrı repository olabilir. Ancak yaptığın iş açısından üçünün de aynı sistemle ilişkisi vardır.
+ 
 Bu durumda mantıksal bir çalışma alanı oluşturabilirsin:
 
 ``` text
@@ -214,33 +111,19 @@ Bu durumda mantıksal bir çalışma alanı oluşturabilirsin:
 ```
 
 Burada:
-
--   Store hâlâ ayrı proje olabilir.
--   Admin hâlâ ayrı proje olabilir.
--   API hâlâ ayrı repository olabilir.
--   Git geçmişleri hâlâ birbirinden bağımsız olabilir.
+- Store hâlâ ayrı proje olabilir.
+- Admin hâlâ ayrı proje olabilir.
+- API hâlâ ayrı repository olabilir.
+- Git geçmişleri hâlâ birbirinden bağımsız olabilir.
 
 Workspace sadece bunları **aynı çalışma ortamında erişilebilir hale
 getirir.**
 
-------------------------------------------------------------------------
+## Gerçek Hayat Benzetmesi
 
-# 4. Gerçek Hayat Benzetmesi
-
-Workspace'i bir **çalışma masası** olarak düşün.
-
-Dolabında şu klasörler var:
-
-``` text
-📁 Store
-📁 Admin
-📁 Backend
-📁 Portfolio
-```
-
-Bugün e-ticaret üzerinde çalışacaksın.
-
-Masanın üzerine şunları koyuyorsun:
+Workspace'i bir **çalışma masası** olarak düşün. Dolabında şu klasörler var: `Store`, `Admin`, `Backend`, `Portfolio`.
+ 
+Bugün e-ticaret üzerinde çalışacaksın, masanın üzerine sadece ihtiyacın olanları koyuyorsun:
 
 ``` text
 ┌──────────────────────────────────┐
@@ -260,23 +143,16 @@ Burada:
 ``` text
 Çalışma masası = Workspace
 
-Masanın üzerindeki klasörler
-= Workspace'e dahil ettiğin projeler/kaynaklar
+Masanın üzerindeki klasörler = Workspace'e dahil ettiğin projeler/kaynaklar
 ```
 
-Klasörleri aynı masaya koyman onları birbirine yapıştırmaz.
+Klasörleri aynı masaya koyman onları birbirine yapıştırmaz. **Workspace de tam olarak bunu yapar.**
 
-**Workspace de tam olarak bunu yapar.**
+## Workspace Fiziksel Bir Klasör Olmak Zorunda mı?
 
-------------------------------------------------------------------------
+**Hayır.** Bu en önemli workspace özelliklerinden biridir.
 
-# 5. Workspace Fiziksel Bir Klasör Olmak Zorunda mı?
-
-**Hayır.**
-
-Bu en önemli workspace özelliklerinden biridir.
-
-Örneğin bilgisayarındaki klasörler şöyle olabilir:
+Örneğin bilgisayarındaki klasörler fiziksel olarak üç farklı yerde bulunabilir:
 
 ``` text
 C:\Projects\ecommerce-store
@@ -286,9 +162,7 @@ C:\Company\ecommerce-admin
 D:\Documentation\ecommerce-docs
 ```
 
-Fiziksel olarak üç farklı yerde bulunuyorlar.
-
-Bir araç bunları aynı workspace'e dahil ederek sana şöyle gösterebilir:
+Bir araç bunları aynı workspace'e dahil ederek sana tek bir liste gibi gösterebilir:
 
 ``` text
 E-Commerce Workspace
@@ -298,66 +172,39 @@ E-Commerce Workspace
 └── ecommerce-docs
 ```
 
-Yani:
+- **Workspace fiziksel konumdan çok mantıksal çalışma kapsamını ifade eder.**
 
-> **Workspace fiziksel konumdan çok mantıksal çalışma kapsamını ifade
-> eder.**
-
-------------------------------------------------------------------------
-
-# 6. Workspace Birleştirme İşlemi Değildir
-
-Bu konu özellikle önemlidir.
-
-Diyelim ki:
-
-``` text
-WORKSPACE
-├── Project-A
-└── Project-B
-```
-
-oluşturdun.
-
-Bu şu anlama **gelmez:**
+## Workspace Birleştirme İşlemi Değildir
+Diyelim ki `WORKSPACE` içine `Project-A` ve `Project-B`'yi ekledin. Bu şu anlama gelmez:
 
 ``` text
 Project-A/
 └── Project-B/
 ```
 
-Aynı şekilde:
-
-``` text
-Project-A'daki kod
-        +
-Project-B'deki kod
-        ↓
-tek proje
-```
-
-şeklinde bir işlem gerçekleşmez.
-
 Workspace'e klasör eklemek:
-
--   Dosyaları taşımaz.
--   Dosyaları kopyalamaz.
--   Repository'leri birleştirmez.
--   Branch'leri birleştirmez.
--   Git geçmişlerini birleştirmez.
--   Kodları otomatik aktarmaz.
+- Dosyaları taşımaz veya kopyalamaz.
+- Repository'leri, branch'leri veya Git geçmişlerini birleştirmez.
+- Kodları otomatik aktarmaz.
 
 Sadece **çalışma alanına dahil eder.**
 
-------------------------------------------------------------------------
+Bu, VS Code gibi araçlarda oluşturduğun `.code-workspace` dosyası için de geçerlidir: bu dosya projelerin kendisini içermez, sadece hangi klasörlerin çalışma alanına dahil edileceğine dair bir referans listesi tutar — örneğin:
+  
+```json
+{
+  "folders": [
+    { "path": "C:\\Projects\\ecommerce-store" },
+    { "path": "C:\\Projects\\ecommerce-admin" }
+  ]
+}
+```
 
-# 7. Single-Folder ve Multi-Root Workspace
+## Single-Folder ve Multi-Root Workspace
 
-Workspace tek klasörden de oluşabilir.
-
-## Single-Folder Workspace
-
-``` text
+Workspace tek klasörden de oluşabilir:
+ 
+```text
 WORKSPACE
 └── ecommerce-store
     ├── src
@@ -365,16 +212,12 @@ WORKSPACE
     ├── public
     └── package.json
 ```
-
+ 
 Tek proje üzerinde çalışıyorsan çoğu zaman bu yeterlidir.
-
-------------------------------------------------------------------------
-
-## Multi-Root Workspace
-
-Birden fazla bağımsız klasörün aynı çalışma alanında bulunmasıdır.
-
-``` text
+ 
+**Multi-root workspace** ise birden fazla bağımsız klasörün aynı çalışma alanında bulunmasıdır:
+ 
+```text
 WORKSPACE
 │
 ├── ecommerce-store
@@ -388,20 +231,10 @@ WORKSPACE
 └── ecommerce-docs
     └── theme-guide.md
 ```
+ 
+Bu yapı özellikle ilişkili birden fazla proje, frontend + backend, store + admin, eski proje + yeni proje, kod + dokümantasyon gibi durumlarda faydalıdır.
 
-Bu yapı özellikle:
-
--   ilişkili birden fazla proje,
--   frontend + backend,
--   store + admin,
--   eski proje + yeni proje,
--   kod + dokümantasyon
-
-gibi durumlarda faydalıdır.
-
-------------------------------------------------------------------------
-
-# 8. Workspace ile Git Repository Arasındaki Fark
+## Workspace ile Git Repository Arasındaki Fark
 
 Diyelim ki workspace içerisinde iki repository var:
 
@@ -417,31 +250,13 @@ WORKSPACE
     └── branch: main
 ```
 
-İkisi aynı workspace'te olsa bile:
+İkisi aynı workspace'te olsa bile `Store Git Repository ≠ Admin Git Repository`'dir. Store üzerinde çalıştırılan `git status`, yalnızca Store repository'sinin durumunu gösterir; Admin'in branch'i veya commit geçmişi bundan bağımsızdır.
 
-``` text
-Store Git Repository ≠ Admin Git Repository
-```
+- **Kural:** Workspace Git sınırlarını ortadan kaldırmaz.
 
-Store üzerinde yapılan:
+## Workspace ile Monorepo Aynı Şey Değildir
 
-``` bash
-git status
-```
-
-işlemi Store repository'sinin durumunu gösterir.
-
-Admin'in branch'i veya commit geçmişi bundan bağımsızdır.
-
-### Kural
-
-> **Workspace Git sınırlarını ortadan kaldırmaz.**
-
-------------------------------------------------------------------------
-
-# 9. Workspace ile Monorepo Aynı Şey Değildir
-
-Bir monorepo şöyle olabilir:
+Bir monorepo'da Store, Admin, UI ve Themes **aynı repository** içindedir:
 
 ``` text
 ecommerce/
@@ -458,11 +273,7 @@ ecommerce/
 └── package.json
 ```
 
-Burada Store, Admin, UI ve Themes **aynı repository** içerisindedir.
-
-Bu bir **monorepo** örneğidir.
-
-Workspace ise şöyle de olabilir:
+Workspace ise üç ayrı repository'yi aynı çalışma alanında bir araya getirebilir:
 
 ``` text
 WORKSPACE
@@ -471,122 +282,50 @@ WORKSPACE
 └── backend.git
 ```
 
-Burada üç ayrı repository aynı workspace içerisinde bulunabilir.
+Dolayısıyla: `Monorepo ≠ Workspace`, `Repository ≠ Workspace`, `Project ≠ Workspace`.
 
-Dolayısıyla:
+## Workspace ile Working Directory Farkı
 
-``` text
-Monorepo  ≠ Workspace
-Repository ≠ Workspace
-Project    ≠ Workspace
-```
-
-------------------------------------------------------------------------
-
-# 10. Workspace ile Working Directory Farkı
-
-Terminal açtığında terminalin o anda bulunduğu bir dizin vardır.
-
-Örneğin:
+Terminal açtığında terminalin o anda bulunduğu bir dizin vardır:
 
 ``` powershell
 PS C:\Projects\ecommerce-store>
 ```
 
-Buradaki:
+Bu, terminalin **working directory**'sidir. Ama workspace'in şöyle olabilir:
 
-``` text
-C:\Projects\ecommerce-store
-```
-
-terminalin **working directory**'sidir.
-
-Ama workspace'in şöyle olabilir:
-
-``` text
+```text
 WORKSPACE
 ├── ecommerce-store
 ├── ecommerce-admin
 └── ecommerce-api
 ```
 
-Terminal o anda yalnızca:
-
-``` text
-ecommerce-store
+Terminal o anda yalnızca `ecommerce-store` içinde olabilir:
+ 
+```text
+Workspace          → Geniş çalışma alanı
+Working Directory  → Terminalin şu anda bulunduğu dizin
 ```
+ 
+**Neden önemli?** `npm run dev` gibi bir komut çalıştırdığında, hangi projenin çalışacağını büyük ölçüde terminalin bulunduğu dizin belirler.
 
-içerisinde olabilir.
+## Workspace ile AI Context Aynı Şey Değildir
 
-Dolayısıyla:
+AI destekli kodlama araçlarında bu ayrım çok önemlidir. Workspace içinde 500 farklı dosya olması, AI'ın her cevapta bu 500 dosyanın tamamını aynı anda aktif olarak kullandığı anlamına gelmez.
 
-``` text
-Workspace
-   ↓
-Geniş çalışma alanı
-
-Working Directory
-   ↓
-Terminalin şu anda bulunduğu dizin
+```text
+Workspace → AI aracının erişmesine izin verilen çalışma kapsamı.
+            "Erişebileceğin alan burası."
+ 
+Context   → AI'ın belirli bir görev sırasında gerçekten okuduğu,
+            seçtiği veya modele sağlanan bilgiler bütünü.
+            "Bu görev için şu anda kullandığın bilgi."
 ```
-
-### Neden önemli?
-
-Şu komutu çalıştırdığında:
-
-``` bash
-npm run dev
-```
-
-hangi projenin çalışacağını büyük ölçüde terminalin bulunduğu dizin
-belirler.
-
-------------------------------------------------------------------------
-
-# 11. Workspace ile AI Context Aynı Şey Değildir
-
-AI destekli kodlama araçlarında bu ayrım çok önemlidir.
-
-Diyelim workspace içerisinde:
-
-``` text
-WORKSPACE
-├── src/
-├── docs/
-├── tests/
-├── public/
-└── 500 farklı dosya
-```
-
-bulunuyor.
-
-Bu, AI'ın her cevapta 500 dosyanın tamamını aynı anda aktif olarak
-kullandığı anlamına gelmez.
-
-## Workspace
-
-AI aracının erişmesine izin verilen çalışma kapsamı olabilir.
-
-``` text
-WORKSPACE
-        ↓
-"Erişebileceğin alan burası."
-```
-
-## Context
-
-AI'ın belirli bir görev sırasında gerçekten okuduğu, seçtiği veya modele
-sağlanan bilgiler bütünüdür.
-
-``` text
-CONTEXT
-       ↓
-"Bu görev için şu anda kullandığın bilgi."
-```
-
+ 
 Örneğin:
-
-``` text
+ 
+```text
 WORKSPACE
 ├── 500 dosya
 │
@@ -595,563 +334,125 @@ WORKSPACE
     ├── themes/meridian/index.ts
     └── themes/meridian/theme.ts
 ```
+ 
+**Kısa formül:** `Workspace = erişilebilir çalışma alanı`, `Context = o anda kullanılan bilgi`. **Workspace ≠ Context.**
 
-### Kısa formül
+## Workspace Farklı Araçlarda Farklı Anlamlara Gelebilir
 
-``` text
-Workspace = erişilebilir çalışma alanı
-Context   = o anda kullanılan bilgi
-```
+"Workspace" genel bir yazılım kavramıdır ama her araç bunu kendi özelliklerine göre uygular.
+ 
+**Kod editörü / IDE'de** workspace; projeleri, editör ayarlarını ve çalışma alanına özel yapılandırmaları kapsayabilir.
+ 
+**AI kodlama aracında** workspace daha çok "AI'ın çalışabileceği kod alanı" anlamına yaklaşır. Ancak önemli bir ayrıntı var:
+ 
+- Bir klasörün editörde workspace içinde görünmesi, kullandığın her AI aracının o klasöre otomatik olarak erişebileceği anlamına gelmez.
+ 
+AI aracının izin sistemi, başlangıç dizini, güvenlik sınırları ve eklenen klasörleri algılama biçimi ayrıca kontrol edilmelidir.
 
-> **Workspace ≠ Context**
+## "Add Folder to Workspace" Ne Demektir?
 
-------------------------------------------------------------------------
+**Add Folder to Workspace = Bir klasörü mevcut çalışma alanıma dahil et.**
+ 
+Örneğin başlangıçta `WORKSPACE └── Store` varken, `Admin` klasörünü workspace'e eklersen sonuç şu olur:
 
-# 12. Workspace Farklı Araçlarda Farklı Anlamlara Gelebilir
-
-"Workspace" genel bir yazılım kavramıdır ancak her araç bunu kendi
-özelliklerine göre uygular.
-
-## Kod editörü / IDE
-
-Workspace şunları kapsayabilir:
-
-``` text
-Workspace
-├── Project A
-├── Project B
-├── editör ayarları
-└── çalışma alanına özel yapılandırmalar
-```
-
-------------------------------------------------------------------------
-
-## AI kodlama aracı
-
-Workspace daha çok:
-
-``` text
-AI'ın çalışabileceği kod alanı
-```
-
-anlamına yaklaşabilir.
-
-Ancak önemli bir ayrıntı vardır:
-
-> Bir klasörün editörde workspace içerisinde görünmesi, kullandığın her
-> AI aracının o klasöre otomatik olarak erişebileceği anlamına gelmez.
-
-AI aracının:
-
--   izin sistemi,
--   başlangıç dizini,
--   güvenlik sınırları,
--   eklenen klasörleri algılama biçimi
-
-ayrıca kontrol edilmelidir.
-
-------------------------------------------------------------------------
-
-# 13. "Add Folder to Workspace" Ne Demektir?
-
-Artık genel kavramı bildiğimize göre bu ifade çok daha kolaydır:
-
-> **Add Folder to Workspace = Bir klasörü mevcut çalışma alanıma dahil
-> et.**
-
-Örneğin başlangıçta:
-
-``` text
-WORKSPACE
-└── Store
-```
-
-var.
-
-`Admin` klasörünü workspace'e eklersen:
-
-``` text
+```text
 WORKSPACE
 ├── Store
 └── Admin
 ```
 
-olur.
+Ama `Store └── Admin` şeklinde iç içe geçmiş bir yapı **olmaz.**
 
-Ama:
-
-``` text
-Store
-└── Admin
+## VS Code Üzerinden Pratik Örnek
+ 
+VS Code bu genel workspace mantığını **Multi-root Workspace** özelliğiyle uygular:
+ 
+```text
+File → Open Folder → Project-A
+File → Add Folder to Workspace... → Project-B
 ```
-
-olmaz.
-
-------------------------------------------------------------------------
-
-# 14. Aynı Workspace'te Birden Fazla Proje Nasıl Tutulur?
-
-Genel mantık şöyledir:
-
-### Başlangıç
-
-``` text
-WORKSPACE
-└── Project-A
-```
-
-### İkinci klasörü dahil et
-
-``` text
-+ Project-B
-```
-
-### Sonuç
-
-``` text
-WORKSPACE
-├── Project-A
-└── Project-B
-```
-
-Araç multi-root workspace destekliyorsa bu iki klasörü aynı çalışma
-ortamında gösterebilir.
-
-------------------------------------------------------------------------
-
-# 15. VS Code Üzerinden Pratik Örnek
-
-VS Code bu genel workspace mantığını **Multi-root Workspace**
-özelliğiyle uygular.
-
-Önce ana klasörü açabilirsin:
-
-``` text
-File
-→ Open Folder
-→ Project-A
-```
-
-Daha sonra:
-
-``` text
-File
-→ Add Folder to Workspace...
-→ Project-B
-```
-
+ 
 Sonuç:
-
-``` text
+ 
+```text
 WORKSPACE
 ├── Project-A
 └── Project-B
 ```
+ 
+Bu yapıyı daha sonra tekrar kullanmak istersen `File → Save Workspace As...` ile örneğin `ecommerce.code-workspace` dosyası oluşturabilirsin. Bu dosya, projelerin kendisini değil, "bu workspace açıldığında şu klasörleri çalışma alanına dahil et" bilgisini saklar.
 
-Workspace yapısını daha sonra tekrar kullanmak istiyorsan:
+## Ne Zaman Workspace Kullanmalıyım?
+ 
+| Durum | Önerilen yapı |
+|---|---|
+| Tek proje üzerinde çalışıyorsan | `WORKSPACE └── Project` yeterlidir; gereksiz klasör eklemek işi karmaşıklaştırır. |
+| Frontend + backend birlikte | `Fullstack Workspace ├── frontend └── backend` |
+| Store + Admin birlikte inceleniyorsa | `E-Commerce Workspace ├── store └── admin` |
+| Eski ve yeni kod karşılaştırılıyorsa | `Migration Workspace ├── old-project └── new-project` |
+| Kod ve dokümantasyon ayrı klasörlerdeyse | `Theme Workspace ├── application └── documentation` |
 
-``` text
-File
-→ Save Workspace As...
-```
-
-ile örneğin:
-
-``` text
-ecommerce.code-workspace
-```
-
-dosyası oluşturabilirsin.
-
-Bu dosya projelerinin kendisini içermez.
-
-Temel olarak:
-
-> "Bu workspace açıldığında şu klasörleri çalışma alanına dahil et."
-
-bilgisini saklar.
-
-------------------------------------------------------------------------
-
-# 16. Workspace Dosyası Projeleri Kopyalamaz
-
-Örneğin:
-
-``` text
-ecommerce.code-workspace
-```
-
-oluşturdun.
-
-Bu dosyanın içinde bütün Store ve Admin kodlarının kopyası bulunmaz.
-
-Mantıksal olarak buna benzer referanslar tutulabilir:
-
-``` json
-{
-  "folders": [
-    {
-      "path": "C:\\Projects\\ecommerce-store"
-    },
-    {
-      "path": "C:\\Projects\\ecommerce-admin"
-    }
-  ]
-}
-```
-
-Yani workspace dosyası bir çeşit:
-
-``` text
-Çalışma alanı tanımı
-```
-
-olarak düşünülebilir.
-
-------------------------------------------------------------------------
-
-# 17. Ne Zaman Workspace Kullanmalıyım?
-
-## Tek projede çalışıyorsan
-
-Çoğu zaman:
-
-``` text
-WORKSPACE
-└── Project
-```
-
-yeterlidir.
-
-Gereksiz yere başka klasörleri eklemek çalışma alanını
-karmaşıklaştırabilir.
-
-------------------------------------------------------------------------
-
-## Frontend + Backend üzerinde birlikte çalışıyorsan
-
-``` text
-Fullstack Workspace
-├── frontend
-└── backend
-```
-
-mantıklıdır.
-
-------------------------------------------------------------------------
-
-## Store + Admin birlikte incelenecekse
-
-``` text
-E-Commerce Workspace
-├── store
-└── admin
-```
-
-mantıklıdır.
-
-------------------------------------------------------------------------
-
-## Eski ve yeni kodu karşılaştırıyorsan
-
-``` text
-Migration Workspace
-├── old-project
-└── new-project
-```
-
-çok kullanışlı olabilir.
-
-------------------------------------------------------------------------
-
-## Kod ve dokümantasyon farklı klasörlerdeyse
-
-``` text
-Theme Workspace
-├── application
-└── documentation
-```
-
-kullanılabilir.
-
-------------------------------------------------------------------------
-
-# 18. Meridian Gibi Bir Migration İşinde Örnek
-
-Örneğin yeni yapı ile eski yapıyı karşılaştırmak istediğini düşün.
-
-``` text
-MERIDIAN MIGRATION WORKSPACE
+## Örnek: Migration Workspace
+ 
+Yeni yapı ile eski yapıyı karşılaştırmak istediğini düşün:
+ 
+```text
+MIGRATION WORKSPACE
 │
 ├── NEW PROJECT
 │   ├── docs/
 │   │   └── new-theme-package-guide.md
-│   │
 │   ├── src/
 │   └── themes/
 │
 └── OLD / REFERENCE PROJECT
     ├── src/
     └── themes/
-        └── meridian/
 ```
-
-Bu çalışma alanında şu tür bir görev yürütülebilir:
-
-``` text
-1. Yeni theme package rehberini incele
-             ↓
-2. Main'den gelen yeni yapıyı incele
-             ↓
-3. Meridian'ın mevcut yapısını incele
-             ↓
-4. İki yapıyı karşılaştır
-             ↓
-5. Uyumsuzlukları çıkar
-             ↓
-6. Migration planı oluştur
-             ↓
-7. Onaydan sonra implementasyon yap
+ 
+Bu çalışma alanında şu tür bir akış izlenebilir:
+ 
+```text
+1. Yeni rehberi incele  →  2. Yeni yapıyı incele  →  3. Eski yapıyı incele
+       →  4. İki yapıyı karşılaştır  →  5. Uyumsuzlukları çıkar
+       →  6. Migration planı oluştur  →  7. Onaydan sonra implementasyon yap
 ```
-
-Workspace burada araştırma ve karşılaştırmayı kolaylaştırır.
-
-Ancak yine:
-
-> Workspace'in iki klasörü içermesi, kullandığın AI aracının ikisine de
-> otomatik olarak eriştiğini garanti etmez. AI aracının kendi erişim
-> kapsamını ayrıca kontrol etmek gerekir.
-
-------------------------------------------------------------------------
-
-# 19. Workspace Kullanırken Dikkat Edilecekler
-
-## 1 --- Hangi projede işlem yaptığını bil
-
-Aynı isimli dosyalar olabilir:
-
-``` text
-Store/src/Header.tsx
-Admin/src/Header.tsx
-```
-
-Yanlış projedeki dosyayı düzenlememeye dikkat et.
-
-------------------------------------------------------------------------
-
-## 2 --- Terminal konumunu kontrol et
-
-Örneğin:
-
-``` powershell
-PS C:\Projects\store>
-```
-
-ile:
-
-``` powershell
-PS C:\Projects\admin>
-```
-
-aynı değildir.
-
-`npm install`, `npm run dev`, `git status` gibi komutlardan önce
-bulunduğun dizini kontrol et.
-
-------------------------------------------------------------------------
-
-## 3 --- Git repository sınırlarını unutma
-
-Aynı workspace'te olmaları aynı Git repository oldukları anlamına
-gelmez.
-
-``` text
-Workspace
-├── Repo A
-└── Repo B
-```
-
-iki ayrı Git geçmişi olabilir.
-
-------------------------------------------------------------------------
-
-## 4 --- Workspace'e gereksiz klasör ekleme
-
-Çalıştığın görev için gerekli alanları eklemek daha düzenlidir.
-
-Örneğin sadece Store üzerinde çalışıyorsan:
-
-``` text
-Store
-Admin
-Backend
-Portfolio
-TravelMind
-Random Tests
-```
-
-gibi ilgisiz projeleri aynı workspace'e doldurmak gerekli değildir.
-
-------------------------------------------------------------------------
-
-## 5 --- AI kullanıyorsan erişim sınırlarını kontrol et
-
-Şunu varsayma:
-
-``` text
-Editörde görüyorum
-       ↓
-AI kesin erişebiliyor
-```
-
-Bunun yerine kullandığın AI aracının workspace ve klasör erişim
-sistemini ayrıca kontrol et.
-
-------------------------------------------------------------------------
-
-# 20. Kavramların Büyük Resmi
-
-``` text
-┌───────────────────────────────────────────────┐
-│                  WORKSPACE                    │
-│                                               │
-│  ┌─────────────────────────────────────────┐  │
-│  │          PROJECT / REPOSITORY           │  │
-│  │                                         │  │
-│  │   ┌───────────────┐                     │  │
-│  │   │    FOLDER     │                     │  │
-│  │   │               │                     │  │
-│  │   │   ┌──────┐    │                     │  │
-│  │   │   │ FILE │    │                     │  │
-│  │   │   └──────┘    │                     │  │
-│  │   └───────────────┘                     │  │
-│  └─────────────────────────────────────────┘  │
-│                                               │
-│  ┌─────────────────────────────────────────┐  │
-│  │          PROJECT / REPOSITORY           │  │
-│  │             ...                         │  │
-│  └─────────────────────────────────────────┘  │
-└───────────────────────────────────────────────┘
-```
-
-Bu çizim birebir her projede böyle olmak zorunda değildir; kavramların
-ilişkisini anlamak için düşünsel bir modeldir.
-
-------------------------------------------------------------------------
-
-# 21. Hızlı Karşılaştırma Tablosu
-
-  -----------------------------------------------------------------------
-  Kavram                  Ne demek?               Örnek
-  ----------------------- ----------------------- -----------------------
-  **File**                Gerçek dosya            `Header.tsx`
-
-  **Folder**              Dosyaları düzenleyen    `src/components/`
-                          klasör                  
-
-  **Project**             Geliştirdiğin           E-Commerce Store
-                          yazılım/ürün            
-
-  **Repository**          Git tarafından takip    `ecommerce-store.git`
-                          edilen kod tabanı       
-
-  **Workspace**           Bir veya daha fazla     Store + Admin + Docs
-                          kaynağı aynı çalışma    
-                          ortamında tutan alan    
-
-  **Working Directory**   Terminalin şu anda      `C:\Projects\store`
-                          bulunduğu dizin         
-
-  **Context**             Özellikle AI'ın o anda  `theme-guide.md` +
-                          kullandığı bilgi        Meridian dosyaları
-
-  **Monorepo**            Birden fazla            `apps/store`,
-                          uygulama/paketin tek    `apps/admin`,
-                          repository içinde       `packages/ui`
-                          yönetilmesi             
-  -----------------------------------------------------------------------
-
-------------------------------------------------------------------------
-
-# 22. Sık Yapılan Yanlış Varsayımlar
-
-### ❌ "Workspace bir klasördür."
-
-Her zaman değil.
-
-Workspace fiziksel klasörlerden oluşabilir ama kendisi mantıksal bir
-çalışma alanı da olabilir.
-
-### ❌ "İki projeyi workspace'e eklersem birleşir."
-
-Hayır.
-
-Projeler bağımsız kalabilir.
-
-### ❌ "Aynı workspace'teki projelerin Git branch'i aynıdır."
-
-Hayır.
-
-Her repository'nin kendi branch ve commit geçmişi olabilir.
-
-### ❌ "Workspace'teki her dosya AI'ın context'indedir."
-
-Hayır.
-
-Workspace erişilebilir alanı, context ise o anda kullanılan bilgiyi
-ifade eder.
-
-### ❌ "Terminal workspace'in tamamında çalışır."
-
-Terminal belirli bir working directory içerisinde çalışır.
-
-### ❌ "Workspace monorepo demektir."
-
-Hayır.
-
-Workspace birden fazla bağımsız repository de içerebilir.
-
-------------------------------------------------------------------------
-
-# 23. Zihinde Tutulması Gereken En Önemli Formüller
-
-``` text
-PROJECT
-= geliştirdiğin şey
-```
-
-``` text
-FOLDER
-= dosyaların bulunduğu fiziksel yapı
-```
-
-``` text
-REPOSITORY
-= Git'in takip ettiği kod tabanı
-```
-
-``` text
-WORKSPACE
-= üzerinde birlikte çalışmak istediğin kaynakların çalışma alanı
-```
-
-``` text
-WORKING DIRECTORY
-= terminalin şu anda bulunduğu klasör
-```
-
-``` text
-CONTEXT
-= AI'ın o anda kullandığı bilgi
-```
-
-------------------------------------------------------------------------
-
-# 24. En Önemli Sonuç
-
-Workspace'i şu şekilde düşün:
-
-``` text
+ 
+Workspace burada araştırma ve karşılaştırmayı kolaylaştırır. Ancak yine: workspace'in iki klasörü içermesi, kullandığın AI aracının ikisine de otomatik olarak eriştiğini garanti etmez — AI aracının kendi erişim kapsamını ayrıca kontrol etmek gerekir.
+ 
+## Workspace Kullanırken Dikkat Edilecekler
+ 
+1. **Hangi projede işlem yaptığını bil.** Aynı isimli dosyalar olabilir (`Store/src/Header.tsx` vs `Admin/src/Header.tsx`) — yanlış projedeki dosyayı düzenlememeye dikkat et.
+2. **Terminal konumunu kontrol et.** `C:\Projects\store>` ile `C:\Projects\admin>` aynı değildir; `npm install`, `npm run dev`, `git status` gibi komutlardan önce bulunduğun dizini kontrol et.
+3. **Git repository sınırlarını unutma.** Aynı workspace'te olmaları, aynı Git repository oldukları anlamına gelmez — her repository'nin kendi branch ve commit geçmişi olabilir.
+4. **Workspace'e gereksiz klasör ekleme.** Sadece Store üzerinde çalışıyorsan `Store, Admin, Backend, Portfolio, TravelMind, Random Tests` gibi ilgisiz projeleri aynı workspace'e doldurmak gerekli değildir.
+5. **AI kullanıyorsan erişim sınırlarını kontrol et.** "Editörde görüyorum" demek "AI kesin erişebiliyor" demek değildir; kullandığın AI aracının workspace ve klasör erişim sistemini ayrıca kontrol et.
+## Hızlı Karşılaştırma Tablosu
+ 
+| Kavram | Ne demek? | Örnek |
+|---|---|---|
+| **File** | Gerçek dosya | `Header.tsx` |
+| **Folder** | Dosyaları düzenleyen klasör | `src/components/` |
+| **Project** | Geliştirdiğin yazılım/ürün | E-Commerce Store |
+| **Repository** | Git tarafından takip edilen kod tabanı | `ecommerce-store.git` |
+| **Workspace** | Bir veya daha fazla kaynağı aynı çalışma ortamında tutan alan | Store + Admin + Docs |
+| **Working Directory** | Terminalin şu anda bulunduğu dizin | `C:\Projects\store` |
+| **Context** | AI'ın o anda kullandığı bilgi | `theme-guide.md` + Meridian dosyaları |
+| **Monorepo** | Birden fazla uygulama/paketin tek repository içinde yönetilmesi | `apps/store`, `apps/admin`, `packages/ui` |
+ 
+## Sık Yapılan Yanlış Varsayımlar
+ 
+- ❌ **"Workspace bir klasördür."** Her zaman değil — fiziksel klasörlerden oluşabilir ama kendisi mantıksal bir çalışma alanı da olabilir.
+- ❌ **"İki projeyi workspace'e eklersem birleşir."** Hayır, projeler bağımsız kalabilir.
+- ❌ **"Aynı workspace'teki projelerin Git branch'i aynıdır."** Hayır, her repository'nin kendi branch ve commit geçmişi olabilir.
+- ❌ **"Workspace'teki her dosya AI'ın context'indedir."** Hayır, workspace erişilebilir alanı, context ise o anda kullanılan bilgiyi ifade eder.
+- ❌ **"Terminal workspace'in tamamında çalışır."** Terminal belirli bir working directory içinde çalışır.
+- ❌ **"Workspace monorepo demektir."** Hayır, workspace birden fazla bağımsız repository de içerebilir.
+## Özet
+ 
+Kavramların büyük resmi şöyle düşünülebilir (birebir her projede bu şekilde olmak zorunda değil, ilişkiyi anlamak için düşünsel bir model):
+ 
+```text
                    WORKSPACE
                       │
           ┌───────────┼───────────┐
@@ -1160,61 +461,30 @@ Workspace'i şu şekilde düşün:
           │           │           │
        ayrı repo    ayrı repo    kaynak
 ```
-
-Workspace bu parçaların üzerinde **birlikte çalışmanı kolaylaştırır**,
-fakat onların teknik sınırlarını otomatik olarak ortadan kaldırmaz.
-
-> **Workspace yeni bir proje oluşturmak veya projeleri birleştirmek
-> değildir. Çalışırken ihtiyaç duyduğun bir veya birden fazla kaynağı
-> aynı çalışma ortamında yönetmenin yoludur.**
-
-------------------------------------------------------------------------
-
-# 25. Mini Kontrol Listesi
-
+ 
+Zihinde tutulması gereken formüller:
+ 
+```text
+PROJECT            = geliştirdiğin şey
+FOLDER             = dosyaların bulunduğu fiziksel yapı
+REPOSITORY         = Git'in takip ettiği kod tabanı
+WORKSPACE          = üzerinde birlikte çalışmak istediğin kaynakların çalışma alanı
+WORKING DIRECTORY  = terminalin şu anda bulunduğu klasör
+CONTEXT            = AI'ın o anda kullandığı bilgi
+```
+ 
+Workspace bu parçaların üzerinde **birlikte çalışmanı kolaylaştırır**, fakat onların teknik sınırlarını otomatik olarak ortadan kaldırmaz:
+ 
+- **Workspace yeni bir proje oluşturmak veya projeleri birleştirmek değildir. Çalışırken ihtiyaç duyduğun bir veya birden fazla kaynağı aynı çalışma ortamında yönetmenin yoludur.**
+ 
+**Ama workspace şunlar değildir:** proje birleştirme, Git merge, dosya taşıma, monorepo, terminal working directory, AI context.
+ 
+### Mini Kontrol Listesi
+ 
 Bir workspace oluşturmadan önce kendine şunları sor:
-
--   Aynı görev için birden fazla proje veya klasöre ihtiyacım var mı?
--   Bu klasörler birbirleriyle ilişkili mi?
--   Bunlar ayrı Git repository mi?
--   Terminalde hangi proje içinde çalıştığımı biliyor muyum?
--   AI aracı kullanıyorsam hangi klasörlere gerçekten erişebildiğini
-    biliyor muyum?
--   Eski ve yeni kodu karşılaştırmam gerekiyor mu?
--   Dokümantasyon başka bir klasörde mi?
-
-Birden fazla sorunun cevabı **evet** ise multi-root / çok klasörlü bir
-workspace kullanmak faydalı olabilir.
-
-------------------------------------------------------------------------
-
-## Kısa Özet
-
-``` text
-Workspace
-│
-├── Tek proje olabilir
-│
-├── Birden fazla proje olabilir
-│
-├── Birden fazla repository içerebilir
-│
-├── Farklı fiziksel konumlardaki klasörleri bir araya getirebilir
-│
-└── Araçlara göre farklı özellikler kazanabilir
-```
-
-**Ama workspace:**
-
-``` text
-≠ proje birleştirme
-≠ Git merge
-≠ dosya taşıma
-≠ monorepo
-≠ terminal working directory
-≠ AI context
-```
-
-Bu ayrımları bildiğinde VS Code, Cursor, Claude Code ve diğer geliştirme
-araçlarında kullanılan "workspace" ifadelerini çok daha kolay
-yorumlayabilirsin.
+- Aynı görev için birden fazla proje veya klasöre ihtiyacım var mı?
+- Bu klasörler birbiriyle ilişkili mi, ayrı Git repository mi?
+- Terminalde hangi proje içinde çalıştığımı biliyor muyum?
+- AI aracı kullanıyorsam hangi klasörlere gerçekten erişebildiğini biliyor muyum?
+- Eski ve yeni kodu karşılaştırmam gerekiyor mu? Dokümantasyon başka bir klasörde mi?
+Birden fazla sorunun cevabı **evet** ise multi-root / çok klasörlü bir workspace kullanmak faydalı olabilir. Bu ayrımları bildiğinde VS Code, Cursor, Claude Code ve diğer geliştirme araçlarında kullanılan "workspace" ifadelerini çok daha kolay yorumlayabilirsin.
