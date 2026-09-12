@@ -54,7 +54,7 @@ Package manager alışveriş listesini okur, gerekli malzemeleri ilgili kaynakta
 
 Yazılım projesinde de benzer bir süreç gerçekleşir:
 
-![alt text](../01_TemelKonular/images/package-1.png)
+![alt text](images/package-1.png)
 
 ## Package Manager Ne Yapar?
 Bir package manager'ın temel görevlerini ayrı ayrı inceleyelim.
@@ -98,7 +98,7 @@ Bir paket, çalışabilmek için başka paketlere ihtiyaç duyabilir.
 
 Örneğin projemize A isimli bir paket eklediğimizi düşünelim. Ancak A paketi kendi içinde B ve C paketlerini kullanıyor olabilir.
 
-![alt text](../01_TemelKonular/images/package-2.png)
+![alt text](images/package-2.png)
 
 Biz yalnızca A paketini yüklemek isteriz. Package manager ise A paketinin ihtiyaç duyduğu B ve C paketlerini de tespit ederek yükler.
 
@@ -180,7 +180,7 @@ Javascript dünyasında en yaygın kayıt sistemi `npm Registry`' dir.
 npm, Yarn ve pnpm genellikle paketleri npm Registry üzerinden indirebilir.
 Süreç basitleştirilmiş olarak şöyledir:
 
-![alt text](../01_TemelKonular/images/package-3.png)
+![alt text](images/package-3.png)
 
 Örneğin Yarn kullanmamız, paketlerin mutlaka Yarn’a ait ayrı bir marketten indirildiği anlamına gelmez. Yarn da çoğu durumda npm Registry’de yayımlanmış paketlere ulaşır.
 
@@ -299,3 +299,26 @@ Package manager:
 - Paketlerin tutulduğu registry ile aynı şey değildir.
 - Uygulamanın kaynak kodunun yerine geçmez.
 Package manager, geliştirme sürecinde kullanılan yardımcı ve yönetici bir araçtır.
+
+# Kısa Özet
+**Package Manager**, projelerde kullanılan paketlerin yönetilmesini sağlayan araçtır.
+
+Temel olarak:
+- Paket yükler.
+- Paket kaldırır.
+- Paket günceller.
+- Sürümleri takip eder.
+- Bağımlılıkları çözümler.
+- Proje komutlarını çalıştırır.
+- Projenin farklı bilgisayarlarda yeniden kurulmasına yardımcı olur.
+
+JavaScript ekosisteminde en yaygın package manager’lar aşağıdaki şekildedir:
+```
+    npm
+    Yarn
+    pnpm
+```
+
+Unutmamamız gereken en önemli ayrım:
+
+`Package manager, paketin kendisi değildir. Paketleri yöneten araçtır.`
