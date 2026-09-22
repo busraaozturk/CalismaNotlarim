@@ -36,7 +36,7 @@ Tarayıcı `<button>` elementinin bir **etkileşimli kontrol** olduğunu zaten b
 
 Erişilebilir HTML'in temelinde de bu düşünce bulunur:
 
-`**Mümkün olduğunda yapılmak istenen işi zaten ifade eden doğru HTML elementini kullan.**`
+**`Mümkün olduğunda yapılmak istenen işi zaten ifade eden doğru HTML elementini kullan.`**
 
 ## Semantic HTML ve Erişilebilirlik
 Daha önce Semantic HTML konusunda `<header>`, `<nav>`, `<main>`, `<article>` ve `<button>` gibi elementleri incelemiştik.
@@ -73,8 +73,25 @@ kullanılması daha anlamlıdır.
 
 Bu nedenle erişilebilirliğin önemli bir bölümü aslında **doğru HTML yazmakla başlar.**
 
+## `lang` Attribute'u
+Sayfanın dilini belirtmek erişilebilirlik açısından temel ama sıkça atlanan bir noktadır.
+```
+    <html lang="tr">
+        ...
+    </html>
+```
+`lang` attribute'u sayesinde ekran okuyucu içeriği doğru telaffuzla okuyabilir. Dil belirtilmezse ekran okuyucu varsayılan dil ayarına göre okuma yapar ve bu da yanlış telaffuza yol açabilir.
+
+Sayfa içinde farklı dilde bir bölüm varsa o bölüme de ayrıca `lang` eklenebilir:
+```
+    <p lang="en">
+        This is an English sentence.
+    </p>
+```
+Böylece yardımcı teknoloji o kısmı doğru dilde okuyabilir.
+
 ## Başlık Hiyerarşisi
-Başlıklar yalnızca metni büyük ve kalın göstermek için kullanılmaz. Sayfanın içerik yapısını oluştururular.
+Başlıklar yalnızca metni büyük ve kalın göstermek için kullanılmaz. Sayfanın içerik yapısını oluştururlar.
 
 Örneğin:
 ```
@@ -106,7 +123,8 @@ Bu yapı içerik hiyerarşisini açık şekilde gösterir:
 
 Ekran okuyucu kullanıcıları başlıklar arasında gezinerek sayfanın yapısını anlayabilir. Bu nedenle başlık seviyeleri **görsel boyuta göre değil, içerik hiyerarşisine göre** seçilmelidir.
 
-## Görseller ve `alt`
+## Görsellerde Erişilebilirlik
+### `alt` Attribute'u
 Erişilebilirlik açısından görsellerde en önemli konulardan biri `alt` metnidir.
 
 Anlamlı bir görsel:
@@ -119,7 +137,7 @@ Anlamlı bir görsel:
 
 Görseli göremeyen bir kullanıcıya içeriğin ne olduğu hakkında bilgi sağlanabilir. Ancak `alt="resim"` veya `alt="fotoğraf"` gibi ifadeler genellikle yeterli bilgi sağlamaz. `alt` metni görselin **bulunduğu bağlamdaki anlamını** aktarmalıdır.
 
-## Dekoratif Görseller
+### Dekoratif Görseller
 Bir görsel yalnızca dekorasyon amacıyla kullanılıyorsa boş `alt` kullanılabilir:
 ```
     <img
@@ -136,8 +154,9 @@ Burada temel ayrım:
     Dekoratif görsel → alt=""
 ```
 
-## Linklerin Anlaşılır Olması
+## Bağlantılarda Erişilebilirlik
 
+### Anlaşılır Link Metinleri
 Link metni, kullanıcıya bağlantının nereye götürdüğü hakkında mümkün olduğunca anlamlı bilgi vermelidir.
 
 Örneğin:
@@ -163,7 +182,7 @@ daha açıklayıcıdır.
 ```
 gibi metinler neye bağlandığını anlamayı zorlaştırabilir. Link metninin tek başına da yeterince anlamlı olması iyi bir yaklaşımdır.
 
-## `<a>` ve `<button>` Ayrımı
+### `<a>` ve `<button>` Ayrımı
 Erişilebilirlik açısından önemli konulardan biri de link ve butonların doğru amaçlarla kullanılmasıdır. 
 
 Temel ayrım: 
@@ -241,7 +260,7 @@ gibi özel yapılar oluşturmak yerine uygun olduğunda:
 ```
 kullanmak klavye erişilebilirliği açısından da avantaj sağlar.
 
-## Focus Nedir?
+### Focus Nedir?
 **Focus**, kullanıcının o anda hangi etkileşimli element üzerinde bulunduğunu ifade eder. Örneğin klavyeyle `Tab` tuşuna bastığınızda tarayıcı odaklanan elementi görsel olarak belirtebilir.
 
 CSS'te bununla sıkça karşılaşırız:
@@ -254,7 +273,7 @@ Modern CSS'te klavye odağı gibi durumlar için `:focus-visible` da kullanılab
 ```
     button:focus-visible {
         outline: 2px solid;
-}
+    }
 ```
 Focus göstergesi özellikle klavye kullanıcılarının `Şu anda sayfanın neresindeyim?` sorusunu cevaplayabilmesi açısından önemlidir. Bu nedenle focus görünümünü kaldırırken dikkatli olunmalıdır.
 
@@ -311,7 +330,7 @@ Formlar erişilebilirlik açısından özellikle önemlidir.
 ```
 `for` ve `id` ilişkisi sayesinde label ilgili form kontrolüyle programatik olarak ilişkilendirilir.
 
-## Placeholder, Label Değildir
+### Placeholder, Label Değildir
 Şu kullanım label'ın yerini tam olarak tutmaz.
 ```
     <input
@@ -335,7 +354,7 @@ Daha doğru yaklaşım:
 ```
 Placeholder yardımcı bir ipucu olabilir ancak alanın kalıcı açıklaması olarak düşünülmemelidir.
 
-## `fieldset` ve `legend`
+### `fieldset` ve `legend`
 
 Birbiriyle ilişkili form kontrollerini gruplamak için:
 ```
@@ -370,6 +389,29 @@ Birbiriyle ilişkili form kontrollerini gruplamak için:
 kullanılabilir.
 
 Burada `<legend>` radio seçeneklerinin hangi soruya ait olduğunu açıklar.
+
+### Hata Mesajlarını `aria-describedby` ile İlişkilendirmek
+Bir form alanı için hata mesajı gösterildiğinde bu mesajın yalnızca görsel olarak alanın yakınında durması yeterli değildir. Ekran okuyucu kullanıcısının da mesajın o alana ait olduğunu anlayabilmesi gerekir.
+
+```
+    <label for="email">
+        E-posta
+    </label>
+
+    <input
+        type="email"
+        id="email"
+        name="email"
+        aria-describedby="emailError"
+        aria-invalid="true"
+    >
+
+    <span id="emailError">
+        Geçerli bir e-posta adresi girin.
+    </span>
+```
+
+`aria-describedby`, input'u hata mesajını içeren elementin `id`'siyle ilişkilendirir. Böylece ekran okuyucu alana odaklanıldığında hata mesajını da okuyabilir. `aria-invalid="true"` ise alanın geçersiz bir değer içerdiğini ayrıca belirtir.
 
 ## Tablolarda Erişilebilirlik
 Tablolarda başlık hücrelerinin doğru kullanılması önemlidir.
@@ -463,7 +505,7 @@ Burada:
 ```
 SVG dekoratif olduğu için burada ayrıca yardımcı teknolojilerden gizlenmiştir.
 
-## `role` Nedir?
+### `role` Nedir?
 **role**, bir elementin erişilebilirlik açısından hangi role sahip olduğunu belirtmek için kullanılabilir.
 
 Örneğin:
@@ -485,3 +527,179 @@ elementi vardır.
 Bu yüzden temel kural **`Uygun native HTML elementi varsa önce onu kullan.`**
 
 Yani `<div role="button">` yerine mümkün olduğunda `<button>` kullanmak daha doğrudur.
+
+### ARIA, Semantic HTML'in Yerine Geçmez
+ARIA konusunda başlangıç seviyesinde bilinmesi gereken en önemli noktalardan biri budur. 
+
+Örneğin `<div role="navigation">` kullanılabilir.
+
+Ancak zaten `<nav>` elementimiz vardır.
+
+Benzer şekilde `<div role="button">` yerine `<button>` kullanabiliriz.
+
+Bu nedenle genel yaklaşım aşağıdaki gibi olmalıdır.
+```
+    Önce → Native / Semantic HTML
+
+    Yetmiyorsa → Gerekli erişilebilirlik bilgisini ekle
+
+    Gerekiyorsa → ARIA
+```
+
+ARIA'yı her elemente eklemek sayfayı otomatik olarak daha erişilebilir yapmaz. Yanlış ARIA kullanımı aksine yanlış veya çelişkili bilgi oluşturabilir.
+
+### `aria-hidden`
+`aria-hidden="true"` bir içeriğin yardımcı teknolojiler tarafından göz ardı edilmesini istemek için kullanılır.
+
+Örneğin dekoratif bir ikon:
+```
+    <button type="button">
+
+        <span aria-hidden="true">
+            ♥
+        </span>
+
+        Favorilere Ekle
+
+    </button>
+```
+Kalp sembolü burada yalnızca görsel destek sağlıyorsa ekran okuyucunun ayrıca bunu okuması gerekmeyebilir.
+
+### `hidden` ile `aria-hidden` Aynı Şey Değildir
+Bu ikisini birbirinden ayırmak önemlidir.
+
+**`hidden`**
+
+```
+    <div hidden>
+        İçerik
+    </div>
+```
+Elementin kullanıcıya sunulmamasını sağlar; normalde görsel olarak da gösterilmez ve erişilebilirlik ağacında da yer almaz.
+
+**`aria-hidden="true"`**
+
+```
+    <div aria-hidden="true">
+        İçerik
+    </div>
+```
+İçerik görsel olarak sayfada bulunmaya devam edebilir ancak yardımcı teknolojilerden gizlenir.
+
+Temel olarak:
+```
+    hidden → İçeriği genel olarak gizler.
+    aria-hidden="true" → İçeriğe erişilebilirlik ağacından gizler, ancak görsel olarak görünmeye devam edebilir.
+```
+
+`aria-hidden` özellikle odaklanabilir/etkileşimli içeriklerde dikkatsizce kullanılmamalıdır; görünür ve kullanılabilir bir kontrolü yardımcı teknolojilerden gizlemek erişilebilirlik problemi oluşturabilir.
+
+## Sık Yapılan Erişilebilirlik Hataları
+HTML tarafında sık karşılaşılan bazı hataları birlikte görelim.
+
+### Her şeyi `<div>` ile yapmak
+```
+    <div onclick="submitForm()">
+        Gönder
+    </div>
+```
+yerine:
+```
+    <button type="submit">
+        Gönder
+    </button>
+```
+
+### Görsellerde alt bilgisini düşünmemek
+`<img src="product.jpg">`
+
+yerine anlamlı bir görselse:
+```
+    <img
+        src="product.jpg"
+        alt="Siyah deri kayışlı kol saati"
+    >
+```
+
+### Placeholder'ı label olarak kullanmak
+`<input placeholder="E-posta">`
+
+yerine:
+```
+    <label for="email">E-posta</label>
+
+    <input
+        type="email"
+        id="email"
+        name="email"
+    >
+```
+
+### Focus görünümünü tamamen kaldırmak
+```
+    button:focus {
+        outline: none;
+    }
+```
+kullanılıyorsa klavye kullanıcısının odağı anlayabileceği uygun bir alternatif focus göstergesi sağlanmalıdır.
+
+### Link ve button'ı yalnızca görünüşlerine göre seçmek
+Navigasyon:
+```
+    <a href="/products">
+        Ürünler
+    </a>
+```
+
+İşlem:
+```
+    <button type="button">
+        Sepete Ekle
+    </button>
+```
+
+### Gereksiz ARIA kullanmak
+Şunun yerine:
+```
+    <div role="button">
+        Kaydet
+    </div>
+```
+mümkünse:
+```
+    <button type="button">
+        Kaydet
+    </button>
+```
+kullanmak daha doğru ve daha basittir.
+
+## Erişilebilir HTML İçin Temel Kontrol Listesi
+Bir HTML sayfası oluşturduktan sonra kendimize birkaç soru sorabiliriz:
+- Sayfanın başlık hiyerarşisi anlamlı mı?
+- İçerik için uygun semantic HTML elementlerini kullandım mı?
+- Sayfa temel işlevleriyle klavyeden kullanılabiliyor mu?
+- Focus edilen element anlaşılabiliyor mu?
+- Anlamlı görsellerin uygun alt metinleri var mı?
+- Dekoratif görseller doğru şekilde ele alınmış mı?
+- Form alanlarının uygun label'ları var mı?
+- Link metinleri nereye gittiğini anlatıyor mu?
+- İşlem yapan yerlerde button, navigasyon yapan yerlerde link kullandım mı?
+- Tablolarda başlık-veri ilişkileri anlaşılır mı?
+- ARIA'yı gerçekten ihtiyaç olduğu yerde mi kullandım?
+
+Bu soruların amacı erişilebilirliği birkaç attribute ezberine dönüştürmek değil, HTML'i kullanıcının nasıl etkileşime gireceğini düşünerek yazma alışkanlığı kazanmaktır.
+
+## Kısaca Özet
+HTML erişilebilirliğinin temelinde karmaşık tekniklerden önce doğru HTML kullanımı bulunur.
+```
+    Semantic HTML → Anlamlı sayfa yapısı
+    Doğru başlık hiyerarşisi → Anlaşılır içerik yapısı
+    alt → Görsel alternatifleri
+    label → Anlaşılır form alanları
+    Klavye + Focus → Fare dışındaki kullanım yöntemleri
+    Native HTML → Yerleşik anlam ve davranışlar
+    ARIA → Gerektiğinde ek erişilebilirlik bilgisi
+```
+Bu konunun en önemli prensibini şöyle özetleyebiliriz:
+
+`Önce doğru ve semantic HTML'i kullan. Erişilebilirliği sonradan eklenen bir özellik olarak değil, HTML yapısının doğal bir parçası olarak düşün. ARIA'yı ise native HTML'in yeterli olmadığı durumlarda bilinçli şekilde kullan.`
