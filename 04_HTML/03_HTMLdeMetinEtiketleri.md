@@ -710,3 +710,155 @@ Temel soru:
             │
             └── Hayır → address olmak zorunda değil.
 ```
+
+## Hangi Elementi Ne Zaman Kullanmalıyım?
+|İhtiyaç                        |Element            |
+|-------------------------------|-------------------|
+|Paragraf oluşturmak            |<p>                |
+|Metinde gerçek satır kırılması |<br>               |
+|Konu/tema değişimini belirtmek |<hr>               |
+|Güçlü önem belirtmek           |<strong>           |
+|Önem yüklemeden dikkat çekmek  |<b>                |
+|Cümle içerisinde vurgu yapmak  |<em>               |
+|Farklı ses/terim belirtmek     |<i>                |
+|Boşluk ve satırları korumak    |<pre>              |
+|Bağlamsal olarak ilgili metni işaretlemek|<mark>   |
+|Alt simge                      |<sub>              |
+|Üst simge                      |<sup>              |
+|Genel block kapsayıcı          |<div>              |
+|Genel inline kapsayıcı         |<span>             |
+|Silinen belge içeriği          |<del>              |
+|Eklenen belge içeriği          |<ins>              |
+|Artık geçerli olmayan bilgi    |<s>                |
+|Uzun/blok alıntı               |<blockquote>       |
+|Kısa/satır içi alıntı          |<q>                |
+|Eser başlığını/referansını belirtmek|<cite>        |
+|Kısaltma                       |<abbr>             |
+|Tanımlanan terim               |<dfn>              |
+|İletişim bilgisi               |<address>          |
+
+Buradaki temel prensip şudur: `Elementi varsayılan görünüşüne göre değil, içeriğin anlamına göre seç.`
+
+## Sık Yapılan Hatalar
+### `<strong>` Elementini Sadece Kalın Yazı İçin Kullanmak
+Yanlış düşünce:
+```
+    Kalın yazı istemiyorum → strong
+```
+
+Doğru yaklaşım:
+```
+    İçerik güçlü bir öneme sahip → strong
+    Sadece kalın görünmesini istiyorum →  CSS
+```
+
+### `<b>` Elementiyle Başlık Oluşturmak
+Yanlış:
+```
+    <b>Ürünler</b>
+```
+eğer içerik gerçekten bir başlıksa uygun **heading elementi kullanılmalıdır:
+```
+    <h2>Ürünler</h2>
+```
+
+### `<br>` ile Tasarım Boşluğu Oluşturmak
+Yanlış:
+```
+    <p>Başlık</p>
+
+    <br>
+    <br>
+    <br>
+
+    <p>İçerik</p>
+```
+
+Görsel boşluk CSS ile oluşturulmalıdır.
+
+### `<hr>` Elementini Sadece Çizgi İçin Kullanmak
+Eğer içerikte görsel bir tematik geçiş toksa ve yalnızca dekoratif çizgi gerekiyorsa CSS daha uygun olabilir.
+
+### `<strong>` ile Başlık Oluşturmak
+Yanlış:
+```
+    <stong>Sepetim</strong>
+```
+Eğer "Sepetim" gerçekten bölüm başlığıysa:
+```
+    <h2>Sepetim</h2>
+```
+gibi uygun heading elementi tercih edilmelidir. strong bir heading alternatifi değildir.
+
+### `<div>` Elementini Her Yerde Kullanmak
+Şu yaklaşım:
+```
+    <div class="navigation">
+```
+her zaman  yanlış değildir.
+
+Ancak içerik gerçekten navigasyon ise uygun durumda: `<nav>` daha anlamlı olabilir.
+
+Önce semantik bir element olup olmadığını kontrol edilmeli, ihtiyaç karşılanmıyorsa div veya span kullanılmalıdır.
+
+### `<i>` ve `<b>` Elementlerini Yalnızca Görünüş İçin Seçmek 
+
+Şu düşünce:
+```
+    Kalın → b
+    İtalik → i
+```
+Html'in semantik yapısını göz ardı eder.
+
+Doğru soru `Bu içeriğin anlamı nedir?` olmalıdır.
+
+### `<s>` ve `<del>` Elementlerini Aynı Sanmak
+```
+    del → Belgeden silinen içerik
+    s → Artıl geçerli olmayan içerik
+```
+Görünüşleri benzer olsa bile semantik anlamları farklıdır.
+
+### Her Adresi `<address>` İçerisine Yazmak
+**adress elementi** `Posta adresi elementi` değildir.İlgili içerik veya sayfanın iletişim bilgilerini temsil eder.
+
+## Kısa Özet
+HTML metin elementlerini öğrenirken elementlerin varsayılan görünüşlerini ezberlemek yerine **semantik anlamlarını** öğrenmek gerekir. Özellikle şu ayrımları bilmek önemlidir:
+```
+    strong ≠ b
+    strong → Güçlü önem
+    b → Önem yüklemeden dikkat çekme
+    em ≠ i
+    em → Vurgu
+    i → Farklı ses / terim
+    del ≠ s
+    del → Belgeden silinen içerik
+    s → Artık geçerli olmayan bilgi
+    blockquote ≠ q
+    blockquote → Blok alıntı
+    q → Satır içi alıntı
+    cite elementi ≠ cite attribute'u
+    <cite> → Eser başlığını/referansını işaretler
+    cite="" → Kaynak URL'si hakkında bilgi sağlar
+```
+Genel mantığımız ise:
+```
+    İçeriği incele
+        ↓
+    Bu içerik ne anlama geliyor?
+        ↓
+    Anlama uygun HTML elementi var mı?
+        │
+        ├── Evet
+        │    ↓
+        │  Semantik elementi kullan
+        │
+        └── Hayır
+            ↓
+        Gerekiyorsa div / span
+```
+
+HTML'in temel prensiplweinden biri budur:
+```
+    HTML ile görünüşü değil, içeriğin yapısını ve anlamını tanımla; görsel sunumu CSS'e bırak.
+```
