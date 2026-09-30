@@ -254,6 +254,42 @@ Görsellerde karşılaşabileceğimiz bir diğer özellike `loading` attribute'u
 ```
 Ancak sayfanın ilk açılışında hemen görünmesi gereken önemli görsellerde, örneğin üst bölümdeki ana içerik görselinde, `lazy` kullanımı her zaman uygun olmayabilir.
 
+### `fetchpriority` Attribute'u — Priority Hints
+`loading` görselin ne zaman yükleneceğini etkilerken, `fetchpriority` tarayıcıya bir kaynağın **diğerlerine göre önceliğini** bildirir.
+
+Örneğin sayfanın en üstünde, kullanıcı sayfayı açar açmaz görmesi gereken bir görsel varsa:
+```
+    <img
+        src="hero.jpg"
+        alt="Yeni sezon kampanyası"
+        fetchpriority="high"
+    >
+```
+`fetchpriority="high"` tarayıcıya bu görseli mümkün olduğunca erken yüklemesini önerir.
+
+Önemi daha az olan, sayfanın aşağısındaki görsellerde ise düşük öncelik verilebilir:
+```
+    <img
+        src="related-product.jpg"
+        alt="Benzer ürün"
+        fetchpriority="low"
+    >
+```
+
+Alabileceği değerler:
+```
+    fetchpriority="high"   → Kaynağa yüksek öncelik ver.
+    fetchpriority="low"    → Kaynağa düşük öncelik ver.
+    fetchpriority="auto"   → Tarayıcının kendi önceliklendirmesine bırak (varsayılan).
+```
+
+**`loading` ve `fetchpriority` Aynı Şey Değildir**
+```
+    loading="lazy"        → Kaynağın ne zaman yükleneceğini erteler.
+    fetchpriority="high"  → Kaynak yüklenirken önceliğini artırır.
+```
+Bu nedenle sayfanın en kritik görseline `loading="lazy"` ve `fetchpriority="high"` aynı anda verilmesi anlamlı değildir; biri yüklemeyi geciktirmeyi, diğeri erken yüklemeyi ifade eder.
+
 ## HTML'de Video Kullanımı
 HTML5 ile birlikte web sayfasına video eklemek için `<video>` elementi kullanılabilir. Basit kullanım:
 ```

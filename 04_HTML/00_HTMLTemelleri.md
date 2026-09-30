@@ -9,6 +9,10 @@ Bu bölümde HTML'in en temel yapı taşlarını ele alacağız:
     │   ├── Markup dili nedir?
     │   └── Frontend geliştirmede HTML'in yeri
     │
+    ├── HTML'e CSS ve JavaScript Eklemek
+    │
+    ├── HTML'in Sınırlılıkları
+    │
     ├── Web Nasıl Çalışır?
     │
     ├── Tarayıcı HTML'i Nasıl Okur?
@@ -176,6 +180,107 @@ Bu benzetme kavramları ayırmak için kullanışlıdır ancak HTML yalnızca "i
 Örneğin, `<nav>` bu alanın navigasyon olduğunu, `<main>` sayfanın ana içeriği olduğunu, `<article>` bağımsız bir içerik olduğunu ifade edebilir.
 
 Bu konu ilerleyen bölümlerde Semantic HTML başlığı altında daha ayrıntılı incelenecektir.
+
+## HTML'e CSS ve JavaScript Eklemek
+CSS ve JavaScript'in görevlerini bildiğimize göre bunların bir HTML belgesine nasıl dahil edildiğine de kısaca bakalım.
+
+### CSS Eklemenin Üç Yolu
+**1. External CSS — Harici Dosya**
+
+CSS kuralları ayrı bir `.css` dosyasında tutulur ve `<head>` içerisinde `<link>` ile bağlanır.
+```
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+```
+Bu yöntem büyük projelerde en çok tercih edilen yaklaşımdır. Çünkü stil kodu HTML'den ayrı tutulur ve birden fazla sayfa aynı CSS dosyasını paylaşabilir.
+
+**2. Internal CSS — Belge İçi Stil**
+
+CSS kuralları `<head>` içerisinde `<style>` etiketiyle doğrudan belgeye yazılabilir.
+```
+    <head>
+        <style>
+            body {
+                font-family: sans-serif;
+            }
+
+            h1 {
+                color: darkblue;
+            }
+        </style>
+    </head>
+```
+Genellikle tek bir sayfaya özel, küçük çaplı stiller için kullanılabilir.
+
+**3. Inline CSS — Element Üzerinde Stil**
+
+CSS, doğrudan elementin `style` attribute'u içerisine yazılabilir.
+```
+    <p style="color: red; font-weight: bold;">
+        Bu metin kırmızı ve kalın görünür.
+    </p>
+```
+Bu yöntem hızlı görünse de genellikle tercih edilmez. Çünkü stil ile içerik birbirine karışır ve stilin tekrar kullanılması veya sonradan yönetilmesi zorlaşır.
+
+Temel öncelik sırası:
+```
+    External CSS  → Genel ve tekrar kullanılabilir yaklaşım
+    Internal CSS  → Sayfaya özel küçük stiller
+    Inline CSS    → Mümkünse kaçınılması gereken yöntem
+```
+
+### JavaScript Eklemenin Yolları
+JavaScript de HTML belgesine benzer şekilde iki temel yöntemle eklenebilir.
+
+**1. Harici Dosya — `<script src="...">`**
+```
+    <body>
+        ...
+
+        <script src="app.js"></script>
+    </body>
+```
+JavaScript kodu ayrı bir `.js` dosyasında tutulur ve `<script>` etiketinin `src` attribute'uyla bağlanır.
+
+**2. Belge İçi Script**
+```
+    <script>
+        console.log("Sayfa yüklendi.");
+    </script>
+```
+Kod doğrudan `<script>` etiketinin içerisine yazılabilir.
+
+**`<script>` Nereye Yazılmalı?**
+
+`<script>` etiketi genellikle `</body>` kapanış etiketinden hemen önce yazılır.
+```
+    <body>
+
+        <h1>Ürünler</h1>
+        <p>Yeni sezon ürünleri</p>
+
+        <script src="app.js"></script>
+
+    </body>
+```
+Böylece tarayıcı önce sayfanın HTML içeriğini oluşturur, JavaScript ise sayfa içeriği hazır olduktan sonra çalışır. `<head>` içerisine yazılan bir script bu davranışı `defer` veya `async` gibi attribute'lar olmadan bozabilir; bu attribute'lar ayrı bir JavaScript konusunda ele alınacaktır.
+
+## HTML'in Sınırlılıkları
+HTML güçlü bir yapılandırma dilidir ancak tek başına her ihtiyacı karşılamaz. Örneğin HTML ile:
+```
+    Bir butona basıldığında ne olacağı belirlenemez.
+    Sayfanın görsel düzeni ayrıntılı olarak tasarlanamaz.
+    Kullanıcı girdisine göre veri işlenemez.
+    Sunucudan veri çekilemez.
+```
+Bu sınırlılıklar HTML'in eksikliği değil, **görev dağılımının bir sonucudur.**
+```
+    HTML  → Yapı ve anlam
+    CSS   → Görsel sunum
+    JS    → Davranış ve mantık
+```
+Bu nedenle gerçek bir web sayfası genellikle üçünün birlikte kullanılmasıyla ortaya çıkar. HTML'i tek başına yeterli görüp CSS veya JavaScript'in yapması gereken işi HTML'e yüklemeye çalışmak (örneğin boşluk için `<br>` tekrarlamak, tıklama için `<div onclick>` kullanmak) daha önce gördüğümüz sık yapılan hatalara da zemin hazırlar.
 
 ## Web Nasıl Çalışır?
 HTML öğrenirken:

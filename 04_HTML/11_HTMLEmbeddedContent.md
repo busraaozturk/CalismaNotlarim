@@ -297,6 +297,30 @@ Güvenlik politikalarının ayrıntıları temel HTML konusunun kapsamından dah
     İzinleri ve kaynağı kontrol et
 ```
 
+### `CSP` — Content Security Policy
+`sandbox` yalnızca tek bir iframe'i kısıtlarken, **CSP (Content Security Policy)** tüm sayfa için tarayıcıya hangi kaynaklardan script, stil, görsel veya iframe yüklenebileceğini bildiren daha geniş kapsamlı bir güvenlik mekanizmasıdır.
+
+CSP genellikle sunucudan gelen bir HTTP response header'ı olarak tanımlanır, ancak `<meta>` etiketiyle de belgeye eklenebilir:
+```
+    <meta
+        http-equiv="Content-Security-Policy"
+        content="default-src 'self'; frame-src https://www.youtube.com;"
+    >
+```
+Burada:
+```
+    default-src 'self' → Varsayılan olarak yalnızca kendi sitemizden kaynak yüklenebilir.
+    frame-src https://www.youtube.com → iframe içeriğine yalnızca YouTube'dan izin verilir.
+```
+Böylece sayfaya izinsiz bir kaynaktan `<iframe>`, `<script>` veya başka bir kaynak eklenmeye çalışılırsa tarayıcı bunu engeller.
+
+CSP, `sandbox` attribute'unun tamamlayıcısıdır:
+```
+    sandbox → Belirli bir iframe'in içeriğine kısıtlama getirir.
+    CSP     → Sayfanın genelinde hangi kaynaklara izin verildiğini belirler.
+```
+CSP politikalarının ayrıntılı yapılandırılması güvenlik konusunun kapsamına girer; burada bilinmesi gereken temel fikir, harici içerik gömerken yalnızca `sandbox` değil, sayfanın genel kaynak politikasının da düşünülmesi gerektiğidir.
+
 ## `<iframe>` ve Performans
 Iframe içerisinde yüklenen içerik ayrı kaynaklara ihtiyaç duyabilir.
 
