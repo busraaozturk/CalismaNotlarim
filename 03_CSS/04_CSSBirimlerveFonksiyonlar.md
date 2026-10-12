@@ -951,3 +951,327 @@ Bu nedenle clamp(), esnek ama sınırlandırılmış ölçüler oluşturmak içi
 Bu örnekte yazı boyutu viewport'a göre değişebilir ancak tanımlanan sınırların dışına çıkmaz. Bu yaklaşım bazı responsive tipografi ihtiyaçlarında media query sayısını azaltabilir. Ancak her tasarım için tek başına yeterli değildir.
 
 ## CSS Değişkenleri — Custom Properties
+CSS' te tekrar kullanılabilir değerler tanımlamak için **Custom Properties** kullanabiliriz. Günlük kullanımda bunlara CSS değişkenleri de denir.
+
+Örneğin:
+```
+    :root{
+        --color-primary: #7d8570;
+    }
+```
+
+Burada:
+```
+    --color-primary → Custom Property
+    #7d8570 → Tanımlanan değer
+```
+vardır.
+
+### Custom Property Nasıl Kullanılır?
+Tanımlanan değeri kullanmak için **var()** fonksiyonundan yararlanırız.
+```
+    :root {
+        --color-primary: #7d8570;
+    }
+
+    .button {
+        background-color: var(--color-primary);
+    }
+```
+
+Burada şu mantık vardır:
+```
+    --color-primary → Değer tanımlar
+    var(--coloprimary) → Değer kullanılır
+```
+
+### Neden `:root` Kullanılır?
+`:root`, HTML belgesinde kök elementi hedefler. Bu nedenle genel tasarım değerleri sıklıkla burada tanımlanır.
+
+Örneğin:
+```
+    :root {
+        --color-primary : #7d8570;
+        --color-text: #26251f;
+        --spacing-md: 1rem;
+        --radius-md: 0.75rem;
+    }
+``` 
+
+Bu değerleri farklı elementlerde kullanabiliriz:
+```
+    .card {
+        color: var(--color-text);
+        padding: var(--spacing-md);
+        border-radius: var(--radius-md);
+    }
+
+    .button {
+        background-color: var(--color-primary);
+    }
+```
+Böylece aynı değerleri her yerde tekrar yazmak zorunda kalmayız.
+
+### Custom Properties Yalnızca :root İçinde mi Tanımlanır?
+Hayır. Bir elementin kendi custom property değerleri olabilir.
+
+Örneğin:
+```
+    :root {
+        --button-color: #7d8570;
+    }
+
+    .button {
+        background-color: var(--button-color);
+    }
+
+    .button-danger {
+        --button-color: #c0392b;
+    }
+```
+
+HTML:
+```
+    <button class="button">
+        Normal Buton
+    </button>
+
+    <button class="button button-danger">
+        Sil
+    </button>
+```
+
+- İlk buton genel değeri kullanır.
+- İkinci buton ise kendi üzerinde tanımlanan değeri kullanır.
+
+Bu davranış custom properties'in cascade ve inheritance mekanizmalaarıyla birlikte çalışmasından kaynaklanır.
+
+### var() Fallback Değeri
+
+Bir custom property tanımlanmamışsa kullanılacak alternatif değer belirtilebilir.
+
+Örneğin:
+```
+    .button {
+        background-color: var(--button-color, black);
+    }
+```
+Burada şu mantık vardır:
+```
+    --button-color → Kullanılabilir bir değer var mı?
+    Evet → Onu kullan
+    Hayır → black
+```
+mantığı vardır.
+
+Ancak fallback, tanımlanan rengin görsel olarak uygun olup olmadığını kontrol etmez. Örneğin bir custom property tanımlıysa fakat kullanılan property için geçersiz bir değere dönüşüyorsa var() fallback'i her durumda bu sorunu çözmez.
+
+### CSS Değişkenleri ve Sass/Less Değişkenleri
+CSS custom properties ile Sass/Less değişkenleri aynı çalışma mekanizmasına sahip değildir.
+| Özellik   | CSS Custom Properties | Sass/Less Değişkenleri |
+|-----------|-----------------------|------------------------|
+|Nerede değerlendirilir?| Tarayıcıda| Derleme aşamasında|
+|Cascade'den etkilenir mi?| Evet| Doğrudan hayır|
+|Inheritance ile çalışır mı?|Evet, normal custom properties| CSS mirası gibi değil|
+|Media query ile değişebilir mi?|Evet | Derleme kuralları farklıdır|
+|Javascript ile güncellenebilir mi?|Evet|Derlenmil değişken doğrudan değil|
+
+Örneğin:
+```
+    :root {
+        --spacing: 1rem;
+    }
+
+    @media (min-width: 768px) {
+        :root {
+            --spacing: 1.5rem;
+        }
+    }
+
+    .card {
+        padding: var(--spacing);
+    }
+```
+Burada --spacing değeri media query koşuluna göre değişebilir. Bu nedenle CSS custom properties modern tasarım sistemlerinde oldukça kullanışlıdır.
+
+Not: var() yalnızca custom property değerini kullanmak içindir. 
+Örneğin @media (max-width: var(--breakpoint)) biçimi normal CSS'te geçerli bir 
+media query sınırı oluşturmaz.
+
+## Sık Yapılan Hatalar
+### 1. em Değerinin İç İçe Katlanmasını Unutmak
+```
+    .parent{
+        font-size: 1.5em;
+    }
+
+    .child {
+        font-size: 1.5em;
+    }
+```
+
+Burada child font boyutu, parent'ın hesaplanmış font boyutunu referans alır. 
+Bu nedenle iç içe em kullanımlarında beklenenden büyük değerler oluşabilir. 
+Genel tipografi için rem, bileşen için em kullanmak birçok durumda daha öngörülebilir olabilir.
+
+### 2. Bütün Ölçüleri Sabit px Değerleriyle Tanımlamak
+```
+    .container{
+        width:1200px;
+    }
+```
+Dar ekranlarda taşma oluşturabilir.
+
+Daha esnek bir yaklaşım olabilir:
+```
+    .container{
+        width: 100%;
+        max-width: 75rem;
+    }
+```
+Ancak gerçek projede container^ın dış boşlukları ve box model davranışı da dikkate alınmalıdır.
+
+### 3. rem Kullanmanın Tek Başına Responsive Olduğunu Sanmak
+```
+    .container {
+        width:100rem;
+    }
+```
+Bu genişlik de dar ekranlarda sorun oluşturabilir. rem, responsive tasarımın araçlarından biridir; tek başına çözüm değildir.
+
+### 4. calc() Sözdizimini Yanlış Yazmak
+Yanlış: `width: calc(100%-40px);`
+
+Doğru: `width: calc(100% - 40px);`
+
+Özellikle + ve - operatörlerinin etrafındaki boşluklara dikkat edilmelidir.
+
+### 5. min() ve max() Fonksiyonlarını Karıştırmak
+`width: min(90%, 600px);` küçük olanı seçer.
+
+`width: max(90%, 600px);` büyük olanı seçer.
+
+İsimleri benzer olsa da sonuçları farklıdır.
+
+### 6. Her Responsive Sorun İçin Media Query Yazmak
+Bir layout dar ekrana sığmıyorsa doğrudan çok sayıda media query eklemek yerine önce şu noktaları incelemek faydalıdır:
+- Sabit genişlik var mı?
+- Flexbox veya Grid daha esnek kurulabilir mi?
+- max-width kullanılabilir mi?
+- İçerik doğal olarak satır değiştirebiliyor mu?
+
+Media query, gerektiğinde bilinçli olarak kullanılmalıdır.
+
+### 7. Custom Property Adının Başındaki -- İşaretini Unutmak
+Yanlış:
+```
+    :root {
+        primary-color: red;
+    }
+```
+Doğru:
+```
+    :root {
+        --primary-color: red;
+    }
+```
+Kullanım:
+```
+    .button {
+        color: var(--primary-color);
+    }
+```
+
+### 8. var() Fonksiyonunu Normal Bir Property Gibi Kullanmak
+Yanlış:
+```
+    .button {
+        color: --primary-color;
+    }
+```
+Doğru:
+```
+    .button {
+        color: var(--primary-color);
+    }
+```
+Custom property değerleri var() aracılığıyla kullanılmalıdır.
+
+## Kısaca Özet
+CSS'te ölçüler farklı referanslara bağlı olarak tanımlanabilir.
+
+### Birim Karşılaştırması
+|Birim      |Referans       |Kullanım       |
+|-----------|---------------|---------------|
+|px         |CSS pikseli    |İnce detaylar, belirli ölçüler|
+|em         |Font boyutu    |Bileşen içi oranlar|
+|rem        |Kök font boyutu|Genel tipografi ve boşluklar|
+|%          |Property'ye bağlı referans|Oransal genişlikler ve diğer yüzdeli ölçüler|
+|vw         |Viewport genişliği|Ekrana bağlı ölçüler|
+|vh         |Viewport yüksekliği|Yükseklik odaklı alanlar|
+|vmin       |Viewport kısa kenarı|Ekran oranına bağlı ölçüler|
+|vmax       |Viewpoet uzun kenarı|Ekran oranına bağlı ölçüler|
+
+Akılda kalıcı yaklaşım:
+```
+    px → Belirli CSS piksel ölçüsü
+    em → Elementin font boyutuyla oran
+    rem → Kök font boyutuyla oran
+```
+
+### Responsive Tasarımının Temel Mantığı
+```
+    Esnek içerik
+        +
+    Uygun ölçü birimleri
+        +
+    Flexbox / Grid
+        +
+    Boyut sınırları
+        +
+    Gerektiğinde media query
+        ↓
+    Responsive arayüz
+```
+
+### CSS Fonksiyonları
+|Fonksiyon|Görevi|Örnek|
+|---------|------|-----|
+|calc()   |Matematiksel hesaplama|calc(100% - 2rem)|
+|min()    |Küçük değeri seçer| min(90%, 600px)|
+|max()|Büyük değeri seçer|max(1rem, 2vw)|
+|clamp()|Değeri alt ve üst sınır arasında tutar|clamp(1rem, 2vw, 2rem)|
+
+### CSS Custom Properties
+Tanımlama:
+```
+    :root {
+        --color-primary: #7d8570;
+    }
+```
+Kullanma:
+```
+    .button {
+        background-color: var(--color-primary);
+    }
+```
+Fallback:
+```
+    .button {
+        background-color: var(--color-primary, black);
+    }
+``` 
+Genel akış:
+``` 
+    Custom Property
+    --color-primary
+       ↓
+    Değer
+    #7d8570
+       ↓
+    var(--color-primary)
+       ↓
+    CSS Property
+    background-color
+```
+Bu bölümün temel amacı, her yerde tek bir birim kullanmak değil; hangi ölçünün neye bağlı olduğunu anlamak, esnek tasarımlar oluşturmak ve CSS fonksiyonlarıyla ölçüleri kontrollü şekilde yönetebilmektir.
