@@ -85,8 +85,8 @@ geçerli kullanımlardır.
 
 Ayrıca opacity, z-index, line-height gibi bazı property'ler birimsiz sayılar da kabul edebilir.
 
-### CSS Birimlerinin İki Temek Kategorisi
-CSS uzunluk birimleri iki ana gruba ayrılıt.
+### CSS Birimlerinin İki Temel Kategorisi
+CSS uzunluk birimleri iki ana gruba ayrılır.
 ```
     CSS Length Units
     │
@@ -102,11 +102,11 @@ CSS uzunluk birimleri iki ana gruba ayrılıt.
         └── vmax
 ```
 
-½ de sıklıkla nispi ölçülerle birlikte incelenir. Ancak teknik olarak bir uzunluk birimi değil, yüzde değeridir.
+% de sıklıkla nispi ölçülerle birlikte incelenir. Ancak teknik olarak bir uzunluk birimi değil, yüzde değeridir.
 
 **Absolute Units (Mutlak Birimler):** Başka bir elementin ölçüsüne göre hesaplanmayan birimlerdir.
 
-**Relativrr Units (Nispi Birimler):** Değerleri font boyutu, viewport veya ilgili referans ölçüye bağlı olarak hesaplanan birimlerdir.
+**Relative Units (Nispi Birimler):** Değerleri font boyutu, viewport veya ilgili referans ölçüye bağlı olarak hesaplanan birimlerdir.
 
 ## Mutlak Birim - px
 px, CSS'te en sık kullanılan ölçü birimlerinden biridir.
@@ -119,7 +119,7 @@ px, CSS'te en sık kullanılan ölçü birimlerinden biridir.
 ```
 
 Burada:
-- width: 300px → geniişlik
+- width: 300px → genişlik
 - padding: 20px → iç boşluk
 - border-radius: 8px → köşe yuvarlaklığı belirlenmektedir.
 
@@ -143,7 +143,7 @@ Bu değer, parent elementin font boyutuna göre kendiliğinden değişmez.
     }
 ```
 
-Parent'ın **font-size** değeri değişse bile **.box** genişliği 300px olarak tanımlı kalır. Ancak burada önemli bir ayrım vardır: `CSS pikseli, fiziksel yoğunluğu CSS piksellerinin ekranda nasıl görüntüleneceğini etkileyebilir.`
+Parent'ın **font-size** değeri değişse bile **.box** genişliği 300px olarak tanımlı kalır. Ancak burada önemli bir ayrım vardır: `CSS pikseli, cihaz ekranındaki fiziksel pikselle her zaman bire bir aynı değildir.`
 
 Tarayıcı zoom'u ve cihazın piksel yoğunluğu CSS piksellerinin ekranda nasıl görüntüleneceğini etkileyebilir. Dolayısıyla px değerlerinin tarayıcı zoom'undan hiç etkilenmediğini söylemek doğru değildir.
 
@@ -151,7 +151,7 @@ Tarayıcı zoom'u ve cihazın piksel yoğunluğu CSS piksellerinin ekranda nası
 Şu örneği düşünelim:
 ``` 
     .container {
-        widtth: 1200px
+        width: 1200px;
     }
 ```
 Bu genişlik, dar bir mobil ekrana sığmayabilir. 
@@ -163,10 +163,10 @@ Benzer şekilde:
         height:500px;
     }
 ```
-gibi sabit ölçüler, ,çer,k veya kullanılabilir alan değiştiğinde sorun oluşturulabilir. Özellikle sabit **height** değerleri, metin büyüdüğünde içeriğin taşmasına yol açabilir. Ancak bunun nedeni px biriminin yanlış olması değil, tasarımın ihtiyaç duyduğu esnekliğin sağlanmamasıdır.
+gibi sabit ölçüler, içerik veya kullanılabilir alan değiştiğinde sorun oluşturabilir. Özellikle sabit **height** değerleri, metin büyüdüğünde içeriğin taşmasına yol açabilir. Ancak bunun nedeni px biriminin yanlış olması değil, tasarımın ihtiyaç duyduğu esnekliğin sağlanmamasıdır.
 
-## px Ne Zaman Kullanılır?
-px özellikle hassas görsel detaylarda kulllanışlıdır.
+### px Ne Zaman Kullanılır?
+px özellikle hassas görsel detaylarda kullanışlıdır.
 ```
     .card {
         border: 1px solid #dddddd;
@@ -193,7 +193,7 @@ em, font boyutuna bağlı bir uzunluk birimidir.
     }
 
     .card-title {
-        font-size: 1.5rem;
+        font-size: 1.5em;
     }
 ```
 
@@ -238,7 +238,7 @@ Ancak **padding, margin veya width** gibi diğer property'lerde kullanılan **em
 Bu durumda `padding:1em, 20px`olarak hesaplanır. Bu ayrım, em birimini doğru anlamak için önemlidir.
 
 ### Font-Size Miras Zinciri
-CSS'te **font-size** normalde miras alınabilen bir property'dir. Bir element için font boyutu tanımlanmadığında parent elementin hesaplanmış font boyuru kullanılabilir.
+CSS'te **font-size** normalde miras alınabilen bir property'dir. Bir element için font boyutu tanımlanmadığında parent elementin hesaplanmış font boyutu kullanılabilir.
 
 Örneğin:
 ```
@@ -270,7 +270,7 @@ Eğer .card üzerinde:
     }
 ```
 
-tanımlanırsa .text elementi de başka bir değer belirtmediği dürece bu font boyutunu miras alır. Buradaki **inherit**, miras alma davranışını açıklamak için gösterilmiştir; her elemente ayrıca yazılması gerekmez.
+tanımlanırsa .text elementi de başka bir değer belirtmediği sürece bu font boyutunu miras alır. Buradaki **inherit**, miras alma davranışını açıklamak için gösterilmiştir; her elemente ayrıca yazılması gerekmez.
 
 ### İç İçe em Kullanımı
 em kullanırken dikkat edilmesi gereken konulardan biri iç içe font boyutu tanımlarıdır.
@@ -333,8 +333,8 @@ Butonun font boyutu büyütülürse em ile tanımlanan padding değerleri de ora
 
 Temel mantık: em, bileşenin yazı boyutuyla birlikte büyüyen veya küçülen ölçüler oluşturmayı kolaylaştırır.
 
-## Niapi Birim - rem
-rem, *root em* ifadesinden gelir. em biriminden farklı olarak referans aldığı font boyutu, kök element olan <html> elementinin font boyutudur.
+## Nispi Birim - rem
+rem, *root em* ifadesinden gelir. em biriminden farklı olarak referans aldığı font boyutu, kök element olan `<html>` elementinin font boyutudur.
 
 Örneğin:
 ```
@@ -391,17 +391,17 @@ Parent elementin 24px olması bu hesaplamayı değiştirmez.
     └── .another-child → 2rem = 32px
 ```
 
-Bu nedenle rem, genel ölçüler için daha tahmin edilebilir bir sistem oluştururç
+Bu nedenle rem, genel ölçüler için daha tahmin edilebilir bir sistem oluşturur.
 
 ### 1rem Her Zaman 16px midir?
 Hayır. Tarayıcıların yaygın varsayılan font boyutu 16px olduğu için çoğu başlangıç örneğinde `1rem = 16px` kabul edilir.
 
-Ancak bu değer kesşn ve değişmez değildir. Kullanıcının tarayıcı veya kök elementte tanımlanan font boyuru farklı olabilir.
+Ancak bu değer kesin ve değişmez değildir. Kullanıcının tarayıcı ayarı veya kök elementte tanımlanan font boyutu farklı olabilir.
 
 Örneğin:
 ```
     html {
-        fonr-size: 20px;
+        font-size: 20px;
     }
 ```
 olduğunda:
@@ -461,7 +461,7 @@ Bu üç birim CSS'te farklı ihtiyaçlara hizmet eder.
     rem → Ortak ayarlanabilir / Kök font boyutuna bağlı
 ```
 
-Bu benzetme birimlerin temel farkını hatırlamak içindir. px tamamen değişmez, rem ise otomatik olarak her ekrana uyum sağlar anlamına gelmez.
+Bu benzetme birimlerin temel farkını hatırlamak içindir. px'in hiçbir koşulda değişmediği ya da rem'in her ekrana otomatik olarak uyum sağladığı anlamına gelmez.
 
 ## Diğer Nispi Ölçüler
 CSS'te em ve rem dışında farklı referanslara bağlı ölçüler de bulunur.
@@ -480,7 +480,7 @@ CSS'te em ve rem dışında farklı referanslara bağlı ölçüler de bulunur.
     }
 ```
 
-Bu örnekte .child genişliği şöylr olur:
+Bu örnekte .child genişliği şöyle olur:
 ```
     600px x 50%
         ↓
@@ -505,7 +505,7 @@ CSS:
         font-size: 4vw;
     }
 ```
-Bu kullanım viewport genişliği değiştikçe yazı boyutunu da değiştirir. Ancak yalnızca vw kullanmak çok küçük ekranlarda metni aşırı küçültebilir, büyük ekranlarda ise aşırı büyütebilir. Bu nedenle responsive tipopgrafide **clamp()** gibi sınırlandırma yöntemleri kullanışlıdır.
+Bu kullanım viewport genişliği değiştikçe yazı boyutunu da değiştirir. Ancak yalnızca vw kullanmak çok küçük ekranlarda metni aşırı küçültebilir, büyük ekranlarda ise aşırı büyütebilir. Bu nedenle responsive tipografide **clamp()** gibi sınırlandırma yöntemleri kullanışlıdır.
 
 ### 3. vh - Viewport Height
 vh, viewport yüksekliğine bağlıdır. 
@@ -547,7 +547,7 @@ Bu ölçüler viewport'un kısa kenarıyla orantılıdır.
 |    vmax   |Viewport'un uzun kenarı|
 
 ## Responsive Tasarım ve Birim Stratejisi
-Responsive tasarım, bir arayüzün farklı ekran boyutlarında ve kullanım koşullarında işlevsel ve okunabilir kalmasıbı sağlamayı amaçlar.
+Responsive tasarım, bir arayüzün farklı ekran boyutlarında ve kullanım koşullarında işlevsel ve okunabilir kalmasını sağlamayı amaçlar.
 
 Örneğin bir ürün kartı masaüstünde geniş bir alanda görüntülenirken mobilde daha dar bir alana yerleşebilir. Ancak responsive tasarım yalnızca px yerine rem yazmak değildir.
 
@@ -564,7 +564,7 @@ Responsive tasarım, bir arayüzün farklı ekran boyutlarında ve kullanım ko�
     }
 ```
 
-Burada bütün ölçüler sabitlenmiştir. Dar ekranlarda yatay taşıma oluşabilir. İçerik uzadığında sabit yükseklik de sorun yaratabilir. Bu nedenle özellikle ana yerleşim alanlarında esnek ölçüler kullanmak daha güvenli olabilir.
+Burada bütün ölçüler sabitlenmiştir. Dar ekranlarda yatay taşma oluşabilir. İçerik uzadığında sabit yükseklik de sorun yaratabilir. Bu nedenle özellikle ana yerleşim alanlarında esnek ölçüler kullanmak daha güvenli olabilir.
 
 ### Daha Esnek Yaklaşım
 Örneğin:
@@ -637,8 +637,8 @@ olur.
 Bu durumda media query koşulu sağlandığında aşağıdaki gibi hesaplanır:
 ```
     2rem = 28px
-    1rem = 16px
-    1.5rem = 14px 
+    1rem = 14px
+    1.5rem = 21px
 ```
 
 Yani kök font boyutunu değiştirmek, rem tabanlı birçok ölçüyü birlikte etkileyebilir. Ancak önemli bir erişilebilirlik notu: `Mobil ekranlarda bütün yazıları küçültmek için kök font boyutunu düşürmek genel bir en iyi uygulama değildir. Özellikle kullanıcıların tercih ettiği yazı boyutlarını dikkate almak gerekir.`
@@ -740,7 +740,7 @@ Burada:
 
 Bu örnek, farklı birimlerin aynı bileşen içinde bilinçli olarak kullanılabileceğini gösterir.
 
-##  CSS Fonksiyonları Nedir?
+## CSS Fonksiyonları Nedir?
 CSS'te bazı değerler doğrudan sayı veya anahtar kelime olarak yazılır.
 
 Örneğin:
@@ -835,7 +835,7 @@ Doğru: `width: calc(100% - 40px);`
 
 Ayrıca bütün birim kombinasyonları her matematiksel işlemde geçerli değildir. Örneğin uzunlukları birbirleriyle doğrudan çarpmak geçerli bir CSS uzunluk sonucu üretmez.
 
-### 2.  min() ve max() Fonksiyonları
+### 2. min() ve max() Fonksiyonları
 Bu iki fonksiyon, verilen değerler arasından uygun olanı seçmek için kullanılır.
 
 **min() — Küçük Değeri Seçer**
@@ -888,7 +888,7 @@ Bu yaklaşım, bir ölçünün belirli bir alt sınırın altında kalmamasını
 |min()          |Küçük değeri seçer         |min(90%, 600px)    |
 |max()          |Büyük değeri seçer         |max(1rem, 2vw)     |
 
-### clamp() Fonksiyonu
+### 3. clamp() Fonksiyonu
 clamp(), bir değerin alt ve üst sınırlarını belirlememizi sağlar.
 
 Genel syntax: `clamp(minimum, preferred, maximum)`
@@ -951,7 +951,7 @@ Bu nedenle clamp(), esnek ama sınırlandırılmış ölçüler oluşturmak içi
 Bu örnekte yazı boyutu viewport'a göre değişebilir ancak tanımlanan sınırların dışına çıkmaz. Bu yaklaşım bazı responsive tipografi ihtiyaçlarında media query sayısını azaltabilir. Ancak her tasarım için tek başına yeterli değildir.
 
 ## CSS Değişkenleri — Custom Properties
-CSS' te tekrar kullanılabilir değerler tanımlamak için **Custom Properties** kullanabiliriz. Günlük kullanımda bunlara CSS değişkenleri de denir.
+CSS'te tekrar kullanılabilir değerler tanımlamak için **Custom Properties** kullanabiliriz. Günlük kullanımda bunlara CSS değişkenleri de denir.
 
 Örneğin:
 ```
@@ -982,7 +982,7 @@ Tanımlanan değeri kullanmak için **var()** fonksiyonundan yararlanırız.
 Burada şu mantık vardır:
 ```
     --color-primary → Değer tanımlar
-    var(--coloprimary) → Değer kullanılır
+    var(--color-primary) → Değer kullanılır
 ```
 
 ### Neden `:root` Kullanılır?
@@ -1044,7 +1044,7 @@ HTML:
 - İlk buton genel değeri kullanır.
 - İkinci buton ise kendi üzerinde tanımlanan değeri kullanır.
 
-Bu davranış custom properties'in cascade ve inheritance mekanizmalaarıyla birlikte çalışmasından kaynaklanır.
+Bu davranış custom properties'in cascade ve inheritance mekanizmalarıyla birlikte çalışmasından kaynaklanır.
 
 ### var() Fallback Değeri
 
@@ -1062,7 +1062,6 @@ Burada şu mantık vardır:
     Evet → Onu kullan
     Hayır → black
 ```
-mantığı vardır.
 
 Ancak fallback, tanımlanan rengin görsel olarak uygun olup olmadığını kontrol etmez. Örneğin bir custom property tanımlıysa fakat kullanılan property için geçersiz bir değere dönüşüyorsa var() fallback'i her durumda bu sorunu çözmez.
 
@@ -1074,7 +1073,7 @@ CSS custom properties ile Sass/Less değişkenleri aynı çalışma mekanizması
 |Cascade'den etkilenir mi?| Evet| Doğrudan hayır|
 |Inheritance ile çalışır mı?|Evet, normal custom properties| CSS mirası gibi değil|
 |Media query ile değişebilir mi?|Evet | Derleme kuralları farklıdır|
-|Javascript ile güncellenebilir mi?|Evet|Derlenmil değişken doğrudan değil|
+|Javascript ile güncellenebilir mi?|Evet|Derlenmiş değişken doğrudan değil|
 
 Örneğin:
 ```
@@ -1129,7 +1128,7 @@ Daha esnek bir yaklaşım olabilir:
         max-width: 75rem;
     }
 ```
-Ancak gerçek projede container^ın dış boşlukları ve box model davranışı da dikkate alınmalıdır.
+Ancak gerçek projede container'ın dış boşlukları ve box model davranışı da dikkate alınmalıdır.
 
 ### 3. rem Kullanmanın Tek Başına Responsive Olduğunu Sanmak
 ```
@@ -1210,7 +1209,7 @@ CSS'te ölçüler farklı referanslara bağlı olarak tanımlanabilir.
 |vw         |Viewport genişliği|Ekrana bağlı ölçüler|
 |vh         |Viewport yüksekliği|Yükseklik odaklı alanlar|
 |vmin       |Viewport kısa kenarı|Ekran oranına bağlı ölçüler|
-|vmax       |Viewpoet uzun kenarı|Ekran oranına bağlı ölçüler|
+|vmax       |Viewport uzun kenarı|Ekran oranına bağlı ölçüler|
 
 Akılda kalıcı yaklaşım:
 ```
@@ -1219,7 +1218,7 @@ Akılda kalıcı yaklaşım:
     rem → Kök font boyutuyla oran
 ```
 
-### Responsive Tasarımının Temel Mantığı
+### Responsive Tasarımın Temel Mantığı
 ```
     Esnek içerik
         +
