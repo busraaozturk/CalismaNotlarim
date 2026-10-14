@@ -745,6 +745,54 @@ Buton, CSS ile farklı yerleşim davranışları kazansa bile HTML'deki buton i�
 
 **Temel kural:** Görünüm için yanlış HTML elementi seçmek yerine, doğru semantik elementi kullanıp görünümü CSS ile düzenlemeliyiz.
 
+## Hepsini Bir Arada Görelim: Navigasyon Menüsü
+Aynı basit örnek üzerinden — bir menüyü yan yana dizmek — şimdiye kadar gördüğümüz display değerlerini karşılaştıralım.
+
+HTML hep aynı kalacak:
+```
+    <ul class="menu">
+        <li><a href="#">Ana Sayfa</a></li>
+        <li><a href="#">Ürünler</a></li>
+        <li><a href="#">İletişim</a></li>
+    </ul>
+```
+`<li>` varsayılan olarak **block** olduğu için CSS yazmadan her biri alt alta, madde imli şekilde görünür. Şimdi `<li>`'lere sırayla farklı display değerleri verelim.
+
+**`display: inline` verirsek:**
+```
+    .menu li {
+        display: inline;
+    }
+```
+Öğeler yan yana gelir ama madde imleri bozulur ve aradaki boşluğu kontrol edemeyiz.
+
+**`display: inline-block` verirsek:**
+```
+    .menu li {
+        display: inline-block;
+        margin-right: 16px;
+    }
+```
+Yan yana gelirler ve artık `width`/`padding` gibi değerler de verebiliriz. Ama boşluğu `margin` ile elle ayarlamak gerekir.
+
+**`display: flex` verirsek (bu sefer `<li>`'lere değil, `<ul>`'ye):**
+```
+    .menu {
+        display: flex;
+        gap: 16px;
+        list-style: none;
+    }
+```
+Çocuklar otomatik olarak yan yana dizilir, boşluğu tek satırlık `gap` ile ayarlarız, `list-style: none` ile de madde imini kaldırırız. En az kod, en az sorun.
+
+**Özetle:**
+```
+    inline        → yan yana gelir ama kontrolsüz
+    inline-block   → yan yana gelir, elle boşluk ayarlanır
+    flex           → yan yana gelir, gap ile temiz boşluk
+```
+Bu yüzden bugün menü, kart grubu gibi yan yana dizilmesi gereken yapılarda genellikle Flexbox tercih edilir. Ayrıntılarını ileride Flexbox konusunda göreceğiz.
+
 ## Sık Yapılan Hatalar
 ### 1. Inline Elemente width ve height Vermek
 ```
