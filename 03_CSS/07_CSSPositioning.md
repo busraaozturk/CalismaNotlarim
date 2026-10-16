@@ -651,3 +651,551 @@ Yaygın nedenler:
 ```
 
 Burada .parent yeni bir kaydırma mekanizması oluşturabildiği için sticky davranışı beklenenden farklı olabilir. Bu her durumda sticky'nin tamamen devre dışı kaldığı anlamına gelmez. Sticky'nin hangi kaydırma alanını referans aldığı önemlidir.
+
+## Position Değerlerinin Karşılaştırılması
+Şimdi beş temel konumlandırma değerini birlikte inceleyelim.
+
+|Position       |Normal akışta mı?      |Referans noktası       |Offset çalışır mı? |Scroll davranışı|
+|---------------|-----------------------|-----------------------|------------|-----------------|
+|static |Evet   |Normal yerleşim    |Hayır  |İçerikle kayar     |
+|relative   |Evet   |Kendi normal konumu    | Evet  |İçerikle kayar |
+|absolute   |Hayır  |Containing block       |Evet   |Genellikle içerikle kayar|
+|fixed      |Hayır  |Genellikle viewport    |Evet   |Genellikle sabit kalır|
+|sticky     |Evet   |Scrollport ve containing block sınırları|Evet  |Eşiğe kadar kayar, sonra yapışır|
+
+### Hangi Durumda Hangisi Kullanılır?
+
+Normal içerik yerleşimi: `position:static;`
+
+Küçük görsel kaydrımalar veya absolute çocuğa referans: `position: relative`
+
+Kart köşesinde rozet, görsel üzerinde ikon: `position: absolute`
+
+Ekranın köşesinde sabit buton: `position: fixed`
+
+Kaydırma sırasında üstte kalan bölüm başlığı: `position: sticky`
+
+Bu ayrımı anlamak, konumlandırma sorasında yanlış property kullanmamızı önler.
+
+## z-index ve Stacking Context
+CSS'te bazı elementler görsel olarak üst üste gelebilir.
+
+Örneğin:
+- Açılır menü bir kartın üzerine gelebilir.
+- Modal pencere sayfa içeriğini örtebilir.
+- Bildirim etiketi ürün görselinin üzerinde bulunabilir.
+
+Bu durumlarda hangi elementin önde görüntüleneceğini kontrol etmek için `z-index`property'sini kullanabiliriz.
+
+### z-index Nedir?
+z-indec, uygun yerleşim koşullarında elementlerin yığılma sırasını belirler.
+
+Örneğin:
+```
+    <div class="box-one">Birinci</div>
+    <div class="box-two">İkinci</div>
+
+    .box-one {
+        position: relative;
+        z-index: 1;
+    }
+
+    .box-two {
+        position: relative;
+        z-index: 2;
+    }
+```
+
+Bu iki element üst üste geldiğinde ve aynı stacking context içinde karşılaştırılabildiğinde .box-two önde görüntülenir.
+
+```
+    ÖN
+    |
+    |   z-index: 2
+    |
+    |   z-indec: 1
+    |
+    ARKA
+```
+
+### z-index Hangi Elementlerde Çalışır?
+z-index, positioned elementlerde kullanılır:
+```
+    position:relative;
+    position:absolute;
+    position:fixed;
+    position:sticky;
+```
+
+Ancak yalnızca bunlarla sınırlı değildir.
+
+**Önemli istisna:** Flex ve Grid item'ları *position: static* olsalar bile z-index ile yığılma sırasına katılabilir.
+
+Örneğin:
+```
+    .container {
+        display: flex;
+    }
+
+    .item {
+        z-index: 2;
+    }
+```
+
+Burada **.item** bir flex item ise z-index etkili olabilir.
+
+Normal blok akışındaki sıradan bir **position: static** elementte ise z-index beklenen şekilde çalışmaz.
+
+### z-index Değerleri
+
+Pozitif değer kullanılabilir:
+```
+    .element{
+        z-index: 10;
+    }
+```
+
+Sıfır değeri kullanılabilir:
+```
+    .element{
+        z-index: 0;
+    }
+```
+
+Negatif değer de kullanılabilir:
+```
+    .element{
+        z-index: -1;
+    }
+```
+
+Ancak negatif z-index elementin her zaman tüm sayfanın arkasına geçeceği anlamına gelmez. Sonuç **stacking context** yapısına bağlıdır.
+
+### Stacking Context Nedir?
+**Stacking Context**, elementlerin kendi aralarında belirli bir yığılma düzenine göre sıralandığı bağımsız bir katman grubudur. Bir stacking context içindeki çocukların z-index değerleri, başka bir stacking context'in çocuklarıyla doğrudan karşılaştırılamaz.
+
+Bu kavramı anlamak için örnek inceleyelim.
+
+**Örnek — z-index: 9999 Neden İşe Yaramıyor?**
+```
+    <div class="parent-one">
+        <div class="child">Açılır Menü</div>
+    </div>
+
+    <div class="parent-two">
+        Diğer Alan
+    </div>
+
+    .parent-one {
+        position: relative;
+        z-index: 1;
+    }
+
+    .child {
+        position: absolute;
+        z-index: 9999;
+    }
+
+    .parent-two {
+        position: relative;
+        z-index: 2;
+    }
+```
+İlk bakışta .child değerinin 9999 olduğu için en üstte olması gerektiğini düşünebiliriz. Ancak:
+```
+    ANA STACKING CONTEXT
+    │
+    ├── parent-two
+    │   └── z-index: 2
+    │
+    └── parent-one
+        ├── z-index: 1
+        │
+        └── child
+            └── z-index: 9999
+```
+
+Burada .parent-one ve .parent-two ayrı stacking context'ler oluşturur. .parent-one ana yığılma sırasında z-index: 1, .parent-two ise z-index: 2 seviyesindedir.
+
+Dolayısıyla .child kendi grubunda 9999 olsa bile .parent-two grubunun önüne geçemez.
+
+**Temel kural:** Yüksek z-index, elementin bütün sayfadaki diğer elementlerin önüne geçeceğini garanti etmez.
+
+### Stacking Context Oluşturan Yygın Durumlar
+Bazı örnekler:
+```
+    .element {
+        position: relative;
+        z-index: 1;        
+    }
+    .element {
+        opacity: 0.9;
+    }
+
+    .element {
+        transform: translateX(10px);
+    }
+```
+Bu özellikler belirli koşullarda yeni stacking context oluşturur.
+
+Ayrıca position: fixed, position: sticky, isolation: isolate ve başka CSS özellikleri de stacking context oluşturabilir.
+
+### Gerçek projelerde z-index Yönetimi
+Her probleme `z-index: 999999;` yazarak yaklaşmak doğru değildir. Bunun yerine katmanlar için tutarlı değerler tanımlanabilir.
+```
+    :root {
+        --z-dropdown: 100;
+        --z-sticky: 200;
+        --z-overlay: 300;
+        --z-modal: 400;
+    }
+```
+Örneğin:
+```
+    .dropdown {
+        position: absolute;
+        z-index: var(--z-dropdown);
+    }
+
+    .modal {
+        position: fixed;
+        z-index: var(--z-modal);
+    }
+```
+Bu yaklaşım değerlerin yönetimini kolaylaştırır.
+
+Ancak stacking context sınırları yine geçerlidir; değişken kullanmak bu sınırları ortadan kaldırmaz.
+
+## float - Kayan Elementler
+float, bir elementi sola veya sağa yaslayarak metin gibi satır içi içeriğin çevresinden akmasını sağlayan CSS property'sidir.
+
+Örneğin:
+```
+    <article class="article">
+        <img src="article.jpg" alt="Makale görseli">
+
+        <p>
+            Bu paragraf görselin çevresinden akacak şekilde
+            yerleştirilebilir. Metin devam ettikçe görselin
+            yanında ve altında görüntülenir.
+        </p>
+    </article>
+
+    .article img {
+        float: left;
+        width: 160px;
+        margin-right: 16px;
+        margin-bottom: 12px;
+    }
+```
+Beklenen yerleşim:
+```
+    ┌───────────────────────────────┐
+    │ ┌───────────┐ Metin metin     │
+    │ │           │ metin metin     │
+    │ │  GÖRSEL   │ metin metin     │
+    │ │           │ metin metin     │
+    │ └───────────┘ metin metin     │
+    │ Metin metin metin metin       │
+    └───────────────────────────────┘
+```
+
+### Float Normal Akışı Nasıl Etkiler?
+Float element normal blok akışından çıkarılır. Ancak absolute elementten farklı olarak çevresindeki satır içi içeriğin yerleşimini etkiler. Metin, float elementin kapladığı alanın çevresinden akar. Bu nedenle float'u absolute positioning ile aynı davranış olarak düşünmemeliyiz.
+
+### float Değerleri
+- float: left; → Elementi sola yaslar
+- float: right; → Elementi sağa yaslar
+- float: none; → Float davranışını kaldırır
+
+### clear Property'si
+clear, bir elementin belirli yöndeki float'ların yanına yerleşmesini engellemek için kullanılır.
+```
+    .footer {
+        clear: both;
+    }
+```
+Yaygın değerler:
+```
+    clear: left;
+    clear: right;
+    clear: both;
+    clear: none;
+```
+**clear: both**, ilgili elementin hem sol hem sağ float'ların altına geçmesini sağlayabilir.
+
+### Float ve flow-root İlişkisi
+```
+    .article {
+        display: flow-root;
+    }
+```
+Bu kullanım yeni bir BFC oluşturur. Böylece kapsayıcı, içindeki float elementlerin boyutlarını kendi yüksekliği hesaplanırken dikkate alabilir.
+
+Float kaynaklı kapsayıcı yüksekliği sorunlarında kullanışlıdır.
+
+### Modern CSS'te Float Kullanımı
+Eskiden float ile çok sütunlu sayfa düzenleri oluşturulurdu. Ancak günümüzde:
+- Flexbox,
+- CSS Grid
+
+bu tür layout ihtiyaçları için daha uygundur.
+
+Float'un temel kullanım alanı hâlâ metnin bir görsel veya benzeri içerik etrafından akmasını sağlamaktır.
+
+## visibilty Property'si
+**visibility**, elementin görünür olup olmayacağını kontrol eder.
+
+Önceki 06 — CSS Display bölümünde display: none, visibility: hidden ve opacity: 0 arasındaki farkları ayrıntılı olarak incelemiştik.
+
+Burada yalnızca temel değerleri hatırlayalım.
+
+### visibility: visible
+Elementin normal şekilde görünmesini sağlar.
+```
+    .box {
+        visibility: visible;
+    }
+```
+
+### visibility: hidden
+Elementi görünmez yapar. Ancak normal yerleşimde kapladığı alan korunur.
+```
+    .box {
+        visibility: hidden;
+    }
+```
+Bu yönüyle *display: none* kullanımından farklıdır.
+
+### visibility: collapse
+collapse, özellikle tablo satırları ve sütunları için tanımlanmış özel bir görünürlük değeridir.
+
+Örneğin:
+```
+    tr.is-collapsed {
+        visibility: collapse;
+    }
+```
+Bu kullanım desteklenen tablo yerleşimlerinde ilgili satırın kapladığı alanı kaldırabilir.
+
+Ancak davranış tarayıcıya ve element türüne göre farklılık gösterebilir.
+
+Normal elementlerde çoğunlukla hidden benzeri davranır.
+
+**Hatırlatma:** Görünürlük yöntemlerinin yer kaplama, tıklanabilirlik ve erişilebilirlik farkları için 06 — CSS Display bölümündeki karşılaştırma tablosuna başvurabiliriz.
+
+## Sık Yapılan Hatalar
+### 1. Absolute Elementin Yanlış Yerde Görünmesi
+```
+    .badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+```
+Bu kodun hangi alana göre çalıştığı kontrol edilmezse rozet beklenmedik bir yerde görüntülenebilir.
+
+Yaygın çözüm:
+```
+    .card {
+        position: relative;
+    }
+
+    .badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+```
+Böylece kart referans alanı olur.
+
+### 2. relative Elementin Eski Yerinin Korunduğunu Unutmak
+```
+    .box {
+        position: relative;
+        top: 40px;
+    }
+```
+Bu kullanım elementi aşağı kaydırır ancak normal akıştaki alanını kaldırmaz. Sonraki elementler otomatik olarak 40px aşağı itilmez. Bu durum görsel çakışmaya neden olabilir.
+
+### 3. z-index Değerini Static Elemente Vermek
+```
+    .box {
+        position: static;
+        z-index: 100;
+    }
+```
+Normal blok akışındaki bir elementte bu kullanım beklenen etkiyi oluşturmaz.
+
+Uygun bir çözüm:
+```
+    .box {
+        position: relative;
+        z-index: 100;
+    }
+```
+Ancak Flex ve Grid item'larının position: static iken de z-index kullanabildiğini unutmamalıyız.
+
+### 4. z-index Değerini Sürekli Artırmak
+```
+    .dropdown {
+        z-index: 999999;
+    }
+```
+Bu yaklaşım stacking context sorunlarını çözmeyebilir.
+
+Bunun yerine:
+- Üst elementlerin stacking context oluşturup oluşturmadığını,
+- transform, opacity ve position değerlerini,
+- Elementlerin DOM ve yerleşim ilişkilerini kontrol etmeliyiz.
+
+### 5. Fixed Elementin Mobilde Yanlış Konumlanması
+```
+    .action-button {
+        position: fixed;
+        bottom: 0;
+    }
+```
+Bu kullanım bazı mobil ekranlarda butonun sistem alanlarına çok yaklaşmasına veya klavyeyle çakışmasına neden olabilir.
+
+Güvenli alanlar, viewport davranışı ve responsive ölçüler dikkate alınmalıdır.
+
+### 6. Sticky Elementin Çalışmaması
+```
+    .parent {
+        overflow: hidden;
+    }
+
+    .child {
+        position: sticky;
+        top: 0;
+    }
+```
+Bu durumda sticky'nin referans aldığı kaydırma mekanizması değişebilir.
+
+Kontrol edilmesi gerekenler:
+- Üst elementlerin overflow değerleri,
+- Parent yüksekliği,
+- Kaydırılan gerçek element,
+- Sticky eşiği,
+- Hareket için yeterli alan bulunup bulunmadığı.
+
+### 7. Absolute ile Bütün Sayfa Düzenini Oluşturmaya Çalışmak
+```
+    .sidebar {
+        position: absolute;
+        left: 0;
+    }
+
+    .content {
+        position: absolute;
+        left: 300px;
+    }
+```
+Bu yaklaşım responsive ekranlarda ve değişken içerik yüksekliklerinde sorun çıkarabilir. 
+
+Genel sayfa yerleşimleri için Flexbox veya Grid daha uygun olabilir.
+
+Absolute positioning ise belirli elementleri başka elementlerin üzerine veya köşelerine yerleştirmek için kullanılmalıdır.
+
+### 8. Float ile Modern Layout Oluşturmaya Çalışmak
+```
+    .column {
+        float: left;
+        width: 50%;
+    }
+```
+Bu yaklaşım geçmişte yaygın olsa da modern arayüzlerde genellikle Flexbox veya Grid tercih edilir.
+
+Float'u özellikle metin sarma ihtiyacı için kullanmak daha anlaşılır bir yaklaşımdır.
+
+## Kısaca Özet
+CSS Positioning, elementlerin normal yerleşim içerisindeki konumlarını değiştirmemizi veya belirli referans noktalarına göre konumlandırmamızı sağlar.
+
+### Beş Temel Position Değeri
+### Position Mantığı
+```
+    CSS POSITION
+    │
+    ├── static
+    │   └── Normal yerleşim
+    │
+    ├── relative
+    │   ├── Normal akışta kalır
+    │   └── Kendi konumuna göre kayar
+    │
+    ├── absolute
+    │   ├── Normal akıştan çıkar
+    │   └── Containing block'a göre konumlanır
+    │
+    ├── fixed
+    │   ├── Normal akıştan çıkar
+    │   └── Genellikle viewport'a sabitlenir
+    │
+    └── sticky
+        ├── Normal akışta kalır
+        └── Kaydırma eşiğine yapışır
+```
+
+### relative + absolute Deseni
+```
+    PARENT
+    position: relative
+
+    ┌──────────────────────────────┐
+    │                    ┌───────┐ │
+    │                    │ CHILD │ │
+    │                    └───────┘ │
+    │                              │
+    │        Normal İçerik         │
+    │                              │
+    └──────────────────────────────┘
+
+    CHILD
+    position: absolute
+    top: 0
+    right: 0
+```
+Bu yapı kart rozetlerinde, görsel üzerindeki ikonlarda ve çeşitli açılır alanlarda kullanılır.
+
+### z-index ve Stacking Context
+```
+z-index
+↓
+Uygun koşullarda katman sırasını belirler
+
+Stacking Context
+↓
+Elementleri bağımsız yığılma gruplarında düzenler
+
+Yüksek z-index
+↓
+Her zaman bütün sayfanın önüne geçmez
+```
+
+### Akılda Kalması Gerekenler
+
+static → Varsayılan konumlandırmadır.
+
+relative → Elementin normal akıştaki yerini koruyarak görsel olarak kaydırılmasını sağlar.
+
+absolute → Elementi normal akıştan çıkarır ve referans alanına göre konumlandırır.
+
+fixed → Elementi genellikle viewport'a göre sabitler.
+
+sticky → Elementi kaydırma sırasında belirli bir eşikte tutar.
+
+z-index → Uygun koşullarda üst üste gelen elementlerin sırasını belirler.
+
+stacking context → Elementlerin hangi yığılma grubu içerisinde karşılaştırılacağını belirler.
+
+float → Özellikle metnin görsel etrafından akmasını sağlar.
+
+visibility → Elementin görünürlüğünü kontrol eder; her zaman yerleşim alanını kaldırmaz.
+
+Bu bölümün en önemli noktası:
+
+position kullanırken önce elementin normal akışta kalıp kalmadığını, ardından hangi referans alanına göre konumlandırıldığını belirlemeliyiz.
+
+Bu iki soruya doğru cevap vermek, CSS konumlandırma sorunlarının büyük bölümünü anlamamızı kolaylaştırır.
+
