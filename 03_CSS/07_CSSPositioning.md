@@ -1113,6 +1113,14 @@ Float'u özellikle metin sarma ihtiyacı için kullanmak daha anlaşılır bir y
 CSS Positioning, elementlerin normal yerleşim içerisindeki konumlarını değiştirmemizi veya belirli referans noktalarına göre konumlandırmamızı sağlar.
 
 ### Beş Temel Position Değeri
+|Değer      |Normal Akış    |Referans           |Yaygın Kullanım        |
+|-----------|---------------|-------------------|-----------------------|
+|static     |İçinde         |Normal Yerleşim    |Standart içerik        |
+|relative   |İçinde         |Kendi normal konumu|Kaydırma, absolute referansı|
+|absolute   |Dışında        |Containing block   |rozet, ikon, overlay   |
+|fixed      |Dışında        |Genellikle viewport|Sabit buton, panel     |
+|sticky     |İçinde         |Scrollport ve parent sınırları |Yapışkan başlık|
+
 ### Position Mantığı
 ```
     CSS POSITION
@@ -1160,42 +1168,24 @@ Bu yapı kart rozetlerinde, görsel üzerindeki ikonlarda ve çeşitli açılır
 
 ### z-index ve Stacking Context
 ```
-z-index
-↓
-Uygun koşullarda katman sırasını belirler
-
-Stacking Context
-↓
-Elementleri bağımsız yığılma gruplarında düzenler
-
-Yüksek z-index
-↓
-Her zaman bütün sayfanın önüne geçmez
+    **z-index** → Uygun koşullarda katman sırasını belirler
+    **Stacking Context** → Elementleri bağımsız yığılma gruplarında düzenler
+    **Yüksek z-index** → Her zaman bütün sayfanın önüne geçmez
 ```
 
 ### Akılda Kalması Gerekenler
 
-static → Varsayılan konumlandırmadır.
+**static** → Varsayılan konumlandırmadır.
+**relative** → Elementin normal akıştaki yerini koruyarak görsel olarak kaydırılmasını sağlar.
+**absolute** → Elementi normal akıştan çıkarır ve referans alanına göre konumlandırır.
+**fixed** → Elementi genellikle viewport'a göre sabitler.
+**sticky** → Elementi kaydırma sırasında belirli bir eşikte tutar.
+**z-index** → Uygun koşullarda üst üste gelen elementlerin sırasını belirler.
+**stacking context** → Elementlerin hangi yığılma grubu içerisinde karşılaştırılacağını belirler.
+**float** → Özellikle metnin görsel etrafından akmasını sağlar.
+**visibility** → Elementin görünürlüğünü kontrol eder; her zaman yerleşim alanını kaldırmaz.
 
-relative → Elementin normal akıştaki yerini koruyarak görsel olarak kaydırılmasını sağlar.
-
-absolute → Elementi normal akıştan çıkarır ve referans alanına göre konumlandırır.
-
-fixed → Elementi genellikle viewport'a göre sabitler.
-
-sticky → Elementi kaydırma sırasında belirli bir eşikte tutar.
-
-z-index → Uygun koşullarda üst üste gelen elementlerin sırasını belirler.
-
-stacking context → Elementlerin hangi yığılma grubu içerisinde karşılaştırılacağını belirler.
-
-float → Özellikle metnin görsel etrafından akmasını sağlar.
-
-visibility → Elementin görünürlüğünü kontrol eder; her zaman yerleşim alanını kaldırmaz.
-
-Bu bölümün en önemli noktası:
-
-position kullanırken önce elementin normal akışta kalıp kalmadığını, ardından hangi referans alanına göre konumlandırıldığını belirlemeliyiz.
+Bu bölümün en önemli noktası: `position kullanırken önce elementin normal akışta kalıp kalmadığını, ardından hangi referans alanına göre konumlandırıldığını belirlemeliyiz.`
 
 Bu iki soruya doğru cevap vermek, CSS konumlandırma sorunlarının büyük bölümünü anlamamızı kolaylaştırır.
 
