@@ -9,7 +9,7 @@ Flexbox sayesinde:
 - İçeriği yatay ve dikey olarak ortalayabiliriz.
 - Elementlerin büyüme ve küçülme davranışlarını yönetebiliriz.
 - Farklı ekran genişliklerine uyum sağlayan düzenler oluşturabiliriz. 
-- Navbar, kart listesi,buton grubu ve form alanları gibi bileşenleri kolayca tasarlayabiliriz.
+- Navbar, kart listesi, buton grubu ve form alanları gibi bileşenleri kolayca tasarlayabiliriz.
 
 ## Flexbox Nedir ve Neden Kullanılır?
 Normal belge akışında blok elementler genellikle alt alta yerleşir.
@@ -119,7 +119,7 @@ Doğrudan çocuk elementlerde kullanılan özellikler:
     }
 ```
 
-Flex item'lar üzerinde ayrıca flex shorthanf property'si kullanılabilir. 
+Flex item'lar üzerinde ayrıca flex shorthand property'si kullanılabilir. 
 
 **Dikkat:** Flex container içerisindeki bir elementin torunları otomatik olarak aynı container'ın flex item'ı olmaz.
 ```
@@ -133,7 +133,7 @@ Burada .item bir flex item'dır. Ancak span, .container açısından doğrudan f
 
 ## Main Axis ve Cross Axis
 Flexbox'ı doğru kullanabilmek için iki ekseni anlamamız gerekir.
-1. Main Axis (Ana Eksen) : flex item'larını temel yerleşim yönünü belirler.
+1. Main Axis (Ana Eksen) : flex item'larının temel yerleşim yönünü belirler.
 2. Cross Axis (Çapraz Eksen) : main axis'e dik olan eksendir.
 
 ### flex-direction: row
@@ -224,7 +224,7 @@ veya:
 Element, dış yerleşimde blok seviyesinde bir flex container oluşturur.
 ```
     .container {
-        display:flex;
+        display: flex;
     }
 ```
 
@@ -261,7 +261,7 @@ Element, dış yerleşimde inline seviyesinde bir flex container oluşturur.
 Her iki kullanımda da doğrudan çocuklar *flex-item* olur.
 
 ## flex-direction - Yerleşim Yönü
-flex-directipn, flex item'ların main axis üzerinde hangi yönde sıralanacağını belirler. Dört temel değeri vardır:
+flex-direction, flex item'ların main axis üzerinde hangi yönde sıralanacağını belirler. Dört temel değeri vardır:
 - flex-direction: row;
 - flex-direction: row-reverse;
 - flex-direction: column;
@@ -314,7 +314,7 @@ Soldan sağa yazılan bir sayfada görsel sıra: `[ 3 ] [ 2 ] [ 1 ]`
     [ 1 ]
 ```
 
-**Erişilebilirlik notu:** row-reverse ve column-reverse görsel sıralamayı değiştirir. Dom sırasını veya klavye odak sırasını değiştirmez. Bu nedenle anlamlı içerik sıralamasını yalnızca CSS ile tersine çevirmeliyiz.
+**Erişilebilirlik notu:** row-reverse ve column-reverse görsel sıralamayı değiştirir. DOM sırasını veya klavye odak sırasını değiştirmez. Bu nedenle anlamlı içerik sıralamasını yalnızca CSS ile tersine çevirmemeliyiz.
 
 ## justify-content - Ana Eksen Üzerinde Hizalama
 justify-content, flex item'ların main axis üzerindeki boş alanı nasıl paylaşacağını belirler. En sık kullanılan değerler:
@@ -341,7 +341,7 @@ Elementleri main axis başlangıcında toplar.
 ### flex-end
 ```
     .container {
-        display:flex;
+        display: flex;
         justify-content: flex-end;
     }
 
@@ -367,7 +367,7 @@ Elementleri ana eksende ortalar.
 ### space-between
 ```
     .container {
-        display:flex;
+        display: flex;
         justify-content: space-between;
     }
 
@@ -401,7 +401,7 @@ Her item'ın iki yanına eşit paylı boşluk dağıtılır. Bu nedenle dış ke
     │    [1]    [2]    [3]         │
     └──────────────────────────────┘
 ```
-Item'lar arasındaki ve kapsayıcının dış kenarlarındaki boşluklar eşir dağıtılır.
+Item'lar arasındaki ve kapsayıcının dış kenarlarındaki boşluklar eşit dağıtılır.
 
 ### justify-content Ne Zaman Etkisiz Görünür?
 Örneğin:
@@ -418,7 +418,7 @@ Item'lar arasındaki ve kapsayıcının dış kenarlarındaki boşluklar eşir d
 
 Item'lar kullanılabilir alanı tamamen dolduruyorsa justify-content tarafından dağıtılacak pozitif boş alan kalmayabilir.
 
-Bu durumda space-between beklenen görünür etkiyi olşturmaz.
+Bu durumda space-between beklenen görünür etkiyi oluşturmaz.
 
 ## align-items - Çapraz Eksen Üzerinde Hizalama
 align-items, flex item'ların cross axis üzerindeki hizalanmasını belirler.
@@ -452,6 +452,14 @@ Uygun boyutlandırma koşullarında item'lar çapraz eksende kullanılabilir ala
 **Not:** Item'a cross axis üzerinde belirli bir boyut verilmişse stretch davranışı beklenen şekilde gerçekleşmeyebilir.
 
 ### flex-start
+```
+    .container {
+        align-items: flex-start;
+    }
+```
+Item'ları cross axis başlangıcında hizalar.
+
+### flex-end
 ```
     .container {
         align-items: flex-end;
@@ -497,13 +505,13 @@ Item'ların metin taban çizgilerini hizalamaya çalışır.
     }
 ```
 
-### justşfy-content ve align-items Farkı
+### justify-content ve align-items Farkı
 |Property       |Eksen          |Temel görevi           |
 |---------------|---------------|-----------------------|
 |justify-content|Main axis      |Boş alanı dağıtmak ve item grubunu hizalamak|
 |align-items    |Cross axis     |Item'ları çapraz eksende hizalamak|
 
-Bu iki özellike Flexbox'ın temelini oluşturur.
+Bu iki özellik Flexbox'ın temelini oluşturur.
 
 ## Yatay ve Dikey Ortalama
 Flexbox'ın en sık kullanılan özelliklerinden biri, bir elementi hem yatay hem dikey ortalayabilmesidir.
@@ -587,7 +595,7 @@ kullanımı çoğu durumda daha anlaşılırdır. Çünkü boşluk doğrudan ite
 ### row-gap ve column-gap
 ```
     .container {
-        display: flexs;
+        display: flex;
         row-gap: 20px;
         column-gap: 12px;
     }
@@ -605,7 +613,7 @@ Kısaltılmış kullanım:
 
 **Önemli:** gap item'lar arasındaki sabit boşluğu yönetir. justify-content ise kullanılabilir fazla alanın dağıtımını yönetir.
 
-### flex-wrap - Alt Satıra Geçme
+## flex-wrap - Alt Satıra Geçme
 Flexbox varsayılan olarak item'ları tek satırda tutmaya çalışır.
 ```
     .container {
@@ -709,10 +717,10 @@ Yaygın değerler:
 |align-items            |Flex item'ların kendi satırları içerisindeki çapraz eksen hizalaması |
 |align-content          |Flex satırlarının kapsayıcı içerisindeki çapraz eksen dağılımı          |
 
-**Önemli:** Tek satırlı bir flex-container'da align-content genellikle görünür bir etki oluşturmaz. Bu özelliğin anlamlı olması için birden fazla flex satırı ve dağıtılabilecek alan bulunmalıdır.
+**Önemli:** Tek satırlı bir flex container'da align-content genellikle görünür bir etki oluşturmaz. Bu özelliğin anlamlı olması için birden fazla flex satırı ve dağıtılabilecek alan bulunmalıdır.
 
 ## flex-grow - Kullanılabilir Alanı Büyüyerek Paylaşma
-**flex-grow,** flex-item'ın main axis üzerindeki pozitif boş alanı diğer item'larla hangi oranda paylaşacağını belirler.
+**flex-grow,** flex item'ın main axis üzerindeki pozitif boş alanı diğer item'larla hangi oranda paylaşacağını belirler.
 
 Varsayılan değer:
 ```
@@ -764,7 +772,7 @@ Bu durumda item yalnızca flex-grow nedeniyle büyümez.
 Bu durumda uygun koşullarda kalan pozitif boş alan:
 - Birinci item'a 1 pay,
 - İkinci item'a 2 pay,
-- Üçüncü item'a 3 pay olarak dağıtılır.
+- Üçüncü item'a 1 pay olarak dağıtılır.
 
 **Önemli:** flex-grow: 2; elementin toplam genişliğinin diğer elementin kesinlikle iki katı olacağı anlamına gelmez. Paylaştırılan şey, başlangıç boyutları hesaba katıldıktan sonra kalan pozitif alandır.
 
@@ -811,7 +819,7 @@ Logo küçülmeye zorlanmaz.
 Ancak yeterli alan yoksa diğer elementler taşabilir. Bu nedenle responsive davranışı ayrıca planlamak gerekir.
 
 ### Shrink Oranları Nasıl Hesaplanır?
-flex-shrink değerleri doğrudan toplam geişlik oranı değildir. Küçülme hesaplamasında item'ların flex base size değerleri de dikkate alınır. Ayrıca *min-width* ve *max-width* gibi sınırlar sonucu etkileyebilir.
+flex-shrink değerleri doğrudan toplam genişlik oranı değildir. Küçülme hesaplamasında item'ların flex base size değerleri de dikkate alınır. Ayrıca *min-width* ve *max-width* gibi sınırlar sonucu etkileyebilir.
 
 ## flex-basis - Başlangıç Boyutu
 flex-basis, flex item'ın main axis üzerindeki başlangıç boyutunu belirler.
@@ -1219,7 +1227,7 @@ Ancak bu, gerçek bir mobil açılır menü değildir. Mobil hamburger menü, a�
 
 Flexbox ile kartların yan yana yerleşmesini ve ekran daraldığında yeni satıra geçmesini sağlayabiliriz.
 
-HTML
+HTML:
 ```
     <section class="card-list">
         <article class="card">
@@ -1241,7 +1249,7 @@ HTML
         </article>
     </section>
 ```
-CSS
+CSS:
 ```
     .card-list {
         display: flex;
@@ -1294,4 +1302,237 @@ Böylece aynı satırdaki eşit yüksekliğe uzayan kartlarda bağlantıların a
 
 ## Flexbox ve CSS Grid Arasındaki Fark
 Flexbox ve Grid birbirinin alternatifi olmak zorunda değildir. İkisi farklı yerleşim ihtiyaçlarını çözmek için tasarlanmıştır.
-|Özellik    
+|Özellik        |Flexbox            |CSS Grid               |
+|---------------|-------------------|-----------------------|
+|Yerleşim modeli|Tek boyutlu        |İki boyutlu            |
+|Temel kontrol  |Satır veya sütun   |Satır ve sütun birlikte|
+|İçerik hizalama|Çok uygun          |Çok uygun              |
+|Navbar         |Genellikle uygun   |Kullanılabilir         |
+|Kart içeriği   |Genellikle uygun   |Kullanılabilir         |
+|Düzenli kart ızgarası|Kullanılabilir|Genellikle daha uygun |
+|Karmaşık sayfa yerleşimi|Sınırlı olabilir|Genellikle daha uygun|
+
+### Flexbox Örneği
+```
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+```
+### Grid Örneği
+```
+    .products {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+```
+**Temel yaklaşım:** İçeriğin tek bir ana yönde akmasını istiyorsak Flexbox; satır ve sütunların birlikte tanımlandığı bir düzen istiyorsak Grid daha uygun olabilir.
+
+## Sık Yapılan Hatalar
+### 1. justify-content ile align-items Özelliklerini Karıştırmak
+
+Yanlış varsayım: `justify-content her zaman yatay hizalama yapar.`
+
+Doğrusu: `justify-content, main axis üzerinde çalışır`
+
+```
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+```
+
+Burada main axis dikey olduğu için justify-content dikey hizalamayı etkiler.
+
+### 2. align-items: center Kullanıp Sonuç Alamamak
+```
+    .container {
+        display: flex;
+        align-items: center;
+    }
+```
+Kapsayıcıda görünür bir çapraz eksen boşluğu bulunmuyorsa hizalama fark edilmeyebilir. Bu durumda kapsayıcının boyutlarını ve içerik ölçülerini kontrol etmeliyiz.
+
+### 3. flex-wrap Kullanmayı Unutmak
+```
+    .container {
+        display: flex;
+    }
+```
+Varsayılan flex-wrap: nowrap olduğu için item'lar yeni satıra geçmez.
+
+Gerekirse:
+```
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+```
+kullanılmalıdır.
+
+### 4. flex-grow: 1 ile Bütün Item'ların Kesinlikle Eşit Genişlikte Olacağını Düşünmek
+```
+    .item {
+        flex-grow: 1;
+    }
+```
+Bu kullanım yalnızca büyüme payını eşitler. Başlangıç boyutları farklıysa sonuç genişlikleri de farklı olabilir.
+
+Eşit başlangıç temeli için uygun koşullarda:
+```
+    .item {
+        flex: 1;
+        min-width: 0;
+    }
+```
+kullanılabilir.
+
+### 5. Uzun İçeriğin Taşmasını Anlayamamak
+Flex item'ın otomatik minimum boyutu daralmayı engelliyor olabilir.
+```
+    .content {
+        min-width: 0;
+    }
+```
+bazı yatay Flexbox taşma problemlerini çözebilir.
+
+### 6. order ile Anlamlı İçerik Sırasını Değiştirmek
+```
+    .first {
+        order: 3;
+    }
+```
+Bu işlem yalnızca görsel sıralamayı değiştirir. Erişilebilirlik için mantıksal sıralama HTML içerisinde korunmalıdır.
+
+### 7. Her Yerleşim Problemini Flexbox ile Çözmeye Çalışmak
+Flexbox güçlüdür ancak her durumda en uygun seçenek değildir. Özellikle satır ve sütunların birlikte kontrol edilmesi gereken düzenlerde Grid tercih edilebilir.
+
+### 8. gap ve justify-content Farkını Karıştırmak
+```
+    .container {
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+    }
+```
+
+Burada `gap`, item'lar arasında en az belirlenen boşluğu oluşturur. `justify-content` ise kalan pozitif alanı dağıtabilir. İki özellik birbirini tamamlayabilir.
+
+## Kısaca Özet
+Flexbox, elementleri tek bir ana eksen üzerinde düzenlemek ve kullanılabilir alanı yönetmek için kullanılan modern CSS yerleşim sistemidir.
+
+### Flex Container Property'leri
+|Property       |Görevi         |
+|---------------|---------------|
+|display: flex  |Flex container oluşturur   |
+|flex-direction |Ana eksenin yönünü belirler|
+|flex-wrap      |Item'ların yeni satıra geçmesini yönetir|
+|flex-flow      |Direction ve wrap kısaltmasıdır    |
+|justify-content|Main axis üzerindeki boş alanı dağıtır |
+|align-items    |Item'ları cross axis üzerinde hizalar  |
+|align-content  |Flex satırlarını cross axis üzerinde dağıtır|
+|gap            |Item'lar arasındaki boşluğu belirler   |
+
+### Flex Item Property'leri
+|Property               |Görevi                 |
+|-----------------------|-----------------------|
+|flex-grow              |Pozitif boş alanın paylaşım oranı  |
+|flex-shrink            |Daralma sırasında küçülme davranışı|
+|flex-basis             |Ana eksendeki başlangıç boyutu     |
+|flex                   |Grow, shrink ve basis kısaltması   |
+|align-self             |Tek item'ın cross axis hizalaması  |
+|order                  |Görsel sıralama                    |
+|margin: auto           |Uygun boş alanı margin üzerinden kullanma  |
+
+### En Sık Kullanılan Flexbox Desenleri
+Yatay hizalama:
+```
+    .container {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+```
+Yatay ve dikey ortalama:
+```
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+```
+Responsive item yerleşimi:
+```
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+```
+Eşit alan paylaşımı:
+```
+    .item {
+        flex: 1;
+        min-width: 0;
+    }
+```
+Dikey kart içeriği:
+```
+    .card {
+        display: flex;
+        flex-direction: column;
+    }
+```
+Sağa itilen son item:
+```
+    .last-item {
+        margin-inline-start: auto;
+    }
+```
+
+### Flexbox Mantığı
+```
+    FLEXBOX
+    │
+    ├── FLEX CONTAINER
+    │   │
+    │   ├── flex-direction
+    │   │   └── Ana eksen yönü
+    │   │
+    │   ├── justify-content
+    │   │   └── Ana eksende dağılım
+    │   │
+    │   ├── align-items
+    │   │   └── Çapraz eksende hizalama
+    │   │
+    │   ├── flex-wrap
+    │   │   └── Yeni satıra geçme
+    │   │
+    │   └── gap
+    │       └── Elementler arası boşluk
+    │
+    └── FLEX ITEM
+        │
+        ├── flex-grow
+        │   └── Büyüme
+        │
+        ├── flex-shrink
+        │   └── Küçülme
+        │
+        ├── flex-basis
+        │   └── Başlangıç boyutu
+        │
+        ├── align-self
+        │   └── Bireysel hizalama
+        │
+        └── order
+            └── Görsel sıralama
+```
+
+Bu bölümün en önemli noktası:
+`Flexbox kullanırken önce ana eksenin yönünü belirlemeli, ardından elementlerin bu eksen üzerindeki hizalama, büyüme, küçülme ve boşluk paylaşımı davranışlarını yönetmeliyiz.`
+
+Flexbox'ın çalışma mantığını anladığımızda navbar, header, kart, form ve responsive bileşenlerin büyük bir bölümünü daha az CSS koduyla oluşturabiliriz.
