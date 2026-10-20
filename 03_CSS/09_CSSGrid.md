@@ -35,8 +35,8 @@ Bu düzeni CSS Grid ile oluşturabiliriz.
 
 Burada:
 - display: grid kapsayıcıyı Grid container yapar.
-- grid-template-column sütunların yapısını belirler.
-- repeat (3, 1fr) üç çeşit paylı sütun oluşturur.
+- grid-template-columns sütunların yapısını belirler.
+- repeat(3, 1fr) üç eşit paylı sütun oluşturur.
 - gap hücreler arasında boşluk oluşturur.
 
 Altı element otomatik olarak üç sütuna dağıtılır ve iki satır meydana gelir.
@@ -78,7 +78,7 @@ CSS Grid özellikle şu alanlarda kullanışlıdır:
 Grid'in çalışma mantığını anlamak için öncelikle kullanılan terimleri öğrenmeliyiz.
 
 ### 1. Grid Container ve Grid Item
-**Grid Container:** display:grid veya display: inlinegrid uygulanan kapsayıcıdır.
+**Grid Container:** display: grid veya display: inline-grid uygulanan kapsayıcıdır.
 
 **Grid Item:** Grid container'ın doğrudan çocuklarıdır.
 ```
@@ -93,7 +93,7 @@ Grid'in çalışma mantığını anlamak için öncelikle kullanılan terimleri 
     }
 ```
 
-Burada .containerGrid container, .item elementleri Grid item'dır.
+Burada .container Grid container, .item elementleri ise Grid item'dır.
 
 Ancak şu örneğe dikkat edelim:
 ```
@@ -106,13 +106,13 @@ Ancak şu örneğe dikkat edelim:
 ```
 
 Burada:
-- .card bir Grid item'dr.
+- .card bir Grid item'dır.
 - h2 ve p, .container açısından doğrudan Grid item değildir.
 
-.card elementine ayrıca display:grid uygularsak kendi çocukları için yeni bir Grid container oluşturabiliriz.
+.card elementine ayrıca display: grid uygularsak kendi çocukları için yeni bir Grid container oluşturabiliriz.
 
 ### 2. Grid Line (Izgara Çizgisi)
-Grid line, saırları ve sütunları birbirinden ayıran çizgilerdir. Üç sütunlu bir Grid'de dört dikey çizgi bulunur.
+Grid line, satırları ve sütunları birbirinden ayıran çizgilerdir. Üç sütunlu bir Grid'de dört dikey çizgi bulunur.
 ```
      1          2          3          4
      │          │          │          │
@@ -131,16 +131,16 @@ Grid track, iki komşu grid line arasındaki satır veya sütundur.
 ```
     .container{
         display: grid;
-        grid-template-columns: 20px 1fr 1fr;
+        grid-template-columns: 200px 1fr 1fr;
     }
 ```
 
-Bu Grid'de üç sütun Track'i vardır.
+Bu Grid'de üç sütun track'i vardır.
 
 Birinci sütun 200px, diğer iki sütun ise kalan alanın uygun paylarını kullanır.
 
 ### 4. Grid Cell (Izgara Hücresi)
-Grid cell, bir satır ve bir sütunun kesişiminde oluşan en küçük yerleşim birimidie.
+Grid cell, bir satır ve bir sütunun kesişiminde oluşan en küçük yerleşim birimidir.
 
 ```
     ┌──────────┬──────────┐
@@ -150,7 +150,7 @@ Grid cell, bir satır ve bir sütunun kesişiminde oluşan en küçük yerleşim
     └──────────┴──────────┘
 ```
 
-Bir Grid itemi bir hücreyi veya birden fazla hücreyi kaplayabilir.
+Bir Grid item'ı bir hücreyi veya birden fazla hücreyi kaplayabilir.
 
 ### 5. Grid Area (Izgara Alanı)
 Grid area, dört grid line ile sınırlandırılan dikdörtgen bir bölgedir. Bir item birden fazla satır ve sütunu kaplayabilir.
@@ -167,7 +167,7 @@ Grid area, dört grid line ile sınırlandırılan dikdörtgen bir bölgedir. Bi
 
 Grid area, çizgi numaralarıyla veya isimlendirilmiş alanlarla tanımlanabilir.
 
-### 6. Explicit Grid ve Implict Grid
+### 6. Explicit Grid ve Implicit Grid
 Explicit Grid, bizim doğrudan tanımladığımız satır ve sütunlardan oluşur.
 ```
     .container {
@@ -181,7 +181,7 @@ Burada üç sütun ve iki satır açıkça tanımlanmıştır.
 
 **Implicit Grid,** tanımladığımız ızgaranın dışında yeni track'lere ihtiyaç duyulduğunda tarayıcı tarafından oluşturulur.
 
-Örneğin yukarıdaki Grid'e dokuz element eklersek üçüncü bir satır gerekebilir. Tarayıcı bu satırı otomatik oluşturur.
+Örneğin yukarıdaki Grid altı hücre içerir. Dokuz element eklersek üçüncü bir satır gerekir. Tarayıcı bu satırı otomatik oluşturur.
 
 ### 7. Negatif Çizgi Numaraları
 Explicit Grid çizgilerine sondan başlayarak negatif numaralarla da erişebiliriz.
@@ -203,7 +203,7 @@ Explicit Grid çizgilerine sondan başlayarak negatif numaralarla da erişebilir
 
 Item, explicit Grid'in ilk sütun çizgisinden son sütun çizgisine kadar uzanır. Bu kullanım özellikle tam genişlik kaplayan header veya footer gibi elementlerde kullanışlıdır.
 
-Not: -1, explicit Grid'in son çizgisini ifade eder; otomatik oluşmuş bütün implict sütunların en sonunu ifade etmek zorunda değildir.
+**Not:** -1, explicit Grid'in son çizgisini ifade eder; otomatik oluşmuş bütün implicit sütunların en sonunu ifade etmek zorunda değildir.
 
 ## display: grid ve display: inline-grid
 Grid container oluşturmanın iki temel yolu vardır.
@@ -293,7 +293,7 @@ Satır yüksekliklerini belirler.
         grid-template-rows: 100px 200px;
     }
 ```
-Bu kullanım iki explicit satır tanımlar. İki satır 100px, ikinci satır 200px yüksekliğindedir.
+Bu kullanım iki explicit satır tanımlar. Birinci satır 100px, ikinci satır 200px yüksekliğindedir.
 
 ### 3. fr Birimi
 fr, Grid'e özgü esnek bir ölçü birimidir. Kullanılabilir alanın paylaştırılmasını sağlar.
@@ -305,14 +305,14 @@ fr, Grid'e özgü esnek bir ölçü birimidir. Kullanılabilir alanın paylaşt�
     }
 ```
 
-Bu kullanım üç eşit paylı sürun oluşturur. Başka bir örnek:
+Bu kullanım üç eşit paylı sütun oluşturur. Başka bir örnek:
 ```
     .container {
         grid-template-columns: 1fr 2fr 1fr;
     }
 ```
 
-Uygun boyutlandırma koşullarında alana 1:2:1 oranında paylaştırılır.
+Uygun boyutlandırma koşullarında alan 1:2:1 oranında paylaştırılır.
 ```
     ┌─────────┬──────────────────┬─────────┐
     │   1fr   │       2fr        │   1fr   │
@@ -370,7 +370,7 @@ Farklı değerler de tekrar edilebilir.
     }
 ```
 
-Bu kullanım dört sütun oluşturur : `100px | 200px | 100px | 200px`
+Bu kullanım dört sütun oluşturur: `100px | 200px | 100px | 200px`
 
 ### 5. minmax() Fonksiyonu
 minmax(), bir Grid track'i için minimum ve maksimum boyut sınırlarını tanımlar.
@@ -380,7 +380,7 @@ minmax(), bir Grid track'i için minimum ve maksimum boyut sınırlarını tanı
     }
 ```
 
-İlk sütunun minimum boyutu 200px olarak belirlenir ve uygun koşullarda esnek şekilde büyüyebilir. Responsive Grid düzenlerinde sıkça kullanılır.
+Bu tanım tek bir sütun oluşturur. Sütunun minimum boyutu 200px olarak belirlenir ve uygun koşullarda esnek şekilde büyüyebilir. Responsive Grid düzenlerinde sıkça kullanılır.
 ```
     .container{
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -462,7 +462,7 @@ Grid item'larını belirli satır ve sütun çizgileri arasına yerleştirebilir
 - grid-column-start
 - grid-column-end
 - grid-row-start
-- grid-roe-wnd
+- grid-row-end
 
 ### 1. Sütun Çizgilerine Göre Yerleştirme
 Üç sütunlu bir Grid düşünelim:
@@ -495,7 +495,7 @@ Item, birinci çizgide başlar ve üçüncü çizgide biter. Yani iki sütun kap
 Aynı işlemi daha kısa yazabiliriz.
 ```
     .item {
-        grid-column:1/3;
+        grid-column: 1 / 3;
     }
 ```
 
@@ -508,14 +508,15 @@ Tam genişlik kaplamak için:
 
 ### 3. Satır Çizgilerine Göre Yerleştirme
 ```
-    .item{
+    .item {
         grid-row-start: 2;
+        grid-row-end: 4;
     }
 ```
 Bu item ikinci yatay çizgiden dördüncü yatay çizgiye kadar uzanır. Kısaltılmış hali:
 ```
     .item {
-        grid-row: 2 /4 ;
+        grid-row: 2 / 4;
     }
 ```
 İki satır kaplar.
@@ -568,7 +569,50 @@ Açılımı:
 ```
 Bu item iki satır ve iki sütun kaplar.
 
-**Önemli:** grid-ares dört değerli çizgi tabanlı yerleşim için kullanılabildiği gibi, isimlendirilmiş Grid alanlarına bağlanmak için de kullanılabilir.
+**Önemli:** grid-area dört değerli çizgi tabanlı yerleşim için kullanılabildiği gibi, isimlendirilmiş Grid alanlarına bağlanmak için de kullanılabilir.
+
+### 6. İsimlendirilmiş Çizgiler (Named Grid Lines)
+Çizgilere numara yerine isim de verebiliriz. İsimler köşeli parantez içinde, track tanımlarının arasına yazılır.
+```
+    .container {
+        display: grid;
+        grid-template-columns:
+            [full-start] 1fr
+            [content-start] 3fr
+            [content-end] 1fr
+            [full-end];
+    }
+
+    .item {
+        grid-column: content-start / content-end;
+    }
+```
+Item, content-start ile content-end çizgileri arasına yerleşir. Sütun sayısı değişse bile isimler aynı kaldığı sürece item'ların yerleşim kodunu değiştirmemiz gerekmez.
+
+Bir çizgiye birden fazla isim verilebilir: `[sidebar-end main-start]`
+
+**Not:** grid-template-areas ile tanımlanan her alan, otomatik olarak `alan-adi-start` ve `alan-adi-end` isimli çizgiler de oluşturur. Örneğin main alanı için main-start ve main-end çizgileri kullanılabilir.
+
+### 7. Item'ların Üst Üste Binmesi
+Birden fazla item aynı hücrelere yerleştirilebilir. Bu durumda item'lar üst üste biner.
+```
+    .hero {
+        display: grid;
+    }
+
+    .hero img,
+    .hero .hero-text {
+        grid-area: 1 / 1;
+    }
+
+    .hero .hero-text {
+        z-index: 1;
+        place-self: center;
+    }
+```
+Görsel ve metin aynı hücreye yerleşir; metin görselin üzerinde ortalanır. Bu yöntem position: absolute kullanmadan katmanlı tasarımlar oluşturmayı sağlar.
+
+Varsayılan olarak HTML'de sonra gelen item üstte görünür. Sıralamayı değiştirmek için z-index kullanılabilir. Grid item'larında z-index, position tanımlamadan da çalışır.
 
 ## grid-template-areas ile İsimlendirilmiş Alanlar
 Grid'in güçlü özelliklerinden biri, sayfa yerleşimini isimlendirilmiş alanlar üzerinden tanımlayabilmemizdir.
@@ -628,7 +672,7 @@ CSS:
     }
 ```
 
-Burada her satır, Grid'in bir satırıno temsil eder. 
+Burada her satır, Grid'in bir satırını temsil eder.
 
 ```
     "header header"
@@ -643,9 +687,9 @@ Sidebar birinci sütuna, main ikinci sütuna yerleşir.
 ```
     "footer footer"
 ```
-Footer iki dütunu kaplar.
+Footer iki sütunu kaplar.
 
-### Boş Hücre İçin .  Kullanımı
+### Boş Hücre İçin `.` Kullanımı
 Bazı hücreleri boş bırakmak isteyebiliriz.
 ```
     .layout {
@@ -694,6 +738,24 @@ Media query ile sayfa iskeletini değiştirebiliriz.
 Böylece mobilde içerikler tek sütun halinde gösterilebilir.
 
 **Erişilebilirlik notu:** grid-template-areas, elementlerin görsel konumunu değiştirebilir ancak HTML kaynak sırasını değiştirmez. Klavye gezinme ve anlamlı okuma sırası için DOM sırası doğru tasarlanmalıdır.
+
+### grid-template Kısaltması
+grid-template-rows, grid-template-columns ve grid-template-areas tek property ile yazılabilir.
+```
+    .layout {
+        display: grid;
+        grid-template:
+            "header header" auto
+            "sidebar main" 1fr
+            "footer footer" auto
+            / 240px minmax(0, 1fr);
+    }
+```
+Her satırın yanına o satırın yüksekliği, `/` işaretinden sonra ise sütun genişlikleri yazılır.
+
+Kısa yazım sağlasa da okunması zorlaşabilir. Öğrenme aşamasında property'leri ayrı ayrı yazmak daha anlaşılırdır.
+
+**Not:** Bir de `grid` kısaltması vardır. Bu kısaltma implicit Grid özelliklerini de sıfırladığı için günlük kullanımda daha az tercih edilir.
 
 ## Implicit Grid ve Otomatik Yerleşim
 Grid'de bütün satır ve sütunları önceden tanımlamak zorunda değiliz. Tarayıcı gerektiğinde implicit track'ler oluşturabilir.
@@ -746,7 +808,7 @@ Grid item'ların otomatik yerleşim yönünü belirler. Yaygın değerler:
 - grid-auto-flow: row dense;
 - grid-auto-flow: column dense;
 
-### - row -
+### row
 Varsayılan değerdir.
 ```
     .container {
@@ -763,25 +825,52 @@ Otomatik yerleşim satır yönünde ilerler.
     │  4  │  5  │  6  │
     └─────┴─────┴─────┘
 ```
-Gerektiğinde yeni implicit sütunlar oluşturulabilir.
+Gerektiğinde yeni implicit satırlar oluşturulur.
 
-### - dense - 
+### column
+```
+    .container {
+        display: grid;
+        grid-template-rows: repeat(2, 100px);
+        grid-auto-flow: column;
+    }
+```
+Otomatik yerleşim sütun yönünde ilerler. Item'lar önce sütunu yukarıdan aşağı doldurur, ardından yeni bir sütuna geçer.
+```
+    ┌─────┬─────┬─────┐
+    │  1  │  3  │  5  │
+    ├─────┼─────┼─────┤
+    │  2  │  4  │  6  │
+    └─────┴─────┴─────┘
+```
+Gerektiğinde yeni implicit sütunlar oluşturulur. Boyutları grid-auto-columns ile belirlenebilir.
+
+### dense
 ```
     .container {
         grid-auto-flow: row dense;
     }
 ```
-dense, otomatik yerleşimde daha önce boş kalmış uygun hücreleri sonrki item'larla doldurmaya çalışır.
+dense, otomatik yerleşimde daha önce boş kalmış uygun hücreleri sonraki item'larla doldurmaya çalışır.
 
-Örneğin farklı sütun genişlikleri kaplayan kartlarda boşlukları azaltabilir. Ancak önemli bir sonucu vardır: `Görsel sıralama, HTML kaynak sırasından farklı hale gelebilir.`
+Örneğin farklı sütun genişlikleri kaplayan kartlarda boşlukları azaltabilir. Ancak önemli bir sonucu vardır: **Görsel sıralama, HTML kaynak sırasından farklı hale gelebilir.**
 
-Bu durum özellikle klavye ile gezinme ve ekran okuyucu deneyimi açısından sorun oluşturulabilir. Bu nedenle dense, görsel sıranın anlam taşımadığı dekoratif galeri düzenlerinde daha uygun olabilir.
+Bu durum özellikle klavye ile gezinme ve ekran okuyucu deneyimi açısından sorun oluşturabilir. Bu nedenle dense, görsel sıranın anlam taşımadığı dekoratif galeri düzenlerinde daha uygun olabilir.
+
+### order ve Görsel Sıralama
+Flexbox bölümünde anlatılan order özelliği Grid item'larında da çalışır. Otomatik yerleşimde order değeri küçük olan item önce yerleştirilir.
+```
+    .item-featured {
+        order: -1;
+    }
+```
+Ancak grid-template-areas, çizgi tabanlı yerleşim ve dense ile olduğu gibi order da yalnızca görsel sırayı değiştirir; DOM sırası aynı kalır.
 
 ## Grid'de Hizalama
 Grid'de hizalama özellikleri üç farklı düzeyde değerlendirilir:
-- 1. Grid item'ların kendi alanları içerisindekik hizalaması
-- 2. Tek bir item'ın bireysel hizalaması
-- 3. Grid track'lerinin container içerisindeki hizalaması
+1. Grid item'ların kendi alanları içerisindeki hizalaması
+2. Tek bir item'ın bireysel hizalaması
+3. Grid track'lerinin container içerisindeki hizalaması
 
 Grid'de yatay ve dikey eksenler için `justify-*` ve `align-*` özellikleri kullanılır.
 
@@ -789,7 +878,19 @@ Varsayılan yatay yazı yönünde:
 - justify-* inline ekseni, genellikle yatay ekseni kontrol eder.
 - align-* block ekseni, genellikle dikey ekseni kontrol eder.
 
-Yazı modu değiştirğinde bu eksenlerin fizikseş yönler, de değişebilir.
+Yazı modu değiştiğinde bu eksenlerin fiziksel yönleri de değişebilir.
+
+Sık kullanılan değerler:
+|Değer      |Davranış                                                     |
+|-----------|-------------------------------------------------------------|
+|stretch    |Item'ı alanı boyunca uzatır (*-items için varsayılan davranış)|
+|start      |Alanın başlangıcına hizalar                                  |
+|end        |Alanın sonuna hizalar                                        |
+|center     |Alanın ortasına hizalar                                      |
+
+justify-content ve align-content ayrıca space-between, space-around ve space-evenly değerlerini de alabilir.
+
+**Not:** Varsayılan stretch davranışı nedeniyle Grid item'ları genellikle bulundukları hücrenin tamamını kaplar. Item'a sabit genişlik veya yükseklik verildiğinde ya da başka bir hizalama değeri seçildiğinde bu uzama gerçekleşmez.
 
 ### 1. justify-items
 Grid item'ların kendi grid alanları içerisindeki inline eksen hizalamasını belirler.
@@ -812,20 +913,21 @@ Grid item'ların kendi grid alanları içerisindeki block eksen hizalamasını b
 Normal yatay yazı düzeninde dikey hizalamayı etkiler.
 
 ### 3. place-items
-
 align-items ve justify-items özelliklerini birleştirir.
-
-.container {
-    display: grid;
-    place-items: center;
-}
+```
+    .container {
+        display: grid;
+        place-items: center;
+    }
+```
 
 Açılımı:
-
-.container {
-    align-items: center;
-    justify-items: center;
-}
+```
+    .container {
+        align-items: center;
+        justify-items: center;
+    }
+```
 
 Bu sayede item'lar kendi Grid alanları içerisinde iki eksende ortalanır.
 
@@ -837,7 +939,7 @@ Tek bir Grid item'ın inline eksen hizalamasını belirler.
     }
 ```
 
-### 5.align-self
+### 5. align-self
 Tek bir Grid item'ın block eksen hizalamasını belirler.
 ```
     .item {
@@ -857,12 +959,12 @@ Açılımı:
 ```
     .item {
         align-self: center;
-        justify-self:center;
+        justify-self: center;
     }
 ```
 
 ### 7. justify-content
-Grid track'lerinin tamamını inline eksen üzerinde hizalar veya uygub bol alanı dağıtır.
+Grid track'lerinin tamamını inline eksen üzerinde hizalar veya uygun boş alanı dağıtır.
 ```
     .container {
         display: grid;
@@ -899,8 +1001,9 @@ align-content ve justify-content özelliklerini birleştirir.
 |justify-items      |Container             |Item'ların alan içi hizalaması|Inline  |
 |align-items        |Container             |Item'ların alan içi hizalaması|Block   |
 |place-items        |Container             |İki eksende item hizalaması   |Her ikisi|
-|justify-self       |Item                  |Tek item'ın hizalaması  |Block         |
-|place-self         |Item                  |Tek ıtem'ın iki eksende hizalaması|Her ikisi|
+|justify-self       |Item                  |Tek item'ın hizalaması  |Inline        |
+|align-self         |Item                  |Tek item'ın hizalaması  |Block         |
+|place-self         |Item                  |Tek item'ın iki eksende hizalaması|Her ikisi|
 |justify-content    |Container             |Grid track grubunun dağılımı  |Inline   |
 |align-content      |Container             |Grid track grubunun dağılımı    |Block  |
 |place-content      |Container             |Grid track grubunun iki eksende dağılımı|Her ikisi|
@@ -971,3 +1074,683 @@ Boş kalan tekrar sütunları daraltılarak mevcut item'ların kullanılabilir a
     └──────────────────────┘
 ```
 Bu şema sütun sayısının değişimini temsil eder. Gerçekte ikinci satırdaki tek kart, auto-fit kullanımında mevcut sütunlardan birine yerleşir; otomatik olarak iki sütunu birden kaplamaz.
+
+### 2. auto-fill
+``` 
+    .container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+```
+
+auto-fill, kapsayıcıya sığabilecek tekrar sütunlarını, bu sütunlarda item bulunmasa bile koruyabilir.
+
+### auto-fill ve auto-fit Farkı
+Örneğin kapsayıcıda dört sütun için yer var ancak yalnızca iki kart bulunuyor.
+
+**auto-fill:**
+```
+    ┌─────────┬─────────┬─────────┬─────────┐
+    │ Kart 1  │ Kart 2  │  Boş    │  Boş    │
+    └─────────┴─────────┴─────────┴─────────┘
+```
+Boş track'ler korunabilir.
+
+**auto-fit:**
+```
+    ┌───────────────────┬───────────────────┐
+    │      Kart 1       │      Kart 2       │
+    └───────────────────┴───────────────────┘
+```
+Boş tekrar track'leri daraltılır ve mevcut kartlar esnek alanı paylaşabilir.
+
+### Hangisini Kullanmalıyız?
+|Durum                                      |Tercih                             |
+|-------------------------------------------|-----------------------------------|
+|Mevcut kartlar alanı doldursun             |auto-fit                           |
+|Boş sütun yerleri de korunsun              |auto-fill                          |
+|Responsive ürün listesi                    |Genellikle auto-fit                |
+|Düzenli boş hücre yapısı isteniyor         |auto-fill değerlendirilebilir      |
+
+### Küçük Ekranlarda Taşmayı Önleme
+Şu kullanım: `grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));` kapsayıcı 250px'ten dar olduğunda yatay taşmaya yol açabilir.
+
+Daha esnek bir alternatif:
+```
+    .container {
+        display: grid;
+        grid-template-columns:
+            repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+        gap: 20px;
+    }
+```
+
+Burada minimum genişlik, kapsayıcının kullanılabilir genişliğini aşmayacak şekilde sınırlandırılır.
+
+Flexbox karşılaştırması:
+```
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .card {
+        flex: 1 1 260px;
+    }
+```
+Flexbox ile de responsive kartlar oluşturabiliriz.
+
+Ancak Flexbox'ta her satır kendi alan paylaşımını yapabilir. Grid ise aynı sütun çizgilerini koruyan düzenler için daha uygundur.
+
+## İç İçe Grid ve Subgrid
+Bir Grid item, kendi çocukları için ayrıca Grid container olabilir.
+
+### 1. İç İçe Grid
+```
+    <div class="products">
+        <article class="card">
+            <h3>Ürün Adı</h3>
+            <p>Ürün açıklaması</p>
+            <button type="button">İncele</button>
+        </article>
+    </div>
+```
+
+```
+    .products {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .card {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        gap: 12px;
+    }
+```
+
+Burada:
+- .products dış Grid container'dır.
+- .card dış Grid'in item'ıdır.
+- Aynı zamanda .card kendi çocukları için iç Grid container'dır.
+
+Ancak iç Grid, varsayılan olarak dış Grid'in satır ve sütun çizgilerini doğrudan paylaşmaz.
+
+### 2. subgrid Nedir?
+subgrid, iç Grid'in belirli bir eksende üst Grid'in track yapısını kullanmasını sağlar.
+
+Örneğin kartların başlık, açıklama ve buton bölümlerini aynı satır çizgileri üzerinde hizalamak isteyelim.
+
+```
+    <div class="cards">
+        <article class="card">
+            <h3>HTML</h3>
+            <p>Kısa açıklama.</p>
+            <a href="#">İncele</a>
+        </article>
+
+        <article class="card">
+            <h3>CSS Grid</h3>
+            <p>Daha uzun ve birden fazla satıra yayılabilen açıklama metni.</p>
+            <a href="#">İncele</a>
+        </article>
+    </div>
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: auto;
+        gap: 20px;
+    }
+
+    .card {
+        display: grid;
+        grid-template-rows: repeat(3, auto);
+        gap: 12px;
+    }
+```
+
+Bu örnekte her kartın kendi satırları vardır. Dolayısıyla farklı kartların iç satır çizgileri otomatik olarak birbirine bağlanmaz.
+
+Subgrid kullanmak için dış Grid'in ilgili eksende paylaşılabilecek satır track'leri bulunmalı ve kartlar bu track'leri kapsamalıdır.
+
+Örnek:
+```
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(3, auto);
+        gap: 20px;
+    }
+
+    .card {
+        display: grid;
+        grid-row: span 3;
+        grid-template-rows: subgrid;
+    }
+```
+
+Bu örnek, iki kartın aynı üç satır track'ini paylaşmasını hedefler.
+
+Kartların içindeki başlık, açıklama ve bağlantı bu satırlara yerleşebilir.
+
+**Önemli:** subgrid, yalnızca display: grid yazılarak çalışan bağımsız bir özellik değildir. Üst Grid'deki track yapısı ve alt Grid item'ının kapsadığı satır veya sütunlar doğru planlanmalıdır.
+
+**Not:** Subgrid, üst Grid'in gap değerini varsayılan olarak devralır. Kart içinde farklı bir boşluk isteniyorsa .card üzerinde ayrıca row-gap tanımlanabilir. Subgrid, 2023'ten itibaren güncel tarayıcıların tamamında desteklenmektedir.
+
+Subgrid özellikle:
+- Kart içeriklerinin satır hizalaması
+- Form alanlarının etiket ve input düzeni
+- Karmaşık içerik bileşenleri
+- Birbirine bağlı iç ızgara yapıları için kullanışlıdır.
+
+### Grid'i Tarayıcıda İncelemek
+Chrome, Firefox ve Safari geliştirici araçlarında Grid inceleyicisi bulunur. Elements panelinde Grid container'ın yanındaki **grid** etiketine tıklandığında:
+- Çizgi numaraları
+- Track boyutları
+- İsimlendirilmiş alanlar
+- gap boşlukları
+
+sayfa üzerinde görsel olarak gösterilir. Yerleşim beklendiği gibi çalışmadığında ilk bakılacak yer burasıdır.
+
+## Gerçek Proje Örnekleri
+### 1. Sayfa İskeleti - Header, Sidebar, Main, Footer
+HTML:
+```
+    <div class="page-layout">
+        <header class="page-header">Header</header>
+        <aside class="page-sidebar">Sidebar</aside>
+        <main class="page-main">Main</main>
+        <footer class="page-footer">Footer</footer>
+    </div>
+```
+
+CSS:
+```
+    .page-layout {
+        display: grid;
+
+        grid-template-columns: 240px minmax(0, 1fr);
+        grid-template-rows: auto minmax(0, 1fr) auto;
+
+        grid-template-areas:
+            "header header"
+            "sidebar main"
+            "footer footer";
+
+        min-height: 100vh;
+        gap: 20px;
+    }
+
+    .page-header {
+        grid-area: header;
+    }
+
+    .page-sidebar {
+        grid-area: sidebar;
+    }
+
+    .page-main {
+        grid-area: main;
+        min-width: 0;
+    }
+
+    .page-footer {
+        grid-area: footer;
+    }
+```
+
+Responsive Düzen:
+```
+    @media (max-width: 768px) {
+        .page-layout {
+            grid-template-columns: minmax(0, 1fr);
+
+            grid-template-areas:
+                "header"
+                "main"
+                "sidebar"
+                "footer";
+        }
+    }
+```
+
+Bu yapı, temel bir dashboard veya yönetim paneli sayfa iskeleti oluşturmak için kullanılabilir.
+
+### 2. Responsive Ürün Izgarası
+HTML:
+```
+    <section class="product-grid">
+        <article class="product-card">Ürün 1</article>
+        <article class="product-card">Ürün 2</article>
+        <article class="product-card">Ürün 3</article>
+        <article class="product-card">Ürün 4</article>
+    </section>
+```
+
+CSS:
+```
+    .product-grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+
+        gap: 20px;
+    }
+
+    .product-card {
+        min-width: 0;
+        padding: 20px;
+        border: 1px solid #e5e2da;
+        border-radius: 12px;
+    }
+```
+Bu düzen, kapsayıcının genişliğine göre sütun sayısını otomatik ayarlayabilir. Her ekran boyutu için ayrı media query yazılması zorunlu değildir.
+
+### 3. Dashboard Düzeni - span Kullanımı
+HTML:
+```
+    <div class="dashboard">
+        <section class="widget featured">Genel Bakış</section>
+        <section class="widget">Siparişler</section>
+        <section class="widget">Gelir</section>
+        <section class="widget wide">Satış Grafiği</section>
+        <section class="widget">Son İşlemler</section>
+    </div>
+```
+
+CSS:
+```
+    .dashboard {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-auto-rows: minmax(160px, auto);
+        gap: 20px;
+    }
+
+    .widget {
+        min-width: 0;
+        padding: 24px;
+        border: 1px solid #e5e2da;
+        border-radius: 12px;
+    }
+
+    .featured {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+    .wide {
+        grid-column: span 2;
+    }
+```
+
+Burada:
+- .featured iki sütun ve iki satır kaplar.
+- .wide iki sütun kaplar.
+- Diğer widget'lar otomatik yerleşim algoritmasıyla konumlandırılır.
+
+Responsive kullanım:
+```
+    @media (max-width: 768px) {
+        .dashboard {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 480px) {
+        .dashboard {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .featured,
+        .wide {
+            grid-column: auto;
+            grid-row: auto;
+        }
+    }
+```
+
+Bu sayede küçük ekranlarda widget'lar tek sütuna düşer.
+
+### 4. Grid ve Flexbox'ı Birlikte Kullanma
+Gerçek projelerde Grid ve Flexbox çoğunlukla birlikte kullanılır. Örneğin dış kart yerleşimini Grid ile, kartın iç düzenini Flexbox ile oluşturabiliriz.
+
+HTML:
+```
+    <section class="cards">
+        <article class="card">
+            <div class="card-content">
+                <h3>CSS Grid</h3>
+                <p>İki boyutlu yerleşim sistemi.</p>
+            </div>
+
+            <a href="#">Detaylar</a>
+        </article>
+
+        <article class="card">
+            <div class="card-content">
+                <h3>Flexbox</h3>
+                <p>Tek boyutlu yerleşim sistemi.</p>
+            </div>
+
+            <a href="#">Detaylar</a>
+        </article>
+    </section>
+```
+
+CSS:
+```
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        padding: 24px;
+        border: 1px solid #dddddd;
+    }
+
+    .card-content {
+        flex-grow: 1;
+    }
+
+    .card a {
+        align-self: flex-start;
+    }
+```
+
+Burada:
+- Grid, kartların dış yerleşimini yönetir.
+- Flexbox, kart içeriğinin dikey düzenini yönetir.
+- flex-grow: 1, uygun boş alanın içerik bölümüne ayrılmasını sağlar.
+- Bağlantılar kartların alt bölümünde hizalanabilir.
+
+Bu yaklaşım, gerçek projelerde oldukça yaygındır.
+
+## Sık Yapılan Hatalar
+### 1. fr ile % Kullanımını Karıştırmak
+```
+    .container {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        gap: 20px;
+    }
+```
+Bu kullanım taşmaya neden olabilir.
+
+Alternatif:
+```
+    .container {
+        grid-template-columns: 1fr 1fr;
+    }
+``` 
+Ancak uzun içerik varsa 1fr bile minimum boyut kısıtları nedeniyle taşabilir.
+
+### 2. Dikdörtgen Olmayan grid-template-areas Tanımlamak
+Yanlış:
+```
+    grid-template-areas:
+        "header header"
+        "header main";
+```
+Doğru:
+```
+    grid-template-areas:
+        "header header"
+        "sidebar main";
+```
+İsimlendirilmiş her alan dikdörtgen oluşturmalıdır.
+
+### 3. Çizgi Numarasını Hücre Numarası Sanmak
+Üç sütun varsa dört dikey çizgi vardır.
+```
+    1       2       3       4
+    │       │       │       │
+    │   1   │   2   │   3   │
+
+    .item {
+        grid-column: 1 / 3;
+    }
+```
+Bu kullanım üç değil, iki sütun kaplar.
+
+### 4. Implicit Satırların Beklenmedik Boyutlarda Oluşması
+```
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+```
+Satır yükseklikleri içerik ve Grid boyutlandırma kurallarına göre oluşur.
+
+Daha kontrollü bir yapı için:
+```
+    .container {
+        grid-auto-rows: minmax(150px, auto);
+    }
+```
+kullanılabilir.
+
+### 5. 1fr Sütunlarda Uzun İçeriğin Taşması
+Örneğin:
+```
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+```
+Bazı durumlarda uzun ve bölünemeyen içerikler sütunun beklenenden fazla genişlemesine neden olabilir.
+
+Çözüm olarak:
+```
+    .container {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(0, 1fr);
+    }
+```
+kullanılabilir.
+
+Bu, Grid track'lerinin otomatik minimum içerik boyutu kısıtına takılmadan daralmasını sağlayabilir.
+
+Ancak içerik kendi kutusundan taşıyorsa overflow-wrap, overflow veya item'ın minimum boyutları da ayrıca değerlendirilmelidir.
+
+Bu konu Flexbox bölümündeki min-width: 0 problemiyle ilişkilidir.
+
+### 6. auto-fit ile Her Durumda Eşit Kart Sayısı Beklemek
+```
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+```
+Bu kullanım sabit olarak üç veya dört sütun oluşturmaz. Sütun sayısı kapsayıcının kullanılabilir genişliğine bağlıdır.
+
+Sabit sütun sayısı gerekiyorsa: `grid-template-columns: repeat(3, minmax(0, 1fr));` kullanılabilir.
+
+### 7. dense ile Görsel Sırayı Değiştirmek
+```
+    .container {
+        grid-auto-flow: dense;
+    }
+```
+Bu kullanım otomatik yerleşimde boşlukları doldurabilir. Ancak item'ların görsel sırası ile HTML sırası ayrışabilir. Erişilebilirlik açısından dikkatli kullanılmalıdır.
+
+### 8. Her Yerleşimi Grid ile Çözmeye Çalışmak
+Grid güçlü bir sistemdir ancak her yerleşim için en iyi çözüm değildir.
+
+Örneğin:
+```
+    .button-group {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+```
+gibi basit bir buton grubunda Flexbox daha anlaşılır olabilir.
+
+## Kısaca Özet
+CSS Grid, satır ve sütunları birlikte kontrol etmemizi sağlayan iki boyutlu bir yerleşim sistemidir.
+
+Özellikle sayfa iskeleti, ürün listesi, dashboard ve galeri gibi düzenlerde kullanışlıdır.
+
+### Grid Container Özellikleri
+|Property                           |Görevi                                 |
+|-----------------------------------|---------------------------------------|
+|display: grid                      |Grid container oluşturur               |
+|grid-template-columns              |Explicit sütunları tanımlar            |
+|grid-template-rows                 |Explicit satırları tanımlar            |
+|grid-template-areas                |İsimlendirilmiş alan düzenini tanımlar |
+|grid-template                      |Satır, sütun ve alan tanımı kısaltması |
+|grid-auto-columns                  |Implicit sütun boyutlarını belirler    |
+|grid-auto-rows                     |Implicit satır boyutlarını belirler    |
+|grid-auto-flow                     |Otomatik yerleşim yönünü yönetir       |
+|gap                                |Track'ler arasındaki boşluğu belirler  |
+|justify-items                      |Item'ları inline eksende hizalar       |
+|align-items                        |Item'ları block eksende hizalar        |
+|place-items                        |Item'ları iki eksende hizalar          |
+|justify-content                    |Grid track grubunu inline eksende hizalar  |
+|align-content                      |Grid track grubunu block eksende hizalar   |
+|place-content                      |Grid track grubunu iki eksende hizalar     |
+
+### Grid Item Özellikleri
+|Property                           |Görevi                                     |
+|-----------------------------------|-------------------------------------------|
+|grid-column-start                  |Başlangıç sütun çizgisi                    |
+|grid-column-end                    |Bitiş sütun çizgisi                        |
+|grid-row-start                     |Başlangıç satır çizgisi                    |
+|grid-row-end                       |Bitiş satır çizgisi                        |
+|grid-column                        |Sütun çizgileri kısaltması                 |
+|grid-row                           |Satır çizgileri kısaltması                 |
+|grid-area                          |Çizgi tabanlı yerleşim veya isimli alan    |
+|justify-self                       |Tek item'ın inline eksen hizalaması        |
+|align-self                         |Tek item'ın block eksen hizalaması         |
+|place-self                         |Tek item'ın iki eksende hizalaması         |
+|order                              |Otomatik yerleşimdeki görsel sıra          |
+
+
+### En Sık Kullanılan Grid Desenleri
+Üç eşit sütun:
+```
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+    }
+```
+Responsive kart ızgarası:
+```
+    .container {
+        display: grid;
+        grid-template-columns:
+            repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+        gap: 20px;
+    }
+```
+Sidebar ve içerik:
+```
+    .container {
+        display: grid;
+        grid-template-columns: 240px minmax(0, 1fr);
+        gap: 24px;
+    }
+```
+İki eksende ortalama:
+```
+    .container {
+        display: grid;
+        place-items: center;
+    }
+```
+Tam genişlik kaplayan item:
+```
+    .item {
+        grid-column: 1 / -1;
+    }
+```
+İki sütun kaplayan item:
+```
+    .item {
+        grid-column: span 2;
+    }
+```
+Otomatik satır yüksekliği:
+```
+    .container {
+        grid-auto-rows: minmax(150px, auto);
+    }
+```
+
+### Grid Mantığı
+```
+    CSS GRID
+    │
+    ├── GRID CONTAINER
+    │   │
+    │   ├── display: grid
+    │   │   └── Grid sistemini oluşturur
+    │   │
+    │   ├── grid-template-columns
+    │   │   └── Sütunları tanımlar
+    │   │
+    │   ├── grid-template-rows
+    │   │   └── Satırları tanımlar
+    │   │
+    │   ├── grid-template-areas
+    │   │   └── İsimlendirilmiş alanlar
+    │   │
+    │   ├── grid-auto-flow
+    │   │   └── Otomatik yerleşim
+    │   │
+    │   ├── gap
+    │   │   └── Track'ler arası boşluk
+    │   │
+    │   └── Alignment
+    │       ├── justify-items
+    │       ├── align-items
+    │       ├── place-items
+    │       ├── justify-content
+    │       ├── align-content
+    │       └── place-content
+    │
+    ├── GRID STRUCTURE
+    │   │
+    │   ├── Grid Line
+    │   │   └── Çizgiler
+    │   │
+    │   ├── Grid Track
+    │   │   └── Satır ve sütunlar
+    │   │
+    │   ├── Grid Cell
+    │   │   └── Tek hücre
+    │   │
+    │   └── Grid Area
+    │       └── Dikdörtgen alan
+    │
+    └── GRID ITEM
+        │
+        ├── grid-column
+        │   └── Sütun yerleşimi
+        │
+        ├── grid-row
+        │   └── Satır yerleşimi
+        │
+        ├── grid-area
+        │   └── Alan yerleşimi
+        │
+        └── Alignment
+            ├── justify-self
+            ├── align-self
+            └── place-self
+```
+
+### Bu Bölümün En Önemli Noktası
+CSS Grid kullanırken önce satır ve sütun yapısını belirlemeli, ardından item'ların bu yapı içerisindeki yerleşimini ve hizalamasını yönetmeliyiz.
+
+Flexbox ile tek boyutlu, Grid ile iki boyutlu yerleşimleri öğrendiğimizde modern ve responsive web arayüzleri oluşturmak için iki güçlü CSS aracına sahip oluruz.
