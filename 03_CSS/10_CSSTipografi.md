@@ -1,7 +1,7 @@
 # CSS Tipografi (Typography)
 Tipografi, bir web sayfasındaki metinlerin **okunabilir, anlaşılır ve görsel olarak düzenli** sunulmasını sağlayan tasarım ve düzenleme sürecidir.
 
-CSS ile yalnızca yazı tipini veya boyutunu değiştirmeyiz. Metnin kalınlığını, satır yüksekliğini, harf aralıklarını, hizalamasını, dekotasyonunu ve farklı ekranlarda nasıl görüneceğini de kontrol ederiz.
+CSS ile yalnızca yazı tipini veya boyutunu değiştirmeyiz. Metnin kalınlığını, satır yüksekliğini, harf aralıklarını, hizalamasını, dekorasyonunu ve farklı ekranlarda nasıl görüneceğini de kontrol ederiz.
 
 Örneğin aynı içerik, farklı tipografi özellikleriyle çok farklı bir kullanıcı deneyimi oluşturabilir.
 
@@ -71,7 +71,7 @@ Tarayıcı fontları sırasıyla değerlendirir:
 
 İlk font cihazda veya tanımlanmış web fontları arasında bulunmuyorsa sonraki font değerlendirilir.
 
-Ayrıca seçilenfont belirli bir karakteri desteklemiyorsa tarayıcı o karakter için başka bir font kullanabilir.
+Ayrıca seçilen font belirli bir karakteri desteklemiyorsa tarayıcı o karakter için başka bir font kullanabilir.
 
 Bu yapıya **font fallback zinciri** denir.
 
@@ -81,10 +81,10 @@ CSS'te belirli bir font adı yerine genel font aileleri kullanılabilir.
 |Genel aile     |Açıklama                               |Kullanım                        |
 |---------------|---------------------------------------|--------------------------------|
 |serif          |Karakter uçlarında küçük çıkıntılar bulunabilen fontlar|Editoryal tasarımlar, uzun metinler|
-|sana-serif     |Genellikle çıkıntısız ve sade fontlar|Web arayüzleri, dashboard    |
-|monospace      |Karakterlerin aynı ilerleme genişliğine sahip olduğu fontlar| Kod bloklaro, teknin veriler|
+|sans-serif     |Genellikle çıkıntısız ve sade fontlar|Web arayüzleri, dashboard    |
+|monospace      |Karakterlerin aynı ilerleme genişliğine sahip olduğu fontlar| Kod blokları, teknik veriler|
 |cursive        |El yazısını andıran fontlar        |Dekoratif başlıklar            |
-|fantast        |Dekoratif font kategorisi          |Özel tasarımlar                |
+|fantasy        |Dekoratif font kategorisi          |Özel tasarımlar                |
 
 Örnekler: 
 ```
@@ -208,7 +208,7 @@ font-weight, yazının kalınlığını belirler.
 |lighter                    |Üst elemente göre daha hafif göreli ağırlık|
 |bolder                     |Üst elemente göre daha kalın göreli ağırlık|
 
-lighter ve bolder değerleri doğrudan belirli bir sayıya karşılık gelemz; üst elementin ağırlığına göre değerlendirilir.
+lighter ve bolder değerleri doğrudan belirli bir sayıya karşılık gelmez; üst elementin ağırlığına göre değerlendirilir.
 
 ### Sayısal Değerler
 ```
@@ -275,7 +275,7 @@ Temel değerler:
 ### italic ve oblique Arasındaki Fark
 **italic**, font ailesinde özel olarak tasarlanmış italik karakterleri tercih eder.
 
-**oblique**, eğik yazı stilini ifade eder; uygun oblique yüzü bulunmadığında tarayıcı normak karakterleri eğerek oluşturabilir.
+**oblique**, eğik yazı stilini ifade eder; uygun oblique yüzü bulunmadığında tarayıcı normal karakterleri eğerek oluşturabilir.
 
 |Değer          |Temel anlamı                                       |
 |---------------|---------------------------------------------------|
@@ -296,7 +296,7 @@ Bu kullanım alıntı metinlerinin görsel olarak ayrıştırılmasına yardımc
 Ancak alıntının anlamsal olarak belirtilmesi gerekiyorsa HTML'de uygun elementlerin (blockquote, q gibi) kullanılması gerekir.
 
 ## font-variant - Font Varyantları
-font variant, fontun belirli tipografik varyantlarını kullanmayı sağlar. Başlangıç seviyesinde en sık karşılaşılan değerlerden biti small-caps değeridir.
+font variant, fontun belirli tipografik varyantlarını kullanmayı sağlar. Başlangıç seviyesinde en sık karşılaşılan değerlerden biri small-caps değeridir.
 
 ```
     .label {
@@ -316,7 +316,7 @@ Small caps, küçük harflerin büyük harf biçiminde ancak genellikle daha kü
     }
 ```
 
-Font gerçek small-caps karakterlerini destekliyorsa tarayıcı bunları kullanabilir; desteklemiyorsa uygun koşullarda benzer görünümü sentetik olarak oluştyrabilir.
+Font gerçek small-caps karakterlerini destekliyorsa tarayıcı bunları kullanabilir; desteklemiyorsa uygun koşullarda benzer görünümü sentetik olarak oluşturabilir.
 
 font-variant ailesi ayrıca ligatürler, sayısal karakter biçimleri ve diğer OpenType özellikleriyle ilgili alt özellikler içerir.
 
@@ -521,7 +521,7 @@ Yaygın değerler:
 ### justify Kullanırken Dikkat
 ```
     p {
-        tex-align: justify;
+        text-align: justify;
     }
 ```
 
@@ -549,7 +549,7 @@ start ve end, metnin yazı yönüne göre hizalanır.
 
 **Not:** text-align: center, bir blok elementin kendisini ortalamaz; blok içindeki satır içi içeriğin hizalamasını etkiler. Blokların yerleşimi için Flexbox, Grid veya uygun margin teknikleri kullanılabilir.
 
-## test-decoration - Metin Dekorasyonu
+## text-decoration - Metin Dekorasyonu
 text-decoration, metne alt çizgi, üst çizgi veya üzeri çizili görünüm kazandırır. 
 
 Temel Değerler
@@ -739,7 +739,7 @@ Virgülle birden fazla gölge tanımlanabilir.
 ## Metin Boşlukları - Text Spacing
 Metnin okunabilirliğini etkileyen önemli özelliklerden biri boşluk yönetimidir.
 
-Bu bölümde üç temel özelliği birliktr değerlendirebiliriz:
+Bu bölümde üç temel özelliği birlikte değerlendirebiliriz:
 - letter-spacing
 - word-spacing
 - line-height
@@ -768,7 +768,7 @@ Negatif değerler harfleri birbirine yaklaştırabilir.
 ```
 Kelimeler arasındaki boşlukları düzenler.
 
-Özellikle uzun metinlerde gereğinden fazla kelime aralığı vermek okuma kışını zorlaştırabilir.
+Özellikle uzun metinlerde gereğinden fazla kelime aralığı vermek okumayı zorlaştırabilir.
 
 ### 3. line-height - Satır Aralığı
 ```
@@ -849,7 +849,7 @@ Tarayıcı web fontu yüklenirken fallback fontla metni gösterebilir ve web fon
 Bu yaklaşım metnin görünür kalmasına yardımcı olur; ancak font değişiminden kaynaklanan yerleşim kaymaları yine de yaşanabilir.
 
 ### 2. @import ile Font Yükleme
-Alternatif olarak CSS içerisinde @import kulllanılabilir.
+Alternatif olarak CSS içerisinde @import kullanılabilir.
 ```
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
@@ -877,10 +877,10 @@ Bu nedenle:
 - Fallback font tanımlamalıyız.
 - Font yüklenirken oluşabilecek yerleşim kaymalarını test etmeliyiz.
 
-**Not:** Bir variable fontun tek dosyada çok sayıda ağırlığı desteklemesi mümkün olduğundan, çok ağırlık kullanımı her zaman aytı ayrı çok sayıda font dosyası indirilmesi anlamına gelmez.
+**Not:** Bir variable fontun tek dosyada çok sayıda ağırlığı desteklemesi mümkün olduğundan, çok ağırlık kullanımı her zaman ayrı ayrı çok sayıda font dosyası indirilmesi anlamına gelmez.
 
 ### 4. @font-face ile Kendi Fontunu Kullanmak
-Google Fonts dışındai projede barındırdığımız font dosyalarını da kullanabiliriz.
+Google Fonts dışında projede barındırdığımız font dosyalarını da kullanabiliriz.
 ```
     @font-face {
         font-family: "MyFont";
@@ -986,7 +986,7 @@ Bu yaklaşımın avantajları:
 - Bileşenler arasında ortak bir tasarım dili oluşturur.
 
 ### 4. Responsive Tipografide Erişilebilirlik
-Yalnızca vw kullanmak bazı durumlarda kullanıcı font tercijleriyle yeterince uyumlu olmayabilir.
+Yalnızca vw kullanmak bazı durumlarda kullanıcı font tercihleriyle yeterince uyumlu olmayabilir.
 ```
     .title{
         font-size: 4vw;
@@ -1172,3 +1172,125 @@ Bir başlığı ayırt etmek için yalnızca boyutunu büyütmek zorunda değili
     }
 ```
 Boyut, ağırlık, satır yüksekliği, renk ve boşluklar birlikte değerlendirildiğinde daha dengeli bir hiyerarşi oluşturulabilir.
+
+## Kısaca Özet
+|Property               |Görevi                 |Örnek          |
+|-----------------------|-----------------------|---------------|
+|font-family    |Font ailesi    |"Inter", sans-serif    |
+|font-size      |Yazı boyutu    |1rem   |
+|font-weight    |Yazı kalınlığı |600    |
+|font-style     |Normal/italik/eğik stil|italic |
+|font-variant   |Tipografik varyant |small-caps |
+|font           |Font shorthand |600 1rem/1.5 Arial|
+|line-height    |Satır yüksekliği|1.5    |
+|text-align     |Metin hizalaması   |center     |
+|text-decoration|Metin dekorasyonu|underline    |
+|text-transform |Harf dönüşümü  |uppercase  |
+|text-shadow    |Metin gölgesi  |1px 2px 4px #999|
+|letter-spacing |Harf aralığı   |0.05em     |
+|word-spacing   |Kelime aralığı |2px        |
+|direction      |Yazı yönü      |rtl        |
+
+### font Shorthand Şeması
+```
+font: italic small-caps 700 16px/1.5 Arial, sans-serif;
+      │      │        │    │    │      │
+      │      │        │    │    │      └── Font ailesi
+      │      │        │    │    └───────── Satır yüksekliği
+      │      │        │    └────────────── Yazı boyutu
+      │      │        └─────────────────── Yazı kalınlığı
+      │      └──────────────────────────── Font varyantı
+      └─────────────────────────────────── Yazı stili
+```
+**Hatırlatma:** font-size ve font-family zorunludur. Diğerleri isteğe bağlıdır.
+
+### Responsive Tipografi Örneği
+```
+    :root {
+        --font-family-base: "Inter", Arial, sans-serif;
+
+        --text-sm: 0.875rem;
+        --text-base: 1rem;
+        --text-lg: 1.125rem;
+
+        --heading-md: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+        --heading-lg: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+    }
+
+    body {
+        font-family: var(--font-family-base);
+        font-size: var(--text-base);
+        line-height: 1.6;
+        color: #26251f;
+    }
+
+    h1 {
+        font-size: var(--heading-lg);
+        font-weight: 700;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+    }
+
+    h2 {
+        font-size: var(--heading-md);
+        font-weight: 600;
+        line-height: 1.25;
+    }
+
+    p {
+        font-size: var(--text-base);
+        line-height: 1.7;
+    }
+
+    small {
+        font-size: var(--text-sm);
+    }
+```
+Bu yapı sayesinde yazı boyutlarını ortak değişkenlerden yönetebilir, başlıkları ekran genişliğine göre ölçekleyebilir ve sayfa genelinde bir tipografi oluşturabiliriz.
+
+### Tipografi Mantığı
+```
+    CSS TİPOGRAFİ
+    │
+    ├── FONT ÖZELLİKLERİ
+    │   ├── font-family
+    │   ├── font-size
+    │   ├── font-weight
+    │   ├── font-style
+    │   ├── font-variant
+    │   └── font (shorthand)
+    │
+    ├── METİN GÖRÜNÜMÜ
+    │   ├── text-align
+    │   ├── text-decoration
+    │   ├── text-transform
+    │   └── text-shadow
+    │
+    ├── METİN BOŞLUKLARI
+    │   ├── line-height
+    │   ├── letter-spacing
+    │   └── word-spacing
+    │
+    ├── FONT YÜKLEME
+    │   ├── Sistem fontları
+    │   ├── Google Fonts
+    │   └── @font-face
+    │
+    ├── RESPONSIVE TİPOGRAFİ
+    │   ├── rem
+    │   ├── vw
+    │   ├── clamp()
+    │   └── Media queries
+    │
+    └── ERİŞİLEBİLİRLİK
+        ├── Okunabilir font boyutları
+        ├── Yeterli satır yüksekliği
+        ├── Görsel hiyerarşi
+        ├── Ayırt edilebilir bağlantılar
+        └── Metin yakınlaştırma
+```
+Bu Bölümün En Önemli Noktası:
+
+`iyi tipografi yalnızca güzel görünen yazılar oluşturmak değildir. Metnin okunabilir, anlaşılır, erişilebilir ve farklı ekran boyutlarında dengeli görünmesini sağlamaktır.`
+
+Bir web arayüzünde font ailesi, yazı boyutu, ağırlık, satır yüksekliği ve boşluklar birlikte değerlendirildiğinde daha profesyonel ve tutarlı bir tasarım sistemi oluşturulabilir.
