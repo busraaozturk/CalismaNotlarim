@@ -19,7 +19,7 @@
 
 Web geliştirmede ihtiyaç duyulan temel kavramları, internet altyapısını ve yazılım süreçlerini anlamak.
 
-- [**Tarayıcı Kavramları**](01_TemelKonular/TarayıcıKavramları.md) - Tarayıcıların çalışma mantığı, bileşenleri, veri depolama yöntemleri ve geliştirici araçları
+- [**Tarayıcı Kavramları**](01_TemelKonular/TarayıcıKavramları.md) - URL yazıldığında olanlar, tarayıcı motorları, rendering süreci, veri depolama yöntemleri ve geliştirici araçları
 - [**HTTP Nedir?**](01_TemelKonular/HttpNedir.md) - İstemci-sunucu iletişimi, istek-yanıt yapısı, HTTP metotları, durum kodları ve HTTPS
 - [**Domain Name Nedir?**](01_TemelKonular/DomainName.md) - Alan adı yapısı, DNS, TLD, SLD ve subdomain kavramları
 - [**Hosting Nedir?**](01_TemelKonular/HostingNedir.md) - Web barındırmanın çalışma biçimi, hosting türleri ve seçim kriterleri
@@ -74,7 +74,7 @@ HTML'in temel yapısı, semantik elementler, formlar, medya, erişilebilirlik ve
 - [**02 - Başlık Hiyerarşisi**](04_HTML/02_BaşlıkHiyerarşisi.md) - h1–h6 kullanımı ve doğru başlık sıralaması
 - [**03 - Metin Etiketleri**](04_HTML/03_HTMLdeMetinEtiketleri.md) - p, br, hr, vurgu etiketleri, pre, code/kbd/samp, div/span, değişiklik ve alıntı etiketleri
 - [**04 - Bağlantılar ve Navigasyon**](04_HTML/04_HTMLdeBaglantilarveNavigasyon.md) - href, target, sayfa içi bağlantılar, mailto/tel ve a-button farkı
-- [**05 - Görseller ve Medya**](04_HTML/05_HTMLdeGorsellerveMedya.md) - img, alt, loading, fetchpriority, figure, picture, video ve audio
+- [**05 - Görseller ve Medya**](04_HTML/05_HTMLdeGorsellerveMedya.md) - img, alt, loading, fetchpriority, figure, picture, video, track (altyazı) ve audio
 - [**06 - Listeler**](04_HTML/06_HTML'deListeler.md) - Sıralı, sırasız, iç içe ve açıklama listeleri
 - [**07 - Tablolar**](04_HTML/07_HTML'deTablolar.md) - Tablo yapısı, thead/tbody/tfoot, caption, scope, colspan ve rowspan
 - [**08 - HTML Formları**](04_HTML/08_HTMLFormları.md) - form, input türleri, dosya yükleme, label, select, textarea, form doğrulama ve sınırlılıkları

@@ -387,6 +387,118 @@ Video başlamadan önce gösterilecek görsel `poster` ile belirtilebilir.
 Video henüz oynatılmıyorken kullanıcı: `product-cover.jpg` görselini görebilir.
 Bu görseli bir anlamda videonun **kapak görseli** olarak düşünebiliriz.
 
+**`playsinline` Attribute'u**
+
+iPhone'da Safari bazı durumlarda videoyu oynatmaya başladığında otomatik olarak **tam ekrana** geçirebilir. `playsinline`, videonun sayfa içerisinde, bulunduğu yerde oynatılmasını ister.
+```
+    <video
+        src="background.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+    ></video>
+```
+Özellikle arka plan videolarında `autoplay muted loop playsinline` dörtlüsüyle sık karşılaşırız. `playsinline` olmadan iPhone'da arka plan videosunun otomatik oynatılması da engellenebilir.
+
+**`width` ve `height` Attribute'ları**
+
+Görsellerde olduğu gibi videolarda da boyut bilgisi vermek, tarayıcının video yüklenmeden önce onun için yer ayırmasını sağlar. Böylece video yüklendiğinde sayfadaki içerikler aşağı kaymaz.
+```
+    <video
+        src="product-video.mp4"
+        controls
+        width="1280"
+        height="720"
+        poster="product-cover.jpg"
+    ></video>
+```
+Videonun ekranda esnek şekilde küçülüp büyümesi CSS ile sağlanabilir:
+```
+    video {
+        max-width: 100%;
+        height: auto;
+    }
+```
+
+## `<track>` ile Altyazı Eklemek
+Bir videodaki konuşmaları her kullanıcı duyamayabilir. İşitme engelli kullanıcılar, sesi kapalı ortamda video izleyenler veya videonun dilini bilmeyenler için **altyazı** gerekir.
+
+HTML'de videoya altyazı eklemek için `<track>` elementi kullanılır.
+```
+    <video controls width="1280" height="720">
+
+        <source src="intro.mp4" type="video/mp4">
+
+        <track
+            src="intro-tr.vtt"
+            kind="subtitles"
+            srclang="tr"
+            label="Türkçe"
+            default
+        >
+
+        <track
+            src="intro-en.vtt"
+            kind="subtitles"
+            srclang="en"
+            label="English"
+        >
+
+        Tarayıcınız video elementini desteklemiyor.
+
+    </video>
+```
+`<track>`, `<source>` gibi kapanış etiketi olmayan bir **void elementtir** ve `<video>` (veya `<audio>`) içerisine yazılır. Birden fazla dil için birden fazla `<track>` eklenebilir; kullanıcı video oynatıcısının menüsünden istediğini seçebilir.
+
+**`<track>` Attribute'ları**
+```
+    src     → Altyazı dosyasının adresi
+    kind    → Metnin türü
+    srclang → Altyazının dili (tr, en...)
+    label   → Kullanıcıya menüde gösterilecek ad
+    default → Video açıldığında varsayılan olarak etkin olacak altyazı
+```
+
+**`kind` Değerleri**
+```
+    subtitles    → Konuşmaların başka bir dile çevirisi
+                   (dili bilmeyen kullanıcılar için)
+
+    captions     → Konuşmaların yanında müzik, kapı sesi, alkış gibi
+                   önemli seslerin de yazıya döküldüğü metin
+                   (işitme engelli kullanıcılar için)
+
+    descriptions → Videodaki görsel içeriğin metin açıklaması
+                   (görme engelli kullanıcılar için)
+
+    chapters     → Video bölüm başlıkları
+
+    metadata     → Kullanıcıya gösterilmeyen, JavaScript tarafından kullanılan veri
+```
+`subtitles` ve `captions` ilk bakışta aynı görünse de amaçları farklıdır:
+```
+    subtitles → "Sesi duyabiliyorum ama dili anlamıyorum."
+    captions  → "Sesi duyamıyorum."
+```
+
+**WebVTT Dosyası**
+
+`<track>` ile kullanılan altyazı dosyaları genellikle **WebVTT (`.vtt`)** formatındadır. Basit bir örnek:
+```
+    WEBVTT
+
+    00:00:00.000 --> 00:00:03.500
+    Merhaba, bu videoda HTML formlarını inceleyeceğiz.
+
+    00:00:03.500 --> 00:00:07.000
+    [Arka planda müzik çalıyor]
+    İlk olarak form elementiyle başlayalım.
+```
+Dosya mutlaka `WEBVTT` satırıyla başlar. Her bölümde metnin görüneceği başlangıç ve bitiş zamanı, ardından gösterilecek metin yazılır. Örnekteki `[Arka planda müzik çalıyor]` satırı, `captions` türünde ses bilgisinin nasıl yazıya döküldüğünü gösterir.
+
+**Not:** Altyazı dosyası videodan farklı bir alan adında bulunuyorsa tarayıcı güvenlik kuralları nedeniyle yüklenmeyebilir. Bu durumda `<video>` elementine `crossorigin` attribute'u eklenmesi ve sunucunun buna izin vermesi gerekir.
+
 ## HTML'de Ses Kullanımı
 Ses dosyaları için `<audio>`elementi kullanılır.
 ```
@@ -520,6 +632,7 @@ HTML'de temel görsel ve medya elementleri şu şekilde düşünülebilir:
 | `<figure>`     | Bağımsız görsel veya medya içeriğini gruplamak  |
 | `<figcaption>` | Figure içeriğine açıklama eklemek               |
 | `<video>`      | Video eklemek                                   |
+| `<track>`      | Videoya altyazı ve metin kanalları eklemek      |
 | `<audio>`      | Ses içeriği eklemek                             |
 
 Örneğin basit bir içerik sayfasında bunların birkaçını birlikte görebiliriz:

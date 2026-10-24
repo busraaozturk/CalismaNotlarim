@@ -154,6 +154,45 @@ Burada temel ayrım:
     Dekoratif görsel → alt=""
 ```
 
+## Video ve Seste Erişilebilirlik
+Görsellerdeki `alt` metninin video ve ses içeriklerindeki karşılığı **metin alternatifleridir.** Konuşma veya önemli ses içeren her medya, onu duyamayan kullanıcılar için de anlaşılabilir olmalıdır.
+
+**- Videolarda Altyazı**
+
+Videolara `<track>` elementiyle altyazı eklenebilir:
+```
+    <video controls>
+        <source src="intro.mp4" type="video/mp4">
+
+        <track
+            src="intro-tr.vtt"
+            kind="captions"
+            srclang="tr"
+            label="Türkçe"
+            default
+        >
+    </video>
+```
+İşitme engelli kullanıcılar için yalnızca konuşmaları değil, `[kapı çalıyor]`, `[müzik]` gibi önemli sesleri de içeren `kind="captions"` tercih edilmelidir.
+
+**- Ses İçeriklerinde Metin Dökümü**
+
+Podcast gibi yalnızca ses içeren içeriklerde konuşmanın yazılı hali (**transcript**) sayfada paylaşılabilir:
+```
+    <audio src="podcast.mp3" controls></audio>
+
+    <details>
+        <summary>Bölümün metnini oku</summary>
+        <p>...</p>
+    </details>
+```
+
+**- Otomatik Oynatma**
+
+Sesli içeriğin kullanıcı istemeden otomatik oynatılması, ekran okuyucu kullanan kişilerin ekran okuyucunun sesini duymasını zorlaştırır. Otomatik oynatılan medya varsa sessiz (`muted`) başlamalı ve kullanıcıya durdurma imkânı (`controls`) sunulmalıdır.
+
+`<track>`, `kind` değerleri ve WebVTT formatı **05_HTMLdeGorsellerveMedya** notunda ayrıntılı olarak incelenmektedir.
+
 ## Bağlantılarda Erişilebilirlik
 
 ### Anlaşılır Link Metinleri
@@ -681,6 +720,7 @@ Bir HTML sayfası oluşturduktan sonra kendimize birkaç soru sorabiliriz:
 - Focus edilen element anlaşılabiliyor mu?
 - Anlamlı görsellerin uygun alt metinleri var mı?
 - Dekoratif görseller doğru şekilde ele alınmış mı?
+- Videolarda altyazı, ses içeriklerinde metin alternatifi var mı?
 - Form alanlarının uygun label'ları var mı?
 - Link metinleri nereye gittiğini anlatıyor mu?
 - İşlem yapan yerlerde button, navigasyon yapan yerlerde link kullandım mı?
@@ -695,6 +735,7 @@ HTML erişilebilirliğinin temelinde karmaşık tekniklerden önce doğru HTML k
     Semantic HTML → Anlamlı sayfa yapısı
     Doğru başlık hiyerarşisi → Anlaşılır içerik yapısı
     alt → Görsel alternatifleri
+    track / transcript → Video ve ses alternatifleri
     label → Anlaşılır form alanları
     Klavye + Focus → Fare dışındaki kullanım yöntemleri
     Native HTML → Yerleşik anlam ve davranışlar
