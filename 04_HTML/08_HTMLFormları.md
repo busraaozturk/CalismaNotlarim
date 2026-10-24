@@ -60,7 +60,7 @@ Bu yapıyı temel olarak şöyle okuyabiliriz: `Kullanıcının doldurduğu form
 ```
 Kullanıcı formu gönderdiğinde form verileri `/contact` adresine gönderilir.
 
-`action` değerinin tam olarak nasıl karşılanacağı kullanılan backend teknolojisine göre değişebilir. HTML tarafında bilmeniz gereken temek nokta şudur; `action → Form verisinin gönderileceği adresi belirtir.`
+`action` değerinin tam olarak nasıl karşılanacağı kullanılan backend teknolojisine göre değişebilir. HTML tarafında bilmeniz gereken temel nokta şudur; `action → Form verisinin gönderileceği adresi belirtir.`
 
 ## 3. `method` Attribute'u
 `method`, form verilerinin **hangi HTTP yöntemiyle gönderileceğini** belirtir.

@@ -14,7 +14,7 @@ Metadata sayesinde örneğin:
 
 gibi bilgiler tanımlanabilir.
 
-`Metadata'nın tamamı SEO amacıyla kullanılmaz. Bazı metadata bilgileri tareyıcı davranışı, bazıları arama motorlaro, bazıları ise sosyal platformları için önemlidir.`
+`Metadata'nın tamamı SEO amacıyla kullanılmaz. Bazı metadata bilgileri tarayıcı davranışı, bazıları arama motorları, bazıları ise sosyal platformları için önemlidir.`
 
 ## `<head>` Elementi
 `<head>`, HTML belgesi hakkında bilgiler içeren bölümdür.
@@ -121,7 +121,7 @@ Arama motorları başlığın tamamını göstermek zorunda değildir ve arama s
 - Anahtar kelimeleri tekrar tekrar yazmak,
 - Sayfanın içeriğiyle uyuşmayan title kullanmak.
 
-## Meta Descriptiom
+## Meta Description
 Meta description, sayfanın içeriğini açıklayan kısa bir metadata bilgisidir.
 ```
     <meta name="description" content="HTML öğrenmeye başlayanlar için hazırlanmış temel frontend çalışma notları." >
@@ -250,7 +250,7 @@ Canonical ile yönlendirme birbirinden farklıdır.
 |Tercih edilen URL hakkında arama motoruna sinyal verir | Tarayıcıya başka bir URL'ye gitmesini söyler|
 |Benzer/duplicate URL durumlarında kullanılabilir | URL taşıma/değiştirme gibi durumlarda kullanılabilir |
 
-Örneğin: Cannonical
+Örneğin: Canonical
 ```
     /products/watch?ref=instagram
 
@@ -281,7 +281,7 @@ Redirect ve HTTP durum kodları backend tarafında çok daha önemli hale gelir.
     404 → Kaynak bulunamadı
 ```
 
-### Sık Yapılan Cannonical Hataları
+### Sık Yapılan Canonical Hataları
 - Tüm sayfalarda aynı canonical URL'yi kullanmak,
 - Yanlış sayfayı canonical göstermek,
 - HTTP/HTTPS tutarsızlığı,

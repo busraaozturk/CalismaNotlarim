@@ -93,7 +93,7 @@ Basitçe aşağıdaki şekilde düşünebiliriz:
         └── Kullanabileceğimiz türler ve özellikler için sözlük
 ```
 
-## JSON-JD Nedir?
+## JSON-LD Nedir?
 Schema.org bize **hangi kavramları ve özellikleri kullanabileceğimizi** söyler. Bunları HTML sayfasına aktarmanın ise farklı yöntemleri vardır. Bunlardan biri ve web sayfalarında çok sık karşılaşacağımız yöntem **JSON-LD** yani, **JavaScript Obkect Notiation for Linked Data** formatıdır.
 
 Örneğin:
@@ -382,7 +382,7 @@ Doğru mantık:
 ```
 Structured Data görünmeyen bir SEO metni deposu değildir.
 
-## Structured Data Bir Ranking Garantisimidir?
+## Structured Data Bir Ranking Garantisi midir?
 Hayır. Structured Data kullanmak:
 ```
     Schema ekledim.

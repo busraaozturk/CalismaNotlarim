@@ -68,7 +68,7 @@ Burada:
 
 `<summary>`, `<details>` yapısının kontrolüdür. Bu nedenle açılır alanın başlığı için ayrıca bir `<button>` oluşturmamız gerekir.
 
-## `<open>` Attribute'u
+## `open` Attribute'u
 Bir `<details>` alanı varsayılan olarak kapalıdır.
 ```
     <details>

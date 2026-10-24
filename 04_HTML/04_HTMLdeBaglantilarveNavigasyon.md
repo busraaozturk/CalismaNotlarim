@@ -159,7 +159,7 @@ bulunuyorsa bağlantı iframe'in kendi içerisinde açılmak yerine **iframe'i b
 
 Sayfada böyle bir üst bağlam yoksa davranışı `_self` ile aynı hale gelir.
 
-### `target="top"`
+### `target="_top"`
 `_top`, bağlantıyı en üst seviyedeki tarama bağlamında açar.
 
 Özellikle iç içe iframe yapıları düşünüldüğünde `_parent` ile arasındaki fark daha net anlaşılır:

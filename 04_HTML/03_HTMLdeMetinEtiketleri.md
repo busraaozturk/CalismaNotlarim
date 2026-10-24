@@ -896,7 +896,7 @@ Doğru soru `Bu içeriğin anlamı nedir?` olmalıdır.
 Görünüşleri benzer olsa bile semantik anlamları farklıdır.
 
 ### Her Adresi `<address>` İçerisine Yazmak
-**adress elementi** `Posta adresi elementi` değildir.İlgili içerik veya sayfanın iletişim bilgilerini temsil eder.
+**address elementi** `Posta adresi elementi` değildir. İlgili içerik veya sayfanın iletişim bilgilerini temsil eder.
 
 ## Kısa Özet
 HTML metin elementlerini öğrenirken elementlerin varsayılan görünüşlerini ezberlemek yerine **semantik anlamlarını** öğrenmek gerekir. Özellikle şu ayrımları bilmek önemlidir:
@@ -938,7 +938,7 @@ Genel mantığımız ise:
         Gerekiyorsa div / span
 ```
 
-HTML'in temel prensiplweinden biri budur:
+HTML'in temel prensiplerinden biri budur:
 ```
     HTML ile görünüşü değil, içeriğin yapısını ve anlamını tanımla; görsel sunumu CSS'e bırak.
 ```

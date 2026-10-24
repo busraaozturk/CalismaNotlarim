@@ -78,7 +78,7 @@ HTML'in temel yapısı, semantik elementler, formlar, medya, erişilebilirlik ve
 - [**06 - Listeler**](04_HTML/06_HTML'deListeler.md) - Sıralı, sırasız, iç içe ve açıklama listeleri
 - [**07 - Tablolar**](04_HTML/07_HTML'deTablolar.md) - Tablo yapısı, thead/tbody/tfoot, caption, scope, colspan ve rowspan
 - [**08 - HTML Formları**](04_HTML/08_HTMLFormları.md) - form, input türleri, dosya yükleme, label, select, textarea, form doğrulama ve sınırlılıkları
-- [**09 - Global Attributes**](04_HTML/09_HTMLGlobalAttriubutes.md) - id, class, title, lang, hidden, tabindex, data-* ve style
+- [**09 - Global Attributes**](04_HTML/09_HTMLGlobalAttributes.md) - id, class, title, lang, hidden, tabindex, data-* ve style
 - [**10 - Etkileşimli ve Yardımcı Elementler**](04_HTML/10_HTMLEtkilesimliYardimciElementler.md) - details, summary, dialog, progress, meter ve output
 - [**11 - Embedded Content**](04_HTML/11_HTMLEmbeddedContent.md) - iframe, sandbox, CSP, embed ve object
 - [**12 - Responsive Images**](04_HTML/12_HTMLResponsiveImages.md) - srcset, sizes, picture ve art direction

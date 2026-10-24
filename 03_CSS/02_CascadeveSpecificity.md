@@ -1,5 +1,5 @@
 # Cascade ve Specificity
-Bir önceki bölümde CSS selector'larının HTML etikerlerini nasıl hedeflediğini öğrendik.
+Bir önceki bölümde CSS selector'larının HTML etiketlerini nasıl hedeflediğini öğrendik.
 
 Örneğin:
 ```

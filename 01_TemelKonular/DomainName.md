@@ -151,7 +151,7 @@ DNS, alan adlarını IP adreslerine çeviren dağıtık ve hiyerarşik bir siste
 ## DNS (DOMAIN NAME SYSTEM) NEDİR?
 İnsanların kullandığı alan adlarını, makinelerin anlayabildiği IP adreslerine dönüştüren sistemdir.
 
-Bu sistem sayesinde kullanıcılar karmaşık IP adreslerini bilmeden web sitelerin erişebilir.
+Bu sistem sayesinde kullanıcılar karmaşık IP adreslerini bilmeden web sitelerine erişebilir.
 
 ### Alan Adı Çözümleme (DNS Resolution) Süreci
 Bir alan adı yazıldığında, DNS çözümleme süreci belirli adımlar izleyerek gerçekleşir. 
@@ -163,7 +163,7 @@ Bir alan adı yazıldığında, DNS çözümleme süreci belirli adımlar izleye
 - **Root DNS Sunucusu**
     - Recursive DNS sunucusu, alan adının hangi üst düzey alan adına (.com, .org vb.) ait olduğunu öğrenmek için root DNS sunucularına başvurur.
 - **TLD DNS Sunucusu**
-    - Root DNS sunucusu, alan sdının ilgili TLD DNS sunucusunun adresini döndürür.
+    - Root DNS sunucusu, alan adının ilgili TLD DNS sunucusunun adresini döndürür.
     - **Örneğin :**  .com uzantısı için .com TLD sunucusu.
 - **Yetkili (Authoritative) DNS Sunucusu**
     - TLD DNS sunucusu, alan adının yetkili DNS sunucusunun adresini verir.
@@ -184,10 +184,10 @@ Bu yapı sayesinde:
 
 ### DNS Kayıt Türleri
 - DNS sunucuları alan adlarıyla ilgili bilgileri farklı kayıt türleriyle saklar:
-    - **A RECORD :** Alan adını IPv4 adresine yönlendiri.
+    - **A RECORD :** Alan adını IPv4 adresine yönlendirir.
     - **AAAA RECORD :** Alan adını IPv6 adresine yönlendirir
     - **CNAME RECORD :** Bir alan adını başka bir alan adına yönlendirir
-    - **MX RECORD :** Alan adına ait e-posta sunusularını belirtir
+    - **MX RECORD :** Alan adına ait e-posta sunucularını belirtir
 
 ## DOMAIN İLE HOSTİNG ARASINDAKİ FARK
 **Domain (alan adı)** ve **hosting (barındırma hizmeti)**, bir web sitesinin çalışabilmesi için birlikte kullanılan ancak farklı görevleri olan iki temel bileşendir. Bu iki kavram sıklıkla karıştırılsa da işlevleri birbirinden tamamen farklıdır.

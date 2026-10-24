@@ -15,7 +15,7 @@ Burada iki önemli attribute bulunur:
 - `src`: Görsel dosyasının konumunu belirtir.
 - `alt`: Görselin alternatif metnini belirtir.
 
-`<img>` bir **void elementtir.** Yeni kapanış etiketi bulunmaz.
+`<img>` bir **void elementtir.** Yani kapanış etiketi bulunmaz.
 
 ```
 <!-- Doğru -->
@@ -328,7 +328,7 @@ Tarayıcı desteklediği uygun kaynağı kullanabilir. Buradaki `<source>`elemen
 
 Video kontrollerini gösterir.
 
-`<video scr="video.mp4" controls></video>`
+`<video src="video.mp4" controls></video>`
 
 **`autoplay`**
 
@@ -357,7 +357,7 @@ Videonun başlangıçta sessiz olmasını sağlar.
 
 Video sona ulaştığında tekrar oynatılmasını sağlar.
 
-`<video src="video.mp4" loop></video>``
+`<video src="video.mp4" loop></video>`
 
 Bu özellikler birlikte de kullanılabilir:
 ```
@@ -599,7 +599,7 @@ Temel olarak şu noktalara dikkat etmek iyi bir yaklaşımdır. Anlamlı görsel
     >
 ```
 
-Dekoratif görseller için içi boş `alt` kullanın. `<img src="decoration.svg">`
+Dekoratif görseller için içi boş `alt` kullanın. `<img src="decoration.svg" alt="">`
 
 Mümkün olduğunda görsel boyutlarını belirtin.
 ```

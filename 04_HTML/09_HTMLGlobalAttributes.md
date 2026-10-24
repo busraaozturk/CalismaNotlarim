@@ -1,5 +1,5 @@
 # HTML Global Attributes (Global Nitelikler)
-## Attrbute Nedir?
+## Attribute Nedir?
 HTML'de **attribute (nitelik)**, bir HTML elementi hakkında ek bilgi vermek veya elementin davranışını/özelliklerini belirlemek için kullanılır.
 
 Genel kullanım: `<element attribute="value">`

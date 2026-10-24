@@ -3,7 +3,7 @@ Package Manager'ın paketleri yöneten araç olduğunu önceki notlarda anlatmı
 
 En temel tanımıyla:
 
-`Paket; belirli bir işi gerçekleştirmek üzere hazırlanmış, başka projelerde kutulup kullanılabilen ve dağıtıma uygun hale getirilmiş kod bütünüdür.``
+`Paket; belirli bir işi gerçekleştirmek üzere hazırlanmış, başka projelerde kurulup kullanılabilen ve dağıtıma uygun hale getirilmiş kod bütünüdür.`
 
 Bir paket yalnızca tek bir JavaScript dosyasından oluşmak zorunda değildir. İçerisinde kaynak kodları, tür tanımları, yapılandırmalar, dokümantasyon ve başka dosyalar bulunabilir.
 

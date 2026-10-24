@@ -1,7 +1,7 @@
 # CSS Temelleri 
 HTML ile bir web sayfasının **yapısını ve içeriğin anlamını** oluşturabiliriz. Ancak sayfanın renkleri, yazı tipleri, boşlukları, boyutları ve genel görsel düzeni gibi özelliklerini yönetmek için CSS kullanırız.
 
-Bu bölümde CSS'in ne olduğunu, frontend geliştirmedeki görevini, HTML'e nasıl dahil edildiğini ve temel CSS sözdimini inceleyeceğiz.
+Bu bölümde CSS'in ne olduğunu, frontend geliştirmedeki görevini, HTML'e nasıl dahil edildiğini ve temel CSS sözdizimini inceleyeceğiz.
 
 CSS Temelleri
 │

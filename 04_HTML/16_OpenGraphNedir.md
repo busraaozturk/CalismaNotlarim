@@ -1,6 +1,6 @@
 # OPEN GRAPH (OG)
 ## Open Graph Nedir?
-**Open Graph(OG),** bbir web sayfası başka bir platformda paylaşıldığında sayfa hakkında yapılandırılmış bilgiler sağlayan bir metadata protokolüdür.
+**Open Graph (OG),** bir web sayfası başka bir platformda paylaşıldığında sayfa hakkında yapılandırılmış bilgiler sağlayan bir metadata protokolüdür.
 
 Örneğin bir bağlantı paylaşıldığında:
 ```
@@ -225,7 +225,7 @@ Bu açıklama görselin neyi temsil ettiğini ifade etmelidir.
 ### Görsel İçin Ek Özellikler
 Gerekli durumlarda görsel hakkında başka bilgiler de tanımlanabilir. 
 
-Örneğin: `<meta propert="og:image:type" content="image/jpeg">`
+Örneğin: `<meta property="og:image:type" content="image/jpeg">`
 
 Böylece Open Graph görselinin türü hakkında ek bilgi sağlanabilir.
 
@@ -269,7 +269,7 @@ Hayır. Benzer URL mantıklarıyla karşılaşılabilse de farklı sistemlere hi
 ## `og:type`
 `og:type`, içeriğin türünü belirtir. Temel bir web sayfası için; `<meta property="og:type" content="website">` kullanılabilir.
 
-Farklı içerik türlerinde farklı Open Graph türleriylr karşılaşılabilir. Örneğin:
+Farklı içerik türlerinde farklı Open Graph türleriyle karşılaşılabilir. Örneğin:
 ```
     website 
     article 
@@ -437,7 +437,7 @@ Twitter/X için ayrıca Card metadata'sı ile karşılaşabiliriz.
 
 Örneğin:
 ```
-    <meta name="twitter:card"content="summary_large_image">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="HTML Öğrenme Notları">
     <meta name="twitter:description" content="Frontend öğrenmeye başlayanlar için HTML çalışma notları.">
     <meta name="twitter:image" content="https://example.com/images/html-notlari.jpg">
