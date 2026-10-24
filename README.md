@@ -23,6 +23,7 @@ Web geliştirmede ihtiyaç duyulan temel kavramları, internet altyapısını ve
 - [**HTTP Nedir?**](01_TemelKonular/HttpNedir.md) - İstemci-sunucu iletişimi, istek-yanıt yapısı, HTTP metotları, durum kodları ve HTTPS
 - [**Domain Name Nedir?**](01_TemelKonular/DomainName.md) - Alan adı yapısı, DNS, TLD, SLD ve subdomain kavramları
 - [**Hosting Nedir?**](01_TemelKonular/HostingNedir.md) - Web barındırmanın çalışma biçimi, hosting türleri ve seçim kriterleri
+- [**SEO Nedir?**](01_TemelKonular/SEONedir.md) - Arama motorlarının çalışma mantığı, robots.txt, sitemap.xml, SEO türleri ve Core Web Vitals
 - [**Test Güdümlü Geliştirme (TDD)**](01_TemelKonular/TestGudumluGelistirme%28TDD%29.md) - Red-Green-Refactor döngüsü ve TDD’nin frontend’de kullanımı
 - [**Yazılım Yaşam Döngüsü (SDLC)**](01_TemelKonular/YazilimYasamDongusu%28SDLC%29.md) - Planlama, analiz, tasarım, geliştirme, test, yayınlama, bakım aşamaları ve SDLC modelleri
 
@@ -76,7 +77,7 @@ HTML'in temel yapısı, semantik elementler, formlar, medya, erişilebilirlik ve
 - [**05 - Görseller ve Medya**](04_HTML/05_HTMLdeGorsellerveMedya.md) - img, alt, loading, fetchpriority, figure, picture, video ve audio
 - [**06 - Listeler**](04_HTML/06_HTML'deListeler.md) - Sıralı, sırasız, iç içe ve açıklama listeleri
 - [**07 - Tablolar**](04_HTML/07_HTML'deTablolar.md) - Tablo yapısı, thead/tbody/tfoot, caption, scope, colspan ve rowspan
-- [**08 - HTML Formları**](04_HTML/08_HTMLFormları.md) - form, input türleri, label, select, textarea ve form doğrulama
+- [**08 - HTML Formları**](04_HTML/08_HTMLFormları.md) - form, input türleri, dosya yükleme, label, select, textarea, form doğrulama ve sınırlılıkları
 - [**09 - Global Attributes**](04_HTML/09_HTMLGlobalAttriubutes.md) - id, class, title, lang, hidden, tabindex, data-* ve style
 - [**10 - Etkileşimli ve Yardımcı Elementler**](04_HTML/10_HTMLEtkilesimliYardimciElementler.md) - details, summary, dialog, progress, meter ve output
 - [**11 - Embedded Content**](04_HTML/11_HTMLEmbeddedContent.md) - iframe, sandbox, CSP, embed ve object
@@ -86,6 +87,7 @@ HTML'in temel yapısı, semantik elementler, formlar, medya, erişilebilirlik ve
 - [**15 - Metadata ve Temel SEO**](04_HTML/15_HTMLMetadataTemelSEO.md) - title, meta description, robots, canonical, hreflang ve favicon
 - [**16 - Open Graph (OG)**](04_HTML/16_OpenGraphNedir.md) - Sosyal medya paylaşım kartları ve Twitter / X Card
 - [**17 - Structured Data, Schema.org ve JSON-LD**](04_HTML/17_StructuredDataSchemaorg%20ve%20JSON-LD.md) - Yapısal veri ve schema türleri
+- [**18 - HTML'e JavaScript Eklemek**](04_HTML/18_HTML'eJavaScriptEklemek.md) - script yerleşimi, defer, async, type="module" ve noscript
 ---
 
 ## 05. JavaScript

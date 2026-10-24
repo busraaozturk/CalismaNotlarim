@@ -264,7 +264,7 @@ Kod doğrudan `<script>` etiketinin içerisine yazılabilir.
 
     </body>
 ```
-Böylece tarayıcı önce sayfanın HTML içeriğini oluşturur, JavaScript ise sayfa içeriği hazır olduktan sonra çalışır. `<head>` içerisine yazılan bir script bu davranışı `defer` veya `async` gibi attribute'lar olmadan bozabilir; bu attribute'lar ayrı bir JavaScript konusunda ele alınacaktır.
+Böylece tarayıcı önce sayfanın HTML içeriğini oluşturur, JavaScript ise sayfa içeriği hazır olduktan sonra çalışır. `<head>` içerisine yazılan bir script bu davranışı `defer` veya `async` gibi attribute'lar olmadan bozabilir; bu attribute'lar **18_HTML'eJavaScriptEklemek** bölümünde ayrıntılı olarak ele alınmaktadır.
 
 ## HTML'in Sınırlılıkları
 HTML güçlü bir yapılandırma dilidir ancak tek başına her ihtiyacı karşılamaz. Örneğin HTML ile:
@@ -298,7 +298,8 @@ Ancak bunlar HTML sözdiziminin kendisinden daha geniş web kavramlarıdır. Bu 
     Domain   → 01_TemelKonular/DomainName.md
     Hosting  → 01_TemelKonular/HostingNedir.md
     DNS      → Domain ve Hosting notlarının içerisinde
-    SEO      → 04_HTML/15_HTMLMetadataTemelSEO.md
+    SEO      → 01_TemelKonular/SEONedir.md
+               (HTML tarafı: 04_HTML/15_HTMLMetadataTemelSEO.md)
 ```
 
 ## Tarayıcı HTML'i Nasıl Okur?

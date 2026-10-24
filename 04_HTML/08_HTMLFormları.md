@@ -507,6 +507,60 @@ Dosyanın klasik form gönderimiyle sunucuya yüklenmesi gerekiyorsa form taraf�
     >
 ```
 
+**- `accept` Attribute'u**
+
+Kullanıcının hangi dosya türlerini seçebileceği konusunda tarayıcıya bilgi verir.
+```
+    <input
+        type="file"
+        id="cv"
+        name="cv"
+        accept=".pdf,.doc,.docx"
+    >
+```
+Değer olarak dosya uzantıları veya MIME türleri virgülle ayrılarak yazılabilir:
+```
+    accept=".pdf"                → Yalnızca PDF uzantılı dosyalar
+    accept="image/*"             → Tüm görsel türleri
+    accept="image/png,image/jpeg" → Yalnızca PNG ve JPEG
+```
+`accept` bir **kısıtlama değil, filtredir.** Tarayıcı dosya seçme penceresinde yalnızca uygun dosyaları öne çıkarır ancak kullanıcı "Tüm Dosyalar" seçeneğiyle farklı bir dosya seçebilir. Bu nedenle dosya türü sunucu tarafında ayrıca kontrol edilmelidir.
+
+**- `multiple` Attribute'u**
+
+Kullanıcının birden fazla dosya seçebilmesini sağlar.
+```
+    <label for="photos">
+        Ürün Fotoğrafları
+    </label>
+
+    <input
+        type="file"
+        id="photos"
+        name="photos"
+        accept="image/*"
+        multiple
+    >
+```
+`multiple` bir boolean attribute'tur. `type="email"` alanlarında da virgülle ayrılmış birden fazla e-posta adresi girilmesine izin vermek için kullanılabilir.
+
+**- `capture` Attribute'u**
+
+Mobil cihazlarda dosya seçmek yerine doğrudan kamerayı açmayı ister.
+```
+    <input
+        type="file"
+        name="selfie"
+        accept="image/*"
+        capture="user"
+    >
+```
+`user` ön kamerayı, `environment` arka kamerayı ifade eder. Masaüstü tarayıcılarda genellikle etkisizdir.
+
+**- Dosya Boyutu HTML ile Sınırlandırılamaz**
+
+HTML'de `maxsize` gibi bir attribute yoktur. Seçilen dosyanın boyutu ancak JavaScript ile kontrol edilebilir ve asıl sınır mutlaka **sunucu tarafında** belirlenmelidir.
+
 ### `hidden`
 Kullanıcının görmediği ancak form ile birlikte gönderilebilecek bir değer tutar.
 ```
@@ -777,6 +831,113 @@ Girilen değerin belirli bir desene uymasını istemek için kullanılabilir.
 Bu örnekte üç büyük harften oluşan bir değer beklenmektedir.
 
 `pattern` **düzenli ifadeler (regular expressions)** kullanır. Regex ayrı ve kapsamlı bir konu olduğu için burada ayrıntısına girmemiz gerekmiyor.
+
+### HTML Form Doğrulamasının Sınırlılıkları
+HTML doğrulaması kullanıcıya hızlı geri bildirim vermek için oldukça kullanışlıdır. Ancak tek başına yeterli değildir. Bu sınırlılıkları bilmek, formları doğru tasarlamak açısından en az doğrulama attribute'larını bilmek kadar önemlidir.
+
+**1. HTML Doğrulaması Kolayca Atlatılabilir**
+
+HTML doğrulaması kullanıcının tarayıcısında çalışır ve tamamen kullanıcının kontrolündedir.
+
+Örneğin:
+```
+    <input
+        type="email"
+        name="email"
+        required
+    >
+```
+Bir kullanıcı:
+- Geliştirici araçlarından (F12) `required` attribute'unu silebilir,
+- `type="email"` değerini `type="text"` olarak değiştirebilir,
+- Formu hiç kullanmadan Postman veya `curl` gibi araçlarla sunucuya doğrudan istek gönderebilir.
+
+Bu durumlarda HTML doğrulaması hiç çalışmaz. Bu nedenle:
+```
+    İstemci (HTML / JavaScript) doğrulaması
+    └── Amacı: Kullanıcı deneyimi
+        Kullanıcıya hatasını hızlıca göstermek
+
+    Sunucu doğrulaması
+    └── Amacı: Güvenlik ve veri doğruluğu
+        Gelen veriyi gerçekten kontrol etmek
+```
+**Sunucuya gelen her veri, HTML tarafında doğrulanmış olsa bile sunucu tarafında yeniden doğrulanmalıdır.** HTML doğrulaması sunucu doğrulamasının yerine geçmez, onu tamamlar.
+
+**2. Doğrulama Kuralları Sınırlıdır**
+
+HTML yalnızca tek bir alanın kendi değerine bakan basit kuralları kontrol edebilir. Örneğin şunları tek başına yapamaz:
+- "Şifre" ve "Şifre Tekrar" alanlarının aynı olup olmadığını karşılaştırmak,
+- Bir e-posta adresinin daha önce kayıtlı olup olmadığını kontrol etmek,
+- Bir alanın zorunluluğunu başka bir alanın değerine göre değiştirmek,
+- Başlangıç tarihinin bitiş tarihinden önce olup olmadığını kontrol etmek.
+
+Bu tür kurallar için JavaScript ve sunucu tarafı kontroller gerekir.
+
+Ayrıca `type="email"` yalnızca **biçimi** kontrol eder ve bu kontrol oldukça esnektir. Örneğin `a@b` tarayıcı tarafından geçerli kabul edilebilir. Adresin gerçekten var olup olmadığını HTML bilemez.
+
+**3. Hata Mesajları Tasarlanamaz**
+
+Tarayıcının gösterdiği doğrulama mesajları:
+- Tarayıcıya göre farklı görünür,
+- Tarayıcının diline göre değişir,
+- CSS ile stillendirilemez,
+- Metni HTML ile değiştirilemez.
+
+Mesajın metnini değiştirmek veya hataları özel bir tasarımla göstermek için JavaScript'in **Constraint Validation API**'si (örneğin `setCustomValidity()`) kullanılır. Bu konu JavaScript tarafında ele alınacaktır.
+
+CSS tarafında ise alanın geçerli veya geçersiz olmasına göre stil verilebilir:
+```
+    input:invalid {
+        border-color: red;
+    }
+```
+Ancak `:invalid` sayfa açılır açılmaz, kullanıcı daha hiçbir şey yazmadan da boş zorunlu alanlara uygulanır. Kullanıcı alanla etkileşime girdikten sonra stil vermek için daha yeni olan `:user-invalid` seçicisi tercih edilebilir.
+
+**4. `novalidate` ile Doğrulamayı Kapatmak**
+
+Doğrulamayı tamamen JavaScript ile yönetmek istediğimiz durumlarda tarayıcının yerleşik doğrulaması kapatılabilir:
+```
+    <form
+        action="/register"
+        method="post"
+        novalidate
+    >
+```
+Yalnızca belirli bir buton için doğrulamayı atlamak gerekiyorsa (örneğin "Taslak Olarak Kaydet") `formnovalidate` kullanılabilir:
+```
+    <button type="submit" formnovalidate>
+        Taslak Olarak Kaydet
+    </button>
+```
+`novalidate` kullanıldığında `required`, `type` ve `pattern` gibi attribute'lar yine yazılmalıdır. Bunlar hem JavaScript doğrulaması tarafından kullanılabilir hem de alanın anlamını ve erişilebilirliğini tanımlar.
+
+**5. Yerleşik Form Kontrollerinin Görünümü Sınırlıdır**
+
+Bazı form kontrollerinin görünümü büyük ölçüde tarayıcı ve işletim sistemi tarafından belirlenir. Örneğin:
+- `<select>` açıldığında görünen seçenek listesi,
+- `type="date"` alanının takvim penceresi,
+- `type="file"` alanının "Dosya Seç" butonu,
+- Checkbox ve radio butonların işaretleri
+
+CSS ile ancak sınırlı ölçüde değiştirilebilir. Bu nedenle birçok projede bu alanlar için özel bileşenler hazırlanır. Ancak özel bileşen oluştururken klavye kullanımı ve ekran okuyucu desteği gibi yerleşik elementlerin hazır sunduğu özelliklerin kaybolmamasına dikkat edilmelidir.
+
+**6. HTML Veriyi İşleyemez**
+
+HTML formu yalnızca veriyi **toplar ve gönderir.** Gönderilen verinin:
+- Kaydedilmesi,
+- E-posta olarak iletilmesi,
+- Veritabanında aranması,
+- Kullanıcıya sonuç olarak döndürülmesi
+
+için `action` adresindeki sunucu tarafı kodu gerekir. Sunucu olmadan bir HTML formu kendi başına hiçbir veriyi saklayamaz.
+
+Özetle:
+```
+    HTML → Formun yapısı ve temel doğrulama
+    JavaScript → Gelişmiş doğrulama, özel hata mesajları, etkileşim
+    Sunucu → Asıl doğrulama, güvenlik ve verinin işlenmesi
+```
 
 ## 18. `readonly` ve `disabled`
 Bu iki attribute başlangıçta birbirine benzer görünse de aynı değildir.
@@ -1121,6 +1282,8 @@ Doğru bir form yapısında:
 - `name` gönderilecek verinin adını belirler.
 - `id` ve `for` label-input ilişkisini kurabilir.
 - `required`, `min`, `max`, `minlength` gibi özelliklerle temel HTML doğrulaması yapılabilir.
+- HTML doğrulaması atlatılabilir; gelen veri her zaman sunucu tarafında yeniden doğrulanmalıdır.
+- `accept` ve `multiple` dosya seçimini kolaylaştırır ancak dosya türü ve boyutu sunucuda kontrol edilmelidir.
 - `<select>` seçenek listeleri oluşturur.
 - `<textarea>` uzun metinleri alır.
 - Checkbox birden fazla seçim için kullanılabilir.
