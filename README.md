@@ -71,7 +71,7 @@ HTML'in temel yapısı, semantik elementler, formlar, medya, erişilebilirlik ve
 - [**00 - HTML Temelleri**](04_HTML/00_HTMLTemelleri.md) - Markup dili, element/tag/attribute, yorumlar, whitespace, sayfa iskeleti ve CSS/JS ekleme
 - [**01 - Anlamsal HTML Yapısı**](04_HTML/01_AnlamsalHTMLYapisi.md) - header, nav, main, section, article, aside ve footer
 - [**02 - Başlık Hiyerarşisi**](04_HTML/02_BaşlıkHiyerarşisi.md) - h1–h6 kullanımı ve doğru başlık sıralaması
-- [**03 - Metin Etiketleri**](04_HTML/03_HTMLdeMetinEtiketleri.md) - p, br, hr, vurgu etiketleri, pre, div/span, değişiklik ve alıntı etiketleri
+- [**03 - Metin Etiketleri**](04_HTML/03_HTMLdeMetinEtiketleri.md) - p, br, hr, vurgu etiketleri, pre, code/kbd/samp, div/span, değişiklik ve alıntı etiketleri
 - [**04 - Bağlantılar ve Navigasyon**](04_HTML/04_HTMLdeBaglantilarveNavigasyon.md) - href, target, sayfa içi bağlantılar, mailto/tel ve a-button farkı
 - [**05 - Görseller ve Medya**](04_HTML/05_HTMLdeGorsellerveMedya.md) - img, alt, loading, fetchpriority, figure, picture, video ve audio
 - [**06 - Listeler**](04_HTML/06_HTML'deListeler.md) - Sıralı, sırasız, iç içe ve açıklama listeleri
@@ -86,12 +86,6 @@ HTML'in temel yapısı, semantik elementler, formlar, medya, erişilebilirlik ve
 - [**15 - Metadata ve Temel SEO**](04_HTML/15_HTMLMetadataTemelSEO.md) - title, meta description, robots, canonical, hreflang ve favicon
 - [**16 - Open Graph (OG)**](04_HTML/16_OpenGraphNedir.md) - Sosyal medya paylaşım kartları ve Twitter / X Card
 - [**17 - Structured Data, Schema.org ve JSON-LD**](04_HTML/17_StructuredDataSchemaorg%20ve%20JSON-LD.md) - Yapısal veri ve schema türleri
-
-**Ek Notlar**
-
-- [**`<kbd>` Etiketi**](04_HTML/kbd-tag.md) - Klavye girişi gösterimi
-- [**`<audio>` Etiketi**](04_HTML/audio-tag.md) - Ses dosyaları yerleştirme ve özellikleri
-
 ---
 
 ## 05. JavaScript

@@ -338,6 +338,79 @@ Burada iki element farklı görevler üstlenir:
 ```
 Yani `<pre>` tek başına `Bu bir kod örneğidir.` anlamına gelmez. Kod içeriğini semantik olarak belirtmek için `<code>` kullanılır.
 
+## Bilgisayar Girdisi ve Çıktısı: `<code>`, `<kbd>` ve `<samp>`
+Teknik dokümantasyon, yardım sayfaları veya eğitim içerikleri yazarken metnin içerisinde kod, klavye tuşu veya program çıktısı göstermemiz gerekebilir. Bunların üçü de varsayılan olarak benzer şekilde **monospace** yazı tipiyle görünebilir ancak anlamları farklıdır.
+
+### 1. `<code>` — Bilgisayar Kodu
+Metin içerisindeki bir kod parçasını, dosya adını, element adını veya komutu belirtir.
+```
+    <p>
+        Diziyi filtrelemek için <code>filter()</code> metodunu kullanabiliriz.
+    </p>
+```
+Birden fazla satırlı kod örneklerinde yukarıda gördüğümüz gibi `<pre>` ile birlikte kullanılır.
+
+### 2. `<kbd>` — Kullanıcı Girdisi
+`<kbd>` **keyboard** kelimesinden gelir ve kullanıcının klavye, ses girişi veya başka bir giriş cihazıyla **girmesi gereken** bilgiyi temsil eder.
+
+Genellikle:
+- Klavye tuşları,
+- Klavye kısayolları,
+- Kullanıcının terminale yazması gereken komutlar
+
+için kullanılır.
+```
+    <p>
+        Kaydetmek için <kbd>Ctrl</kbd> + <kbd>S</kbd> tuşlarına basın.
+    </p>
+```
+
+**- İç İçe `<kbd>` Kullanımı**
+
+HTML standardı bir tuş kombinasyonunu temsil etmek için `<kbd>` içerisinde tekrar `<kbd>` kullanılmasına izin verir.
+```
+    <kbd><kbd>Ctrl</kbd> + <kbd>S</kbd></kbd>
+```
+Burada:
+```
+    Dış <kbd> → Kısayolun tamamı
+    İç <kbd>  → Tek tek tuşlar
+```
+
+**- Komut Satırı Girdileri**
+
+Kullanıcıdan terminale yazması beklenen komutlar için de `<kbd>` kullanılabilir.
+```
+    <p>
+        Terminalde <kbd>npm install</kbd> komutunu çalıştırın.
+    </p>
+```
+
+### 3. `<samp>` — Program Çıktısı
+`<samp>` **sample output** anlamına gelir ve bir programın veya sistemin ürettiği çıktıyı temsil eder.
+```
+    <p>
+        <kbd>Enter</kbd> tuşuna bastığınızda ekranda
+        <samp>Kayıt başarılı.</samp> mesajı görünür.
+    </p>
+```
+
+### Aralarındaki Farkı Özetlersek
+| Element  | Anlamı                              | Örnek                     |
+|----------|-------------------------------------|---------------------------|
+| `<code>` | Bilgisayar kodu                     | `filter()`, `index.html`  |
+| `<kbd>`  | Kullanıcının gireceği bilgi         | `Ctrl + S`, `npm install` |
+| `<samp>` | Programın ürettiği çıktı            | `Kayıt başarılı.`         |
+
+Basit bir ayrımla:
+```
+    Kullanıcı yazar  → <kbd>
+    Program yazar    → <samp>
+    Kodun kendisi    → <code>
+```
+
+Bu üç element de yalnızca global attribute'ları alır; kendilerine özel bir attribute'ları yoktur. Görünüşleri tarayıcıya göre değişebileceği için tuşların kutu şeklinde görünmesi gibi tasarım ihtiyaçları CSS ile yönetilmelidir.
+
 ## `<mark>, <sub> ve <sup>`
 Bu elementler metnin belirli bölümlerine özel anlamlar kazandırmak için kullanılır.
 
@@ -722,6 +795,9 @@ Temel soru:
 |Cümle içerisinde vurgu yapmak  |<em>               |
 |Farklı ses/terim belirtmek     |<i>                |
 |Boşluk ve satırları korumak    |<pre>              |
+|Bilgisayar kodu                |<code>             |
+|Kullanıcının gireceği tuş/komut|<kbd>              |
+|Program çıktısı                |<samp>             |
 |Bağlamsal olarak ilgili metni işaretlemek|<mark>   |
 |Alt simge                      |<sub>              |
 |Üst simge                      |<sup>              |
@@ -837,6 +913,10 @@ HTML metin elementlerini öğrenirken elementlerin varsayılan görünüşlerini
     blockquote ≠ q
     blockquote → Blok alıntı
     q → Satır içi alıntı
+    code ≠ kbd ≠ samp
+    code → Bilgisayar kodu
+    kbd → Kullanıcı girdisi
+    samp → Program çıktısı
     cite elementi ≠ cite attribute'u
     <cite> → Eser başlığını/referansını işaretler
     cite="" → Kaynak URL'si hakkında bilgi sağlar

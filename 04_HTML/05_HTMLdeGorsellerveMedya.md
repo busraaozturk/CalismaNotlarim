@@ -416,6 +416,49 @@ Video elementinde olduğu gibi birden fazla kaynak da verilebilir:
 
 `audio`elementinde de `controls`, `autoplay`, `muted` ve `loop` gibi özelliklerle karşılaşabiliriz.
 
+`controls` kullanıldığında tarayıcı kendi oynatıcısını gösterir. Kullanıcı bu oynatıcı üzerinden sesi oynatıp duraklatabilir, ileri-geri sarabilir ve ses seviyesini ayarlayabilir. `controls` verilmeyen bir `<audio>` elementi sayfada **görünmez**; bu durumda oynatma işlemleri JavaScript ile yönetilmelidir.
+
+**Fallback İçerik**
+
+`<audio>` ve `</audio>` etiketleri arasına yazılan metin, elementi desteklemeyen tarayıcılarda gösterilen **yedek (fallback) içeriktir.** Desteklenen tarayıcılarda bu metin görünmez.
+
+Fallback içerik olarak dosyanın indirme bağlantısı da verilebilir:
+```
+    <audio src="podcast.mp3" controls>
+        Tarayıcınız ses oynatmayı desteklemiyor.
+        <a href="podcast.mp3">Ses dosyasını indirin.</a>
+    </audio>
+```
+
+**`preload` Attribute'u**
+
+`preload`, medya dosyasının sayfa açıldığında ne kadarının yükleneceği konusunda tarayıcıya **ipucu** verir. Hem `<audio>` hem de `<video>` elementinde kullanılabilir.
+```
+    <audio
+        src="podcast.mp3"
+        controls
+        preload="metadata"
+    ></audio>
+```
+
+Alabileceği değerler:
+```
+    none     → Dosya önceden yüklenmez.
+    metadata → Yalnızca süre gibi temel bilgiler yüklenir.
+    auto     → Tarayıcı gerekli görürse dosyanın tamamını yükleyebilir.
+```
+Bu bir ipucudur; tarayıcı kullanıcının bağlantısına veya kendi kurallarına göre farklı davranabilir. Sayfada birden fazla medya dosyası bulunduğunda gereksiz veri indirmemek için `metadata` veya `none` tercih edilebilir.
+
+**İleri Seviye Attribute'lar**
+
+İlk aşamada bilinmesi şart olmayan ancak karşılaşılabilecek bazı attribute'lar:
+```
+    crossorigin           → Başka bir kaynaktan (origin) gelen medya için CORS davranışını belirler.
+    controlsList          → Tarayıcının gösterdiği bazı kontrolleri (örneğin indirme butonu) gizlemeyi ister.
+    disableRemotePlayback → Medyanın harici cihazlarda (Chromecast vb.) oynatılmasını kapatır.
+```
+`controlsList` standart bir HTML attribute'u değildir; her tarayıcıda desteklenmeyebilir.
+
 ## Boolean Attribute Mantığı
 Burada küçük ama HTML öğrenirken önemli bir ayrıntı var. Şu ana kadar:
 ```
