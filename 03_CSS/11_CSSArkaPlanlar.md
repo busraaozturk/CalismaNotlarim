@@ -834,3 +834,131 @@ Genel olarak:
 - 0%: siyah sonuç
 - 100%: orijinal parlaklık
 - 150%: artırılmış parlaklık
+
+### 3. contrast()
+```
+    .image {
+        filter: contrast(120%);
+    }
+```
+Görselin kontrastını artırır. 100% normal kontrastı ifade eder.
+
+### 4. grayscale()
+```
+    .image {
+        filter: grayscale(100%);
+    }
+```
+Görseli tamamen gri tonlara dönüştürür.
+
+### 5. saturate()
+```
+    .image {
+        filter: saturate(150%);
+    }
+```
+Renk doygunluğunu artırır.
+
+0% değeri renkleri tamamen doygunluktan arındırır.
+
+### 6. Birden Fazla Filtre Kullanımı
+Filtreler boşlukla ayrılarak birlikte kullanılabilir.
+```
+    .image {
+        filter: grayscale(50%) blur(2px);
+    }
+```
+Filtreler belirtilen sırayla uygulanır. Bu nedenle bazı filtre kombinasyonlarında sıralama görsel sonucu etkileyebilir.
+
+### 7. Hover ile Filtre Kullanımı
+```
+    .product-image {
+        filter: grayscale(100%);
+        transition: filter 0.3s ease;
+    }
+
+    .product-image:hover {
+        filter: grayscale(0%);
+    }
+```
+Bu örnekte görsel normal durumda gri tonlarda görünür. Üzerine gelindiğinde orijinal renklerine döner.
+
+**Erişilebilirlik notu:** Önemli bilgileri yalnızca hover durumunda görünür hale getirmekten kaçınılmalıdır. Dokunmatik cihazlarda hover davranışı aynı şekilde çalışmayabilir.
+
+### 8. filter ile background-image İlişkisi
+Şu örneğe bakalım:
+```
+    .hero {
+        background-image: url("hero.jpg");
+        filter: blur(4px);
+    }
+```
+Burada yalnızca arka plan görseli değil, elementin metni dahil tüm görüntülenen içeriği bulanıklaşır.
+
+Sadece arka planı bulanıklaştırmak istiyorsak ayrı bir katman kullanabiliriz.
+```
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Yeni Yerler Keşfet</h1>
+        </div>
+    </section>
+
+    .hero {
+        position: relative;
+        min-height: 350px;
+        overflow: hidden;
+        isolation: isolate;
+    }
+
+    .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+
+        background: url("hero.jpg") center / cover no-repeat;
+        filter: blur(4px);
+        transform: scale(1.05);
+    }
+
+    .hero-content {
+        position: relative;
+        padding: 80px 24px;
+        color: white;
+    }
+```
+Burada `::before` pseudo-elementi arka plan katmanı olarak kullanılır.
+
+Bulanıklık yalnızca bu katmana uygulanır; metin bulanıklaşmaz.
+
+### 9. backdrop-filter — Cam Efekti
+backdrop-filter, elementin arkasında görünen içeriğe filtre uygular.
+```
+    .glass-card {
+        background-color: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(12px);
+    }
+```
+Bu teknik modern arayüzlerde glassmorphism olarak adlandırılan cam benzeri görünümlerde kullanılır.
+
+Örnek:
+```
+    .glass-card {
+        padding: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 16px;
+
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(12px);
+    }
+```
+filter ile backdrop-filter arasındaki temel fark:
+
+|Özellik                    |Etki                                       |
+|---------------------------|-------------------------------------------|
+|filter                     |Elementin kendi görüntülenen içeriğine uygulanır   |
+|backdrop-filter            |Elementin arkasındaki görüntüye uygulanır          |
+
+**Önemli:** backdrop-filter etkisinin görülebilmesi için genellikle elementin arka planında saydamlık bulunmalıdır.
+
+Yoğun bulanıklık efektleri performansı etkileyebileceğinden, özellikle büyük alanlarda dikkatli kullanılmalıdır.
