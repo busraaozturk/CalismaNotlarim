@@ -20,13 +20,13 @@ Bu örnekte arka plan görseli tekrar etmeden, ortalanarak ve elementin alanın�
 ## Arka Plan Nedir?
 CSS'te arka plan, bir elementin kutusunun arkasında görüntülenen renk veya görsel katmanlarıdır.
 
-Arka plan özellikleri **background-*** ailesialtında toplanır.
+Arka plan özellikleri **background-*** ailesi altında toplanır.
 
 |Özellik                        |Görevi                                       |
 |-------------------------------|---------------------------------------------|
 |background-color               |Arka plan rengini belirler                   |
 |background-image               |Arka plan görseli veya gradient tanımlar     |
-|backgroun-repeat               |Görselin tekrarlanma biçimini belirler       |
+|background-repeat              |Görselin tekrarlanma biçimini belirler       |
 |background-size                |Görselin boyutunu kontrol eder               |
 |background-position            |Görselin konumunu belirler                   |
 |background-attachment          |Kaydırma sırasında arka planın davranışını belirler|
@@ -313,6 +313,37 @@ Bu kullanımda görselin genişliği 200px olurken yükseklik oran korunacak şe
 Yüzdesel değerler, arka plan boyutlandırma alanına göre hesaplanır. 
 
 **Not:** background-size: cover kullanmamak tek başına hata değildir. Kullanılacak değer, görselin dekoratif mi yoksa tamamının görünmesi gereken bir öğe mi olduğuna göre seçilmelidir.
+
+### `<img>` için Karşılığı: object-fit ve object-position
+background-size ve background-position yalnızca arka plan görsellerinde çalışır.
+
+HTML'deki `<img>` veya `<video>` gibi elementlerde aynı işi **object-fit** ve **object-position** yapar.
+```
+    .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        object-position: center top;
+    }
+```
+Bu örnekte görsel, oranı bozulmadan 200px yüksekliğindeki alanı kaplar. Taşan kısımlar kırpılır ve görselin üst kısmı görünür kalır.
+
+|object-fit değeri  |Davranış                                                   |
+|-------------------|-----------------------------------------------------------|
+|fill               |Alanı doldurmak için görseli esnetir, oran bozulabilir (varsayılan)|
+|cover              |Oranı korur, alanı kaplar, taşan kısmı kırpar              |
+|contain            |Oranı korur, görselin tamamı görünür, boş alan kalabilir   |
+|none               |Görsel kendi boyutunda kalır                               |
+|scale-down         |none ve contain'den hangisi daha küçük sonuç veriyorsa onu uygular|
+
+object-position, background-position ile aynı değerleri alır: anahtar kelimeler, yüzdeler veya uzunluklar.
+
+|Arka plan görseli      |`<img>` / `<video>`    |
+|-----------------------|-----------------------|
+|background-size        |object-fit             |
+|background-position    |object-position        |
+
+**Not:** object-fit'in etkisinin görülmesi için elementin genellikle hem genişliği hem de yüksekliği belirlenmiş olmalıdır. Aksi halde görsel zaten kendi oranında görüntülenir.
 
 ## background-position - Arka Plan Konumu
 *background-position*, arka plan görselinin element içinde hangi konumda görüntüleneceğini belirler.
@@ -790,6 +821,62 @@ Virgülle ayrılan değerler arka plan katmanlarıyla sırasıyla eşleşir.
 
 Bu yöntem farklı dekoratif katmanları tek elementte birleştirmemizi sağlar.
 
+## Karışım Modları - Blend Modes
+Normalde üstteki katman alttaki katmanı örter. Karışım modları ise katmanların renklerinin, tasarım programlarındaki katman modlarına benzer şekilde birbiriyle karışmasını sağlar.
+
+CSS'te iki karışım özelliği vardır:
+
+|Özellik                |Neyi karıştırır?                                           |
+|-----------------------|-----------------------------------------------------------|
+|background-blend-mode  |Aynı elementin arka plan katmanlarını birbiriyle ve background-color ile|
+|mix-blend-mode         |Elementin tamamını, arkasında kalan içerikle               |
+
+### 1. background-blend-mode
+```
+    .hero {
+        background-color: #1f4e79;
+        background-image: url("hero.jpg");
+        background-size: cover;
+        background-blend-mode: multiply;
+    }
+```
+Bu örnekte görsel, mavi arka plan rengiyle **multiply** modunda karışır ve görsel mavi tonlu görünür.
+
+Birden fazla katman varsa, değerler katmanlarla sırasıyla eşleşir:
+```
+    .hero {
+        background-image:
+            linear-gradient(#ff7a59, #6a4cff),
+            url("hero.jpg");
+        background-blend-mode: screen, normal;
+    }
+```
+
+### 2. mix-blend-mode
+```
+    .hero h1 {
+        color: white;
+        mix-blend-mode: difference;
+    }
+```
+Burada başlık, arkasındaki görselle karışır. Metin, arka planın açık bölgelerinde koyu, koyu bölgelerinde açık görünür.
+
+### Yaygın Karışım Modları
+|Değer          |Etki                                                       |
+|---------------|-----------------------------------------------------------|
+|normal         |Karışım yok (varsayılan)                                   |
+|multiply       |Renkleri çarpar, sonuç koyulaşır                           |
+|screen         |multiply'ın tersi, sonuç açılır                            |
+|overlay        |Koyuları koyulaştırır, açıkları açar; kontrastı artırır    |
+|darken         |İki renkten koyu olanı seçer                               |
+|lighten        |İki renkten açık olanı seçer                               |
+|difference     |Renk farkını alır, ters renk benzeri sonuç verir           |
+|luminosity     |Üst katmanın parlaklığını alt katmanın rengiyle birleştirir|
+
+**Not:** mix-blend-mode, elementin arkasındaki tüm içerikle karışır. Karışımı yalnızca belirli bir kapsayıcının içinde sınırlamak için kapsayıcıya `isolation: isolate;` verilebilir.
+
+**Erişilebilirlik:** Karışım sonucunda oluşan renkler önceden kesin olarak bilinemez. Metin üzerinde kullanıldığında kontrast mutlaka kontrol edilmelidir.
+
 ## CSS Filtreleri - filter
 CSS filter özelliği, bir elementin görüntülenen sonuca görsel efektler uygulamamızı sağlar.
 
@@ -962,3 +1049,327 @@ filter ile backdrop-filter arasındaki temel fark:
 **Önemli:** backdrop-filter etkisinin görülebilmesi için genellikle elementin arka planında saydamlık bulunmalıdır.
 
 Yoğun bulanıklık efektleri performansı etkileyebileceğinden, özellikle büyük alanlarda dikkatli kullanılmalıdır.
+
+## opacity - Saydamlık
+opacity, bir elementin genel saydamlık düzeyini belirler.
+
+Değer aralığı:
+```
+    0 ─────────────────────────── 1
+    Tamamen saydam          Tamamen opak
+```
+
+Temel Kullanım:
+```
+    .box {
+        opacity: 0.5;
+    }
+```
+
+Bu örnekte element yüzde 50 opaklıkla görüntülenir.
+
+Örnekler:
+```
+    .visible {
+        opacity: 1;
+    }
+
+    .half-transparent {
+        opacity: 0.5;
+    }
+
+    .invisible {
+        opacity: 0;
+    }
+```
+
+### opacity ve rgba() Farkı
+Bu iki yaklaşım sıklıkla karıştırılır.
+```
+    .card {
+        opacity: 0.5;
+    }
+```
+
+Bu kullanım elementin tamamını, metinleri ve çocuk elementleriyle birlikte saydamlaştırır.
+
+Ancak:
+```
+    .card {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+```
+yalnızca arka plan renginin saydamlığını belirler.
+
+Metin ve diğer içerikler bu arka plan alpha değerinden dolayı saydamlaşmaz.
+
+### Karşılaştırma:
+|Özellik                        |opacity                        |rgba() / hsla()                        |
+|-------------------------------|-------------------------------|---------------------------------------|
+|Elementin tamamını etkiler     |Evet                           |Hayır                                  |
+|Çocuk elementleri de etkiler   |Evet                           |Yalnızca ilgili renk kullanımına bağlı |
+|Arka plan saydamlığı için kullanılabilir   |Evet, ancak tüm içeriği etkiler    |Evet                   |
+|Metni opak tutabilir           |Aynı element üzerinde doğrudan hayır| Evet                             |
+
+### Gerçek kullanım
+```
+    .card {
+        background-color: rgba(255, 255, 255, 0.85);
+        color: #26251f;
+    }
+```
+Bu yaklaşım, arka planı yarı saydam tutarken metnin opak kalmasını sağlar.
+
+### opacity: 0 Elementi Gizler mi?
+Görsel olarak evet.
+```
+    .box {
+        opacity: 0;
+    }
+```
+
+Ancak element normal yerleşimde alan kaplamaya devam eder.
+
+Ayrıca etkileşime açık kalabilir ve uygun koşullarda klavye odağı alabilir.
+
+Bu nedenle `opacity: 0`, bir elementi tamamen devre dışı bırakmanın veya erişilebilirlik ağacından kaldırmanın yöntemi değildir.
+
+`opacity: 0`, `visibility: hidden` ve `display: none` arasındaki farklar için: [CSS Display - display: none ve Diğer Gizleme Yöntemleri](06_CSSDisplay.md#display-none-ve-diğer-gizleme-yöntemleri)
+
+## Sık Yapılan Hatalar
+### 1. background-size Davranışını Kontrol Etmemek
+```
+    .hero {
+        background-image: url("hero.jpg");
+    }
+```
+Varsayılan ayarlarda görsel kendi boyutuyla görüntülenebilir ve tekrar edebilir.
+
+Tam alan kaplayan bir görsel isteniyorsa:
+```
+    .hero {
+        background-image: url("hero.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+```
+kullanılabilir.
+
+Ancak görselin tamamının görünmesi gerekiyorsa `contain` daha uygun olabilir.
+
+### 2. Fallback Arka Plan Rengi Tanımlamamak
+```
+    .hero {
+        background-image: url("hero.jpg");
+    }
+```
+Görsel yüklenemediğinde arka plan saydam kalabilir veya alttaki arka plan görünebilir.
+
+Daha güvenli kullanım:
+```
+    .hero {
+        background-color: #26251f;
+        background-image: url("hero.jpg");
+    }
+```
+Özellikle açık renk metin bulunan alanlarda bu önemlidir.
+
+### 3. background-attachment: fixed Kullanımını Mobilde Test Etmemek
+```
+    .hero {
+        background-attachment: fixed;
+    }
+```
+Mobil tarayıcılarda beklenmedik sonuçlar oluşabilir.
+
+Bu nedenle cihazlarda test edilmeli ve gerektiğinde daha basit bir arka plan davranışı tercih edilmelidir.
+
+### 4. opacity ile Metni de Saydamlaştırmak
+```
+    .card {
+        opacity: 0.5;
+    }
+```
+Bu kullanım kartın tüm içeriğini etkiler.
+
+Yalnızca arka planı saydamlaştırmak için:
+```
+    .card {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+```
+kullanılabilir.
+
+### 5. Yoğun Filtreleri Gereksiz Kullanmak
+```
+    .card {
+        backdrop-filter: blur(30px);
+    }
+```
+Özellikle büyük alanlarda, animasyonlarda veya düşük güçlü cihazlarda maliyetli olabilir.
+
+Görsel etkiyi gerçek cihazlarda test etmek önemlidir.
+
+### 6. Arka Plan Görselindeki Metin Kontrastını Kontrol Etmemek
+```
+    .hero {
+        background-image: url("hero.jpg");
+        color: white;
+    }
+```
+Görselin bazı bölümleri çok açık renkliyse beyaz metin okunamayabilir.
+
+Çözüm olarak uygun bir overlay kullanılabilir.
+```
+    .hero {
+        background-image:
+            linear-gradient(
+                rgba(0, 0, 0, 0.55),
+                rgba(0, 0, 0, 0.55)
+            ),
+            url("hero.jpg");
+    }
+```
+Ancak kontrastın gerçekten yeterli olup olmadığı yine kontrol edilmelidir.
+
+### 7. Shorthand ile Önceki Ayarları Sıfırlamak
+```
+    .hero {
+        background-size: cover;
+        background: url("hero.jpg");
+    }
+```
+İkinci declaration, background-size değerini sıfırlar.
+
+Doğru sıralama veya tam shorthand kullanımı tercih edilmelidir.
+
+## Kısaca Özet
+CSS arka plan özellikleri, bir elementin arka planını renkler, görseller, gradient'ler ve çeşitli görüntüleme ayarlarıyla kontrol etmemizi sağlar.
+
+### Arka Plan Özellikleri Tablosu
+
+|Property               |Görevi                     |Örnek               |
+|-----------------------|---------------------------|--------------------|
+|background-color       |Arka plan rengi            |#f5f5f5             |
+|background-image       |Görsel veya gradient       |url("bg.png")       |
+|background-repeat      |Tekrarlama                 |no-repeat           |
+|background-size        |Görsel boyutu              |cover               |
+|background-position    |Görsel konumu              |center              |   
+|background-attachment  |Kaydırma davranışı         |fixed               |
+|background-origin      |Konumlandırma referansı    |padding-box         |
+|background-clip        |Boyama sınırı              |content-box         |
+|background             |Shorthand                  |#fff url("bg.jpg") center / cover no-repeat|
+
+### Background Shorthand Şeması
+```
+    background: #f5f5f5 url("bg.jpg") no-repeat center / cover;
+                │       │             │         │        │
+                │       │             │         │        └── Size
+                │       │             │         └─────────── Position
+                │       │             └───────────────────── Repeat
+                │       └─────────────────────────────────── Image
+                └─────────────────────────────────────────── Color
+```
+
+Burada /, background-position ve background-size değerlerini ayırır.
+
+### Gradient Türleri
+|Fonksiyon                          |Geçiş şekli                            |
+|-----------------------------------|---------------------------------------|
+|linear-gradient()                  |Düz çizgi boyunca                      |
+|radial-gradient()                  |Merkezden dışarıya                     |
+|conic-gradient()                   |Merkez etrafında açısal                |
+
+### Yaygın Filtre Fonksiyonları 
+|Fonksiyon                          |Etki                                   |
+|-----------------------------------|---------------------------------------|
+|blur()                             |Bulanıklık                             |
+|brightness()                       |Parlaklık                              |
+|contrast()                         |Kontrast                               |
+|grayscale()                        |Siyah-beyaz / gri tonlama              |
+|saturate()                         |Renk doygunluğu                        |
+|sepia()                            |Sepya tonu                             |
+|hue-rotate()                       |Renk tonu döndürme                     |
+|invert()                           |Renk tersine çevirme                   |
+|drop-shadow()                      |Görünür şekle gölge                    |
+
+### Gerçek Proje Örneği
+```
+    .hero {
+        min-height: 500px;
+        padding: 64px 24px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: #ffffff;
+        text-align: center;
+
+        background-color: #26251f;
+
+        background-image:
+            linear-gradient(
+                rgba(0, 0, 0, 0.6),
+                rgba(0, 0, 0, 0.25)
+            ),
+            url("hero.jpg");
+
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .hero h1 {
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        line-height: 1.2;
+    }
+```
+
+Bu örnekte:
+- Arka plan rengi fallback olarak kullanılır.
+- Görsel alanı kaplayacak şekilde ölçeklenir.
+- Gradient, metnin okunabilirliğini destekler.
+- Başlık boyutu ekran genişliğine göre uyarlanır.
+
+### Arka Planların Genel Mantığı
+```
+    CSS ARKA PLANLAR
+    │
+    ├── RENK
+    │   └── background-color
+    │
+    ├── GÖRSEL
+    │   ├── background-image
+    │   ├── background-repeat
+    │   ├── background-size
+    │   ├── background-position
+    │   ├── background-attachment
+    │   └── <img> karşılığı: object-fit / object-position
+    │
+    ├── KUTU SINIRLARI
+    │   ├── background-origin
+    │   └── background-clip
+    │
+    ├── GRADIENT
+    │   ├── linear-gradient()
+    │   ├── radial-gradient()
+    │   └── conic-gradient()
+    │
+    ├── ÇOKLU KATMANLAR
+    │   ├── Birden fazla görsel
+    │   └── Gradient overlay
+    │
+    ├── KARIŞIM MODLARI
+    │   ├── background-blend-mode
+    │   └── mix-blend-mode
+    │
+    ├── FİLTRELER
+    │   ├── filter
+    │   └── backdrop-filter
+    │
+    └── SAYDAMLIK
+        ├── opacity
+        └── Alpha kanallı renkler
+```

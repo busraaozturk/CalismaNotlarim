@@ -55,7 +55,7 @@ Web tasarımı ve stil oluşturmaya yönelik notlar.
 - [**08 - CSS Flexbox**](03_CSS/08_CSSFlexbox.md) - Tek boyutlu yerleşim ve hizalama
 - [**09 - CSS Grid**](03_CSS/09_CSSGrid.md) - İki boyutlu satır-sütun yerleşim sistemi
 - [**10 - CSS Tipografi**](03_CSS/10_CSSTipografi.md) - Yazı tipi, boyut, kalınlık, satır yüksekliği ve metin düzeni
-- [**11 - CSS Arka Planlar**](03_CSS/11_CSSArkaPlanlar.md) - Arka plan rengi, görseli, konumu, boyutu ve gradient
+- [**11 - CSS Arka Planlar**](03_CSS/11_CSSArkaPlanlar.md) - Arka plan rengi, görseli, konumu, boyutu, gradient, object-fit, blend modları, filter ve opacity
 
 **PDF Notlar**
 
